@@ -1,0 +1,30 @@
+---
+import { string } from 'astro/zod'
+
+interface Props {
+    title: string
+    class?: string
+}
+const {title} = Astro.props
+---
+
+
+
+<article class={`
+    ${Astro.props.class}
+    relative rounded-xl
+    backdrop-blur-md
+    border border-black/10
+    shadow-inner shadow-whithe/10
+    group
+`}>
+    <div class="
+    absolute z-10 bottom-0 top-0 w-full h-full
+    bg-gradiente-to-b from-transparent from-40% via-black/50 to-black/80
+    "></div>
+<div class=" relative select-none flex flex-col gap-1 p-6 text-lg z-20 justify-end h-full">
+    <slot name="image"></slot>
+    <h2 class=" text-3xl font-semibold text-balance text-white mb-4">{title}</h2>
+    <slot name="conten"></slot>
+</div> 
+</article>

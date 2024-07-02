@@ -1,0 +1,104 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+	description: string;
+	title: string;
+}
+
+const {description, title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>{title}</title>
+	</head>
+	<body>
+		<Header />
+		<div class="whatsapp">
+			<a  href="https://wa.me/51929418895" ><img src='/whatsapp.png' alt=''/></a>
+		  </div>
+		<slot />
+		<Footer />
+	</body>
+</html>
+<style is:global>
+	:root {
+		color-scheme: dark;
+	}
+	html {
+		font-family: system-ui, sans-serif;
+		background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%);;
+		
+	}
+
+	p{
+		color: rgba(255, 255, 255, 0.9);
+		line-height: 1.4;
+		margin-bottom: 1em;
+		font-weight: 100;
+		font-size: 1em;
+		letter-spacing: .5px;
+
+
+	}
+	p strong{
+		color: white;
+		font-weight: 700;
+		
+	}
+	.intro{
+		background-color: #4eb2e5;
+	}
+	.hero{
+		background-color: #dcb55d;
+	}
+	.hero2{
+		background-color: #835b0a ;
+	}
+	.arena{
+		background-color: #fdcc6d;
+	}
+	.whatsapp{
+  background-color: #2e6329;
+  border: 1px solid #fff;
+  position: fixed;
+  z-index: 999;
+  border-radius: 50%;
+  bottom: 20px;
+  right: 25px;
+  padding: 15px;
+  transition: ease 0.3s;
+  animation: efecto 1.2s infinite;
+      
+  }
+
+  .whatsapp:hover{
+    transform: scale(1.1);
+    transition: 0.3s;
+
+  }
+  .whatsapp>a>img{
+    width: 50px;
+     transition: ease 1s;
+
+  }
+  @media screen and (max-width: 768px){
+
+.whatsapp{
+  padding: 5px;
+}
+.whatsapp>a>img{
+  width: 30px;
+
+}
+}
+
+	
+</style>

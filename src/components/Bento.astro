@@ -1,0 +1,82 @@
+---
+import BentoItem from './BentoItem.astro'
+---
+
+<section
+class={`
+    w-full max-w-[1400px]
+    grid lg:grid-cols-10 auto-rows-[30rem] gap-4
+    mx-auto p-6 md:p-12 lg:p-20
+  `}
+
+>
+<BentoItem class="col-span-10 lg:col-span-4" title="Aprende Jugando">
+    <div
+        slot="image"
+        class="absolute left-0 top-0 bottom-0 w-full
+        h-full group-hover:scale-110 transition-scale duration-1000
+        ease-in-out opacity-90 bg-blend-luminosity bg-blue-200  -z-10 bg-cover bg-center bg-no-repeat
+        "
+        style="background-image:url('/ataque.jpg');"
+    />
+        
+    
+    <p slot="conten" class="max-w-xl ">Vas aprender de este maravilloso deporte,  te vas a ejercitar, vas hacer nuevos amigos y vivirás toda la energía  de este ambiente  tan hermoso
+        <a href="/aprendo" class="block mt-3 w-40 py-4 px-6 text-center rounded-md text-white font-medium bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600">
+            Ver más
+           </a>
+    </p>
+</BentoItem>
+
+<BentoItem class="col-span-10 md:col-span-6 " title="Que nivel de juego crees que tienes?">
+    <div
+    slot="image"
+    class="absolute left-0 top-0 bottom-0 w-full 
+    h-full group-hover:scale-110 transition-scale duration-1000
+    ease-in-out opacity-90 bg-blend-luminosity bg-blue-200 bg-center bg-no-repeat -z-10 bg-cover
+    "
+    style="background-image:url('/mascuino.jpg');"
+/>
+<p slot="conten" class="max-w-xl">Auto evaluate y crece con nosotros al siguiente nivel.
+    <a href="/niveles" class="block mt-3 w-40 py-4 px-6 text-center rounded-md text-white font-medium bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600">
+        Ver más
+       </a>
+</p>
+
+</BentoItem>
+
+<BentoItem class="col-span-10 md:col-span-6" title="Nuestras Clinicas">
+    <div
+    slot="image"
+    class="absolute left-0 top-0 bottom-0 w-full
+    h-full group-hover:scale-110 transition-scale duration-1000
+    ease-in-out opacity-90 bg-blend-luminosity bg-blue-200 bg-center bg-no-repeat -z-10 bg-cover
+    "
+    style="background-image:url('/public/grupal.jpg');"
+/>
+<p slot="conten" class="max-w-xl">Arena voleibol club  cuenta con la mejor estructura y el mejor equipo de profesionales para brindar entrenamientos de iniciación  o de alto rendimiento.
+    <a href="/clinicas" class="block mt-3 w-40 py-4 px-6 text-center rounded-md text-white font-medium bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600">
+        Ver más
+       </a>
+</p>
+
+</BentoItem>
+
+<BentoItem class="col-span-10  md:col-span-4" title="Torneos">
+  
+    <div
+    slot="image"
+    class="absolute left-0 top-0 bottom-0 w-full
+    h-full group-hover:scale-110 transition-scale duration-1000
+    ease-in-out opacity-90 bg-blend-luminosity bg-blue-200 bg-center bg-no-repeat -z-10 bg-cover
+    "
+    style="background-image:url('/tomando.jpg'); img:cover"
+/>
+<p slot="conten" class="max-m-xl box-decoration-slice  text-white px-2">Organizamos torneos durante todo el año, proporcionando a nuestros jugadores la oportunidad de competir, evaluar su progreso y experimentar la emoción del juego competitivo.
+    <a href="#" class="block mt-3 w-40 py-4 px-6 text-center rounded-md text-white font-medium bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600">
+        Ver más
+       </a>
+</p>
+
+</BentoItem>
+</section>
