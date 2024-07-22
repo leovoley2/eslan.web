@@ -1,62 +1,99 @@
-import React, {useRef} from 'react'
-import Emailjs from "@emailjs/browser"
+import React, { useState } from 'react';
+import emailjs from 'emailjs-com';
 
 
-export const ContacForm = () => {
+const ContactForm = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
 
-const refForm = useRef();
-const handleSubmit = (event) => {
-    event.preventDefault();
-const serviceId = "service_9br99t5";
-const templateId = "template_5e9osht";
-// 3 parametro
-const publicKey = "ibPFGXKVUvzW9Qb6F";
-Emailjs.sendForm(serviceId, templateId, refForm.current, publicKey )
-.then((result) => console.log("ok") )
-.catch(error => console.log(error))
-}
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError(null);
+    setSuccess(null);
+
+    try {
+      const result = await emailjs.send('service_9br99t5', 'template_5e9osht', formData, 'ATNa9hCpUCnemBxjE');
+      if (result.status !== 200) {
+        throw new Error('Error al enviar el formulario');
+      }
+      setSuccess('Mensaje enviado con éxito');
+      setFormData({
+        name: '',
+        email: '',
+        message: '',
+      });
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
-    <div class="h-screen flex">
-            <div class=" login hidden lg:flex w-full lg:w-1/2
-            justify-around  items-center">
-              <div 
-                    class=" 
-                    login
-                    bg-white 
-                    opacity-20 
-                    inset-0 
-                    z-0"
-                    >
-  
-                    </div>
-             
-            </div>
-            <div class="  flex w-full lg:w-1/2 justify-center items-center bg-white space-y-8" >
-              <div class="w-full px-8 md:px-32 lg:px-24">
-              <form ref={refForm} action='' onSubmit={handleSubmit} class="bg-white rounded-md shadow-2xl p-5">
-                <h1 class="text-gray-800 font-bold text-2xl mb-1 text-center">Contactanos</h1>
-                <div class="flex items-center border-2 mb-8 py-2 px-3 rounded-2xl">
-                  
-                    <input id="name" class=" pl-2 w-full outline-none border-none" type="text" name="name" placeholder="Nombre y apellido" required />
-                  </div>
-                <div class="flex items-center border-2 mb-8 py-2 px-3 rounded-2xl">
-                  
-                  <input id="email" class=" pl-2 w-full outline-none border-none" type="email" name="email" placeholder="Email Address" required />
-                </div>
-                <div class="flex items-center border-2 mb-12 py-2 px-3 rounded-2xl ">
-                 
-                  <textarea class="pl-2 w-full outline-none border-none" name="mensaje" id="mensaje" placeholder="Escribe tu consulta" required></textarea>
-                  
-                </div>
-                <button type="submit" class="block w-full bg-indigo-600 mt-5 py-2 rounded-2xl hover:bg-indigo-700 hover:-translate-y-1 transition-all duration-500 text-white font-semibold mb-2">Enviar</button>
-                
-              </form>
-              </div>
-              
-            </div>
-        </div>
-  )
-}
-export default ContacForm;
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <div>
+        <label htmlFor="name" className="block text-sm font-medium text-gray-700">Nombre:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        />
+      </div>
+      <div>
+        <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        />
+      </div>
+      <div>
+        <label htmlFor="message" className="block text-sm font-medium text-gray-700">Mensaje:</label>
+        <textarea
+          id="message"
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          required
+          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        ></textarea>
+      </div>
+      <div>
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        >
+          {isSubmitting ? 'Enviando...' : 'Enviar'}
+        </button>
+      </div>
+      {error && <p className="text-red-500 text-sm">{error}</p>}
+      {success && <p className="text-green-500 text-sm">{success}</p>}
+    </form>
+  );
+};
 
+export default ContactForm;
