@@ -98,39 +98,81 @@ const ContactForm = () => {
 
 export default ContactForm;
 */
-import React, {useRef} from 'react';
-import emailjs from '@emailjs/browser';
+import React, { useRef, useState } from 'react';
+import emailjs from 'emailjs-com';
 
-export const ContactUs = () => {
+const ContactUs = () => {
   const form = useRef();
+  const [feedbackMessage, setFeedbackMessage] = useState('');
+  const [feedbackColor, setFeedbackColor] = useState('');
 
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs
-      .sendForm('service_9br99t5', 'template_5e9osht', form.current, {
-        publicKey: 'ATNa9hCpUCnemBxjE',
-      })
-      .then(
-        () => {
-          console.log('SUCCESS!');
-        },
-        (error) => {
-          console.log('FAILED...', error.text);
-        },
-      );
+    if (form.current.checkValidity()) {
+      emailjs
+        .sendForm('service_9br99t5', 'template_5e9osht', form.current, 'ATNa9hCpUCnemBxjE')
+        .then(
+          () => {
+            setFeedbackMessage('SUCCESS! Your message has been sent.');
+            setFeedbackColor('text-green-500');
+          },
+          (error) => {
+            setFeedbackMessage(`FAILED... ${error.text}`);
+            setFeedbackColor('text-red-500');
+          }
+        );
+    } else {
+      setFeedbackMessage('Please fill out all fields correctly.');
+      setFeedbackColor('text-red-500');
+    }
   };
 
   return (
-    <form ref={form} onSubmit={sendEmail}>
-      <label>Name</label>
-      <input type="text" name="name" />
-      <label>Email</label>
-      <input type="email" name="email" />
-      <label>Message</label>
-      <textarea name="message" />
-      <input type="submit" value="Send" />
-    </form>
+    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+      <h2 className="text-2xl font-bold mb-6 text-center">Contact Us</h2>
+      <form ref={form} onSubmit={sendEmail} className="space-y-4" noValidate>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Name</label>
+          <input
+            type="text"
+            name="name"
+            required
+            className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Email</label>
+          <input
+            type="email"
+            name="email"
+            required
+            className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Message</label>
+          <textarea
+            name="message"
+            required
+            className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          />
+        </div>
+        <div>
+          <input
+            type="submit"
+            value="Send"
+            className="w-full bg-indigo-500 text-white p-2 rounded-md hover:bg-indigo-600 transition duration-300"
+          />
+        </div>
+      </form>
+      {feedbackMessage && (
+        <div className={`mt-4 text-center text-sm ${feedbackColor}`}>
+          {feedbackMessage}
+        </div>
+      )}
+    </div>
   );
 };
+
 export default ContactUs;
