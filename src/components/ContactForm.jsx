@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import emailjs from 'emailjs-com';
+import emailjs from '@emailjs/browser';
 
 
 const ContactForm = () => {
@@ -45,7 +45,7 @@ const ContactForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} method='' className="space-y-6">
+    <form ref={FormData} onSubmit={handleSubmit} method='' className="space-y-6">
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-gray-700">Nombre:</label>
         <input
