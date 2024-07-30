@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+/*import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
 
 
@@ -97,3 +97,40 @@ const ContactForm = () => {
 };
 
 export default ContactForm;
+*/
+import React, {useRef} from 'react';
+import emailjs from '@emailjs/browser';
+
+export const ContactUs = () => {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm('service_9br99t5', 'template_5e9osht', form.current, {
+        publicKey: 'ATNa9hCpUCnemBxjE',
+      })
+      .then(
+        () => {
+          console.log('SUCCESS!');
+        },
+        (error) => {
+          console.log('FAILED...', error.text);
+        },
+      );
+  };
+
+  return (
+    <form ref={form} onSubmit={sendEmail}>
+      <label>Name</label>
+      <input type="text" name="name" />
+      <label>Email</label>
+      <input type="email" name="email" />
+      <label>Message</label>
+      <textarea name="message" />
+      <input type="submit" value="Send" />
+    </form>
+  );
+};
+export default ContactUs;
