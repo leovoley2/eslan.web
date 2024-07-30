@@ -34,7 +34,7 @@ const ContactUs = () => {
       setFeedbackColor('text-red-500');
     }
   };
-
+return(
  <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-6 text-center">Contact Us</h2>
       <form ref={form} onSubmit={sendEmail} className="space-y-4" noValidate>
@@ -80,6 +80,7 @@ const ContactUs = () => {
         </div>
       )}
     </div>
+    );
 };
 
-export default ContactUs
+export default ContactUs;
