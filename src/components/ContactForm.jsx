@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 
 const ContactUs = () => {
-  const form = useRef();
+  const refForm = useRef();
   const [feedbackMessage, setFeedbackMessage] = useState('');
   const [feedbackColor, setFeedbackColor] = useState('');
   const [isLoading, setIsLoading] = useState(false); // Indicador de carga
@@ -10,7 +10,7 @@ const ContactUs = () => {
   const sendEmail = async (e) => {
     e.preventDefault();
 
-    if (form.current.checkValidity()) {
+    if (refForm.current.checkValidity()) {
       setIsLoading(true); // Mostrar indicador de carga
       try {
         const response = await emailjs.sendForm(
@@ -36,15 +36,16 @@ const ContactUs = () => {
   };
 return(
  <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-6 text-center">Contact Us</h2>
-      <form ref={form} onSubmit={sendEmail} className="space-y-4" noValidate>
+      <h2 className="text-2xl font-bold mb-6 text-center">Contactanos</h2>
+      <form ref={refForm} onSubmit={sendEmail} className="space-y-4" noValidate>
         <div>
-          <label className="block text-sm font-medium text-gray-700">Name</label>
+          <label className="block text-sm font-medium text-gray-700">Nombre</label>
           <input
             type="text"
             name="name"
             id='name'
             required
+            placeholder='Escriba su nombre'
             className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
           />
         </div>
@@ -55,24 +56,26 @@ return(
             name="email"
             id='email'
             required
+            placeholder='Ejemplo@hotmail.com'
             className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700">Message</label>
+          <label className="block text-sm font-medium text-gray-700">Mensaje</label>
           <textarea
+          placeholder='Escriba su consulta'
             name="message"
             required
             className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
           />
         </div>
-        <div>
+        <button>
           <input
             type="submit"
             value="Send"
             className="w-full bg-indigo-500 text-white p-2 rounded-md hover:bg-indigo-600 transition duration-300"
           />
-        </div>
+        </button>
       </form>
       {feedbackMessage && (
         <div className={`mt-4 text-center text-sm ${feedbackColor}`}>
