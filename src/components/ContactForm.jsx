@@ -14,7 +14,7 @@ const ContactUs = () => {
       setIsLoading(true); // Mostrar indicador de carga
       try {
         const response = await emailjs.sendForm(
-          'service_9br99t5',
+          'service_fayk1hj',
           'template_5e9osht',
           form.current,
           'ATNa9hCpUCnemBxjE'
