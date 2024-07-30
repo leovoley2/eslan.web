@@ -98,7 +98,7 @@ const ContactForm = () => {
 
 export default ContactForm;
 */
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState} from 'react';
 import emailjs from 'emailjs-com';
 
 const ContactUs = () => {
@@ -137,6 +137,7 @@ const ContactUs = () => {
           <input
             type="text"
             name="name"
+            id='name'
             required
             className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
           />
@@ -146,6 +147,7 @@ const ContactUs = () => {
           <input
             type="email"
             name="email"
+            id='email'
             required
             className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
           />
