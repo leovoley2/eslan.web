@@ -2,21 +2,21 @@ import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 
 const ContactUs = () => {
-  const refForm = useRef();
+  const formRef = useRef();
   const [feedbackMessage, setFeedbackMessage] = useState('');
   const [feedbackColor, setFeedbackColor] = useState('');
-  const [isLoading, setIsLoading] = useState(false); // Indicador de carga
+  const [isLoading, setIsLoading] = useState(false);
 
   const sendEmail = async (e) => {
     e.preventDefault();
 
-    if (refForm.current.checkValidity()) {
-      setIsLoading(true); // Mostrar indicador de carga
+    if (formRef.current.checkValidity()) {
+      setIsLoading(true);
       try {
         const response = await emailjs.sendForm(
           'service_fayk1hj',
           'template_5e9osht',
-          form.current,
+          formRef.current,
           'ATNa9hCpUCnemBxjE'
         );
         console.log('SUCCESS!', response.text);
@@ -27,25 +27,26 @@ const ContactUs = () => {
         setFeedbackMessage(`Error al enviar el mensaje: ${error.text}`);
         setFeedbackColor('text-red-500');
       } finally {
-        setIsLoading(false); // Ocultar indicador de carga
+        setIsLoading(false);
       }
     } else {
       setFeedbackMessage('Por favor, completa todos los campos correctamente.');
       setFeedbackColor('text-red-500');
     }
   };
-return(
- <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+
+  return (
+    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-6 text-center">Contactanos</h2>
-      <form ref={refForm} onSubmit={sendEmail} className="space-y-4" noValidate>
+      <form ref={formRef} onSubmit={sendEmail} className="space-y-4" noValidate>
         <div>
           <label className="block text-sm font-medium text-gray-700">Nombre</label>
           <input
             type="text"
             name="name"
-            id='name'
+            id="name"
             required
-            placeholder='Escriba su nombre'
+            placeholder="Escriba su nombre"
             className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
           />
         </div>
@@ -54,27 +55,23 @@ return(
           <input
             type="email"
             name="email"
-            id='email'
+            id="email"
             required
-            placeholder='Ejemplo@hotmail.com'
+            placeholder="Ejemplo@hotmail.com"
             className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
           />
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">Mensaje</label>
           <textarea
-          placeholder='Escriba su consulta'
+            placeholder="Escriba su consulta"
             name="message"
             required
             className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
           />
         </div>
-        <button>
-          <input
-            type="submit"
-            value="Send"
-            className="w-full bg-indigo-500 text-white p-2 rounded-md hover:bg-indigo-600 transition duration-300"
-          />
+        <button type="submit" className="w-full bg-indigo-500 text-white p-2 rounded-md hover:bg-indigo-600 transition duration-300">
+          Enviar
         </button>
       </form>
       {feedbackMessage && (
@@ -83,7 +80,7 @@ return(
         </div>
       )}
     </div>
-    );
+  );
 };
 
 export default ContactUs;
