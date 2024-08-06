@@ -14,7 +14,7 @@ const ContactUs = () => {
       setIsLoading(true);
       try {
         const response = await emailjs.sendForm(
-          'service_fayk1hj',
+          'default_service',
           'template_5e9osht',
           formRef.current,
           'ATNa9hCpUCnemBxjE'
