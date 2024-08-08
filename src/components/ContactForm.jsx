@@ -41,38 +41,31 @@ const ContactUs = () => {
     <div className="max-w-md mx-auto mt-10 p-6 bg-orange-300 rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-6 text-center">Contactanos</h2>
       <form ref={formRef} onSubmit={sendEmail} className="space-y-4">
-        <fieldset>
+        
           <label className="block text-sm font-medium text-gray-700">Nombre</label>
           <input
             type="text"
-            name="name"
-            id="name"
+            name="user_name"
             required
             placeholder="Escriba su nombre"
             className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
           />
-        </fieldset>
-        <fieldset>
           <label className="block text-sm font-medium text-gray-700">Email</label>
           <input
             type="email"
-            name="email"
-            id="email"
+            name="user_email"
             required
             placeholder="Ejemplo@hotmail.com"
             className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
           />
-        </fieldset>
-        <fieldset>
           <label className="block text-sm font-medium text-gray-700">Mensaje</label>
           <textarea
             placeholder="Escriba su consulta"
             name="message"
-            id='message'
             required
             className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
           />
-        </fieldset>
+        
         <button type="submit" className="w-full bg-indigo-500 text-white p-2 rounded-md hover:bg-indigo-600 transition duration-300">
           Enviar
         </button>
