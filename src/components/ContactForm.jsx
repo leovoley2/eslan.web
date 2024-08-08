@@ -14,7 +14,7 @@ const ContactUs = () => {
       setIsLoading(true);
       try {
         const response = await emailjs.sendForm(
-          'default_service',
+          'service_fayk1hj',
           'template_5e9osht',
           formRef.current,
           'ATNa9hCpUCnemBxjE'
@@ -22,10 +22,12 @@ const ContactUs = () => {
         console.log('SUCCESS!', response.text);
         setFeedbackMessage('¡Mensaje enviado con éxito!');
         setFeedbackColor('text-green-500');
+        console.log('ok')
       } catch (error) {
         console.error('FAILED...', error);
         setFeedbackMessage(`Error al enviar el mensaje: ${error.text}`);
         setFeedbackColor('text-red-500');
+        console.log('no se envio')
       } finally {
         setIsLoading(false);
       }
@@ -34,7 +36,7 @@ const ContactUs = () => {
       setFeedbackColor('text-red-500');
     }
   };
-
+};
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-orange-300 rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-6 text-center">Contactanos</h2>
@@ -82,6 +84,6 @@ const ContactUs = () => {
       )}
     </div>
   );
-};
+
 
 export default ContactUs;
