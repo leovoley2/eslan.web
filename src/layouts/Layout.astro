@@ -23,8 +23,8 @@ const {description, title } = Astro.props;
 	</head>
 	<body>
 		<Header />
-		<div class="whatsapp">
-			<a  href="https://wa.me/51929418895" target="_blank" ><img src='/whatsapp.png' alt='contactanos'/></a>
+		<div class="whatsapp animate-bounce">
+			<a class="animate-ping"  href="https://wa.me/51929418895" target="_blank" ><img src='/whatsapp.png' alt='contactanos'/></a>
 		  </div>
 		<slot />
 		<Footer />
@@ -36,7 +36,7 @@ const {description, title } = Astro.props;
 	}
 	html {
 		font-family: system-ui, sans-serif;
-		background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%);;
+		background-color: #f8ecbc;
 		
 	}
 
@@ -65,7 +65,7 @@ const {description, title } = Astro.props;
 		background-color: #835b0a ;
 	}
 	.arena{
-		background-color: #fdcc6d;
+		background-color: #01577a;
 	}
 	.whatsapp{
   background-color: #2e6329;

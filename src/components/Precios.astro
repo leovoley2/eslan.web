@@ -1,169 +1,155 @@
-<!-- component -->
-<section class="arena py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-4xl font-extrabold text-white sm:text-5xl">
-         Planes
-        </h2>
-        
-      </div>
-  
-      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-        <!-- Free Plan -->
-        <div class="bg-gray-800 rounded-lg shadow-lg p-6 transform hover:scale-105 transition duration-300">
-          <div class="mb-8">
-            <h3 class="text-2xl font-semibold text-white">Clases</h3>
-            <p class="mt-4 text-gray-400">pago por clases.</p>
-          </div>
-          <div class="mb-8">
-            <span class="text-5xl font-extrabold text-white">S/35</span>
-            <span class="text-xl font-medium text-gray-400">/dia</span>
-          </div>
-          <ul class="mb-8 space-y-4 text-gray-400">
-            <li class="flex items-center">
-              <svg class="h-6 w-6 text-green-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-              <span>1 clase</span>
-            </li>
-            <li class="flex items-center">
-              <svg class="h-6 w-6 text-green-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-              <span>2 horas de trabajo</span>
-            </li>
-            <li class="flex items-center">
-              <svg class="h-6 w-6 text-green-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-              <span>30 min de fisico, 1 hora de tecnico/tactico 30min de juego</span>
-            </li>
-          </ul>
-          <a target="_blank"
-          href="https://wa.me/51929418895" class="block w-full py-3 px-6 text-center rounded-md text-white font-medium bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600">
-           Suscribir
-          </a>
+---
+// src/components/Pricing.astro
+
+
+const plans = {
+  monthly: [
+    {
+      name: 'Clase',
+      price: 'S/30',
+      features: ['1 clase', '2 horas de entrenamiento', '30 min fisico, 1 hora de tecnico tactico y 30 de juego']
+    },
+    {
+      name: 'Basico',
+      price: 'S/130',
+      features: ['1 vez por semana', '4 clases', '2 horas de entrenamiento', '30 min fisico, 1 hora de tecnico tactico y 30 de juego']
+    },
+    {
+      name: 'Intermedio',
+      price: 'S/170',
+      features: ['2 veces por semana', '30 min fisico, 1 hora de tecnico tactico y 30 de juego', 'Acesoramiento fisico', 'Acesoramiento de fuerza']
+    },
+    {
+      name: 'Avanzado',
+      price: 'S/200',
+      features: ['3 veces por semana', '30 min fisico, 1 hora de tecnico tactico y 30 de juego', 'Acesoramiento fisico', 'Acesoramiento de fuerza', 'Videos de corrección de técnica']
+    }
+  ],
+  annual: [
+    {
+      name: 'clases',
+      price: 'S/35',
+      features: ['1 clase', '30 min fisico, 1 hora de tecnico tactico y 30 de juego']
+    },
+    {
+      name: 'Basico',
+      price: 'S/130',
+      features: ['4 clases', '2 horas de entrenamiento', '30 min fisico, 1 hora de tecnico tactico y 30 de juego']
+    },
+    {
+      name: 'Avanzado',
+      price: 'S/215',
+      features: ['8 clases', '30 min fisico, 1 hora de tecnico tactico y 30 de juego', 'Acesoramiento fisico', 'Acesoramiento de fuerza', 'Videos de corrección de técnica']
+    },
+    {
+      name: 'Arena Kids',
+      price: 'S/215',
+      features: ['8 clases ', '30 min fisico, 1 hora de tecnico tactico y 30 de juego', 'Desarrollo cognitivo', 'Desarrollo Motor', 'Videos de corrección de técnica']
+    }
+  ]
+};
+---
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const monthlyBtn = document.getElementById('monthlyBtn');
+    const annualBtn = document.getElementById('annualBtn');
+    const monthlyPlans = document.getElementById('monthlyPlans');
+    const annualPlans = document.getElementById('annualPlans');
+
+    monthlyBtn?.addEventListener('click', () => {
+      monthlyBtn.classList.add('bg-blue-600', 'text-white');
+      monthlyBtn.classList.remove('bg-gray-200', 'text-gray-700');
+      annualBtn?.classList.remove('bg-blue-600', 'text-white');
+      annualBtn?.classList.add('bg-gray-200', 'text-gray-700');
+      monthlyPlans?.classList.remove('hidden');
+      annualPlans?.classList.add('hidden');
+    });
+
+    annualBtn?.addEventListener('click', () => {
+      annualBtn.classList.add('bg-blue-600', 'text-white');
+      annualBtn.classList.remove('bg-gray-200', 'text-gray-700');
+      monthlyBtn?.classList.remove('bg-blue-600', 'text-white');
+      monthlyBtn?.classList.add('bg-gray-200', 'text-gray-700');
+      annualPlans?.classList.remove('hidden');
+      monthlyPlans?.classList.add('hidden');
+    });
+  });
+</script>
+
+<div class="w-full max-w-6xl mx-auto p-4">
+  <div class="text-center mb-12">
+    <h2 class="text-4xl font-extrabold text-[#01577a] sm:text-5xl">
+     Planes- sedes
+    </h2>
+    <p class="text-[#01577a] mt-2 text-center">los precios reflejados son mensuales</p>
+    
+  </div>
+  <div class="flex justify-center gap-4 mb-8">
+    <button
+      id="monthlyBtn"
+      class="px-6 py-2 rounded-lg font-medium animate-pulse bg-[#01577a] text-white"
+    >
+      Chorrillos
+    </button>
+    <button
+      id="annualBtn"
+      class="px-6 py-2 rounded-lg font-medium bg-gray-200 text-gray-700"
+    >
+      Surco
+    </button>
+  </div>
+
+  <div id="monthlyPlans" class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+    {plans.monthly.map(plan => (
+  <div class="border rounded-xl shadow-lg bg-[#01577a]">
+        <div class="space-y-1 text-center border-b p-6">
+          <h3 class="text-2xl font-bold">{plan.name}</h3>
+          <div class="text-3xl font-bold text-[#ffb919]">{plan.price}</div>
         </div>
-  
-        <!-- Starter Plan -->
-        <div class="bg-gray-800 rounded-lg shadow-lg p-6 transform hover:scale-105 transition duration-300">
-          <div class="mb-8">
-            <h3 class="text-2xl font-semibold text-white">Basico</h3>
-            <p class="mt-4 text-gray-400">1 vez por semana.</p>
-          </div>
-          <div class="mb-8">
-            <span class="text-5xl font-extrabold text-white">S/100</span>
-            <span class="text-xl font-medium text-gray-400">/mensual</span>
-          </div>
-          <ul class="mb-8 space-y-4 text-gray-400">
-            <li class="flex items-center">
-              <svg class="h-6 w-6 text-green-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-              <span>4 clases</span>
-            </li>
-             <li class="flex items-center">
-              <svg class="h-6 w-6 text-green-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-              <span>2 horas de trabajo</span>
-            </li>
-            <li class="flex items-center">
-              <svg class="h-6 w-6 text-green-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-              <span>30 min de fisico, 1 hora de tecnico/tactico 30min de juego</span>
-            </li>
+        <div class="p-6">
+          <ul class="space-y-4">
+            {plan.features.map(feature => (
+              <li class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span>{feature}</span>
+              </li>
+            ))}
           </ul>
-          <a target="_blank"
-          href="https://wa.me/51929418895" class="block w-full py-3 px-6 text-center rounded-md text-white font-medium bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600">
-            Suscribir
-          </a>
-        </div>
-  
-        <!-- Pro Plan -->
-        <div class="bg-gray-800 rounded-lg shadow-lg p-6 transform hover:scale-105 transition duration-300">
-          <div class="mb-8">
-            <h3 class="text-2xl font-semibold text-white">Intermedio</h3>
-            <p class="mt-4 text-gray-400">2 veces por semana.</p>
-          </div>
-          <div class="mb-8">
-            <span class="text-5xl font-extrabold text-white">S/150</span>
-            <span class="text-xl font-medium text-gray-400">/mensual</span>
-          </div>
-          <ul class="mb-8 space-y-4 text-gray-400">
-            <li class="flex items-center">
-              <svg class="h-6 w-6 text-green-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-              <span>8 clases</span>
-            </li>
-            <li class="flex items-center">
-              <svg class="h-6 w-6 text-green-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-              <span>30 min de fisico, 1 hora de tecnico/tactico 30min de juego</span>
-            </li>
-            <li class="flex items-center">
-              <svg class="h-6 w-6 text-green-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-              <span>Acesoramiento fisico</span>
-            </li>
-            <li class="flex items-center">
-              <svg class="h-6 w-6 text-green-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-              <span>Acesoramiento de fuerza</span>
-            </li>
-          </ul>
-          <a target="_blank"
-          href="https://wa.me/51929418895" class="block w-full py-3 px-6 text-center rounded-md text-white font-medium bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600">
-           Suscribir
-          </a>
-        </div>
-  
-        <!-- Enterprise Plan -->
-        <div class="bg-gray-800 rounded-lg shadow-lg p-6 transform hover:scale-105 transition duration-300">
-          <div class="mb-8">
-            <h3 class="text-2xl font-semibold text-white">Avanzado</h3>
-            <p class="mt-4 text-gray-400">3 veces por semana.</p>
-          </div>
-          <div class="mb-8">
-            <span class="text-5xl font-extrabold text-white">S/180</span>
-            <span class="text-xl font-medium text-gray-400">/mensual</span>
-          </div>
-          <ul class="mb-8 space-y-4 text-gray-400">
-            <li class="flex items-center">
-              <svg class="h-6 w-6 text-green-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-              <span>12 clases</span>
-            </li>
-            <li class="flex items-center">
-              <svg class="h-6 w-6 text-green-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-              <span>2 horas de trabajo</span>
-            </li>
-            <li class="flex items-center">
-              <svg class="h-6 w-6 text-green-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-              <span>Acesoramiento Fisico</span>
-            </li>
-            <li class="flex items-center">
-              <svg class="h-6 w-6 text-green-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-              <span>Acesoramiento de fuerza</span>
-            </li>
-          </ul>
-          <a target="_blank"
-          href="https://wa.me/51929418895" class="block w-full py-3 px-6 text-center rounded-md text-white font-medium bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600">
-            Suscribir
-          </a>
+          <button class="w-full mt-6 bg-[#f8ecbc] text-[#01577a] py-2 rounded-lg hover:bg-[#ffb919] ease-in-out duration-700">
+            <a href="https://wa.me/51929418895" target="_blank">Seleccionar Plan</a>
+          </button>
         </div>
       </div>
-    </div>
-  </section>
+    ))}
+  </div>
+
+  <div id="annualPlans" class="hiden grid md:grid-cols-2 lg:grid-cols-4">
+    {plans.annual.map(plan => (
+      <div class="border rounded-xl shadow-lg bg-[#01577a]">
+        <div class="space-y-1 text-center border-b p-6">
+          <h3 class="text-2xl font-bold">{plan.name}</h3>
+          <div class="text-3xl font-bold text-[#ffb919]">{plan.price}</div>
+        </div>
+        <div class="p-6">
+          <ul class="space-y-4">
+            {plan.features.map(feature => (
+              <li class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+          <button 
+           class="w-full mt-6 bg-[#f8ecbc] text-[#01577a] py-2 rounded-lg hover:bg-[#ffb919]  ease-in-out duration-700" >
+            <a href="" target="_blank">Seleccionar Plan</a>
+          </button>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
