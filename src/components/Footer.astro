@@ -1,47 +1,162 @@
+<script>
+  import emailjs from '@emailjs/browser';
+ 
+  const form = document.getElementById('contactForm');
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+ 
+  emailjs.init("ATNa9hCpUCnemBxjE");
+ 
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(e.target as HTMLFormElement);
+    const email = formData.get('email') as string;
+    const message = formData.get('message') as string;
+    const name = formData.get('name') as string;
+ 
+    if (!name || name.length < 2) {
+      alert('Por favor ingrese un nombre válido');
+      return;
+    }
+ 
+    if (!emailRegex.test(email)) {
+      alert('Por favor ingrese un email válido');
+      return;
+    }
+ 
+    if (!message || message.length < 10) {
+      alert('El mensaje debe tener al menos 10 caracteres');
+      return;
+    }
+ 
+    // Mostrar estado de carga
+    const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const originalText = submitButton.innerHTML;
+    submitButton.disabled = true;
+    submitButton.innerHTML = 'Enviando...';
+ 
+    try {
+      await emailjs.send(
+        'service_fayk1hj', // ID del servicio de EmailJS
+        'template_5e9osht', // ID de la plantilla de EmailJS
+        {
+          from_name: name,
+          reply_to: email,
+          message: message,
+          to_name: 'Administrador', // Nombre del destinatario
+          subject: 'Nuevo mensaje de contacto' // Asunto del email
+        }
+      );
+ 
+      alert('¡Mensaje enviado exitosamente!');
+      (e.target as HTMLFormElement).reset();
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error al enviar el mensaje. Por favor intente nuevamente.');
+    } finally {
+      // Restaurar estado del botón
+      submitButton.disabled = false;
+      submitButton.innerHTML = originalText;
+    }
+  });
+ 
+  // Validación en tiempo real
+  const inputs = form?.querySelectorAll('input, textarea');
+  inputs?.forEach(input => {
+    input.addEventListener('input', (e) => {
+      const target = e.target as HTMLInputElement;
       
-  <div class="flex flex-col mx-3 bg-[#01577a] rounded-lg min-h-screen">
-    <div class="w-full draggable flex-grow"> <!-- Añadido flex-grow -->
-      <div class="container flex flex-col mx-auto">
-        <!-- Contenido existente -->
-        <div class="flex flex-wrap items-center justify-center gap-5 lg:gap-12 gap-y-3 lg:flex-nowrap text-dark-grey-900">
-          <a href="/" class="text-[#ffb919] hover:text-gray-900">Inicio</a>
-          <a href="/nosotros" class="text-[#ffb919] hover:text-gray-900">Nosotros</a>
-          <a href="/servicio" class="text-[#ffb919] hover:text-gray-900">Servicio</a>
-          <a href="/niveles" class="text-[#ffb919] hover:text-gray-900">Niveles</a>
-          <a href="/clinica" class="text-[#ffb919] hover:text-gray-900">Clinicas</a>
-          <!-- <a href="/contacto" class="text-gray-600 hover:text-gray-900">Contactos</a>-->
-          
-        </div>
-        <div class="flex items-center gap-8">
-          <a href="https://www.facebook.com/profile.php?id=100092486123346" class="text-grey-700 hover:text-grey-900" target="_blank">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M13.6348 20.7273V12.766H16.3582L16.7668 9.66246H13.6348V7.68128C13.6348 6.78301 13.8881 6.17085 15.2029 6.17085L16.877 6.17017V3.39424C16.5875 3.35733 15.5937 3.27273 14.437 3.27273C12.0216 3.27273 10.368 4.71881 10.368 7.37391V9.66246H7.63636V12.766H10.368V20.7273H13.6348Z" fill="currentColor"/>
-              <mask id="mask0_3320_6483" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="7" y="3" width="10" height="18">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M13.6348 20.7273V12.766H16.3582L16.7668 9.66246H13.6348V7.68128C13.6348 6.78301 13.8881 6.17085 15.2029 6.17085L16.877 6.17017V3.39424C16.5875 3.35733 15.5937 3.27273 14.437 3.27273C12.0216 3.27273 10.368 4.71881 10.368 7.37391V9.66246H7.63636V12.766H10.368V20.7273H13.6348Z" fill="white"/>
-              </mask>
-              <g mask="url(#mask0_3320_6483)">
-              </g>
+      if (target.value.trim() === '') {
+        target.classList.add('border-red-500');
+      } else {
+        target.classList.remove('border-red-500');
+        
+        if (target.type === 'email') {
+          if (!emailRegex.test(target.value)) {
+            target.classList.add('border-red-500');
+          } else {
+            target.classList.remove('border-red-500');
+          }
+        }
+      }
+    });
+  });
+ </script>
+
+<footer class="bg-[#005a7f] text-white">
+  <div class="max-w-6xl mx-auto p-8">
+    <div class="grid md:grid-cols-2 gap-12">
+      <!-- Logo y redes sociales -->
+      <div class="space-y-6">
+        <img src="/LM-AZUL.svg" alt="Logo" class="h-24" />
+        
+        <div class="flex gap-4">
+          <a href="#" target="_blank" rel="noopener noreferrer" 
+             class="bg-[#f8ecbc] text-[#005a7f] p-2 rounded-full hover:opacity-80 transition-opacity">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
             </svg>
           </a>
-          <a href="https://www.instagram.com/arena_voleibolclub/" class="text-grey-700 hover:text-grey-900" target="_blank">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M7.60063 2.18182H16.3991C19.3873 2.18182 21.8183 4.61281 21.8182 7.60074V16.3993C21.8182 19.3872 19.3873 21.8182 16.3991 21.8182H7.60063C4.6127 21.8182 2.18182 19.3873 2.18182 16.3993V7.60074C2.18182 4.61281 4.6127 2.18182 7.60063 2.18182ZM16.3993 20.0759C18.4266 20.0759 20.0761 18.4266 20.0761 16.3993H20.0759V7.60074C20.0759 5.57348 18.4265 3.92405 16.3991 3.92405H7.60063C5.57336 3.92405 3.92405 5.57348 3.92405 7.60074V16.3993C3.92405 18.4266 5.57336 20.0761 7.60063 20.0759H16.3993ZM6.85714 12.0001C6.85714 9.16424 9.16418 6.85714 12 6.85714C14.8358 6.85714 17.1429 9.16424 17.1429 12.0001C17.1429 14.8359 14.8358 17.1429 12 17.1429C9.16418 17.1429 6.85714 14.8359 6.85714 12.0001ZM8.62798 12C8.62798 13.8593 10.1407 15.3719 12 15.3719C13.8593 15.3719 15.372 13.8593 15.372 12C15.372 10.1406 13.8594 8.6279 12 8.6279C10.1406 8.6279 8.62798 10.1406 8.62798 12Z" fill="currentColor"/>
-              <mask id="mask0_3320_6487" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="2" y="2" width="20" height="20">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M7.60063 2.18182H16.3991C19.3873 2.18182 21.8183 4.61281 21.8182 7.60074V16.3993C21.8182 19.3872 19.3873 21.8182 16.3991 21.8182H7.60063C4.6127 21.8182 2.18182 19.3873 2.18182 16.3993V7.60074C2.18182 4.61281 4.6127 2.18182 7.60063 2.18182ZM16.3993 20.0759C18.4266 20.0759 20.0761 18.4266 20.0761 16.3993H20.0759V7.60074C20.0759 5.57348 18.4265 3.92405 16.3991 3.92405H7.60063C5.57336 3.92405 3.92405 5.57348 3.92405 7.60074V16.3993C3.92405 18.4266 5.57336 20.0761 7.60063 20.0759H16.3993ZM6.85714 12.0001C6.85714 9.16424 9.16418 6.85714 12 6.85714C14.8358 6.85714 17.1429 9.16424 17.1429 12.0001C17.1429 14.8359 14.8358 17.1429 12 17.1429C9.16418 17.1429 6.85714 14.8359 6.85714 12.0001ZM8.62798 12C8.62798 13.8593 10.1407 15.3719 12 15.3719C13.8593 15.3719 15.372 13.8593 15.372 12C15.372 10.1406 13.8594 8.6279 12 8.6279C10.1406 8.6279 8.62798 10.1406 8.62798 12Z" fill="white"/>
-              </mask>
-              <g mask="url(#mask0_3320_6487)">
-              </g>
+          
+          <a href="#" target="_blank" rel="noopener noreferrer" 
+             class="bg-[#f8ecbc] text-[#005a7f] p-2 rounded-full hover:opacity-80 transition-opacity">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </a>
+          
+          <a href="#" target="_blank" rel="noopener noreferrer" 
+             class="bg-[#f8ecbc] text-[#005a7f] p-2 rounded-full hover:opacity-80 transition-opacity">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
             </svg>
           </a>
         </div>
       </div>
+
+      <!-- Formulario de contacto -->
+      <form id="contactForm" class="space-y-4">
+        <div>
+          <input 
+            type="text" 
+            name="name" 
+            placeholder="Nombre"
+            class="w-full p-2 rounded bg-white/10 border border-[#f8ecbc]/20 focus:border-[#f8ecbc] focus:outline-none text-white placeholder:text-white/60"
+            required 
+          />
+        </div>
+
+        <div>
+          <input 
+            type="email" 
+            name="email" 
+            placeholder="Email"
+            class="w-full p-2 rounded bg-white/10 border border-[#f8ecbc]/20 focus:border-[#f8ecbc] focus:outline-none text-white placeholder:text-white/60"
+            required 
+          />
+        </div>
+
+        <div>
+          <textarea 
+            name="message" 
+            placeholder="Mensaje"
+            rows="4"
+            class="w-full p-2 rounded bg-white/10 border border-[#f8ecbc]/20 focus:border-[#f8ecbc] focus:outline-none text-white placeholder:text-white/60"
+            required
+          ></textarea>
+        </div>
+
+        <button 
+          type="submit"
+          class="bg-[#f8ecbc] text-[#005a7f] px-6 py-2 rounded font-medium hover:opacity-90 transition-opacity"
+        >
+          Enviar
+        </button>
+      </form>
     </div>
-    
-    <!-- Footer fijo -->
-    <div class="flex items-center mt-auto"> <!-- Añadido mt-auto -->
-      <p class="text-base font-normal leading-7 text-center text-grey-700">
-        2022 Arena voleibol club.
-      </p>
+
+    <div class="mt-8 pt-8 border-t border-[#f8ecbc]/20 text-center text-sm opacity-60">
+      © {new Date().getFullYear()} Arena voleibol club. Todos los derechos reservados.
     </div>
   </div>
-
+</footer>
