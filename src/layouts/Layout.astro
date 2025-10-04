@@ -21,7 +21,7 @@ const {description, title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
 		<title>{title}</title>
 	</head>
-	<body>
+	<body class="mobile-optimized">
 		<Header />
 		<div class="whatsapp animate-bounce">
 			<a class="animate-ping"  href="https://wa.me/51929418895" target="_blank" ><img src='/whatsapp.png' alt='contactanos'/></a>
@@ -154,20 +154,46 @@ const {description, title } = Astro.props;
 <style is:global>
 	:root {
 		color-scheme: dark;
+		/* Mobile viewport variables */
+		--vh: 1vh;
+		--mobile-padding: 1rem;
+		--mobile-padding-sm: 0.75rem;
 	}
 	html {
 		font-family: system-ui, sans-serif;
 		background-color: #f8ecbc;
-		
+		/* Better scroll behavior for mobile */
+		scroll-behavior: smooth;
+		-webkit-text-size-adjust: 100%;
+		text-size-adjust: 100%;
+	}
+
+	/* Mobile-first body optimization */
+	body.mobile-optimized {
+		/* Prevent horizontal scroll */
+		overflow-x: hidden;
+		/* Improve touch scrolling */
+		-webkit-overflow-scrolling: touch;
+		/* Better font rendering on mobile */
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		/* Add safe area padding for notched devices */
+		padding-top: env(safe-area-inset-top);
+		padding-bottom: env(safe-area-inset-bottom);
+		padding-left: env(safe-area-inset-left);
+		padding-right: env(safe-area-inset-right);
 	}
 
 	p{
 		color: rgba(255, 255, 255, 0.9);
-		line-height: 1.4;
+		line-height: 1.6; /* Better readability on mobile */
 		margin-bottom: 1em;
 		font-weight: 100;
 		font-size: 1em;
 		letter-spacing: .5px;
+		/* Better text rendering on small screens */
+		-webkit-font-smoothing: antialiased;
+	}
 
 
 	}
@@ -195,33 +221,68 @@ const {description, title } = Astro.props;
   z-index: 999;
   border-radius: 50%;
   bottom: 20px;
-  right: 25px;
-  padding: 15px;
+  right: 20px;
+  padding: 12px;
   transition: ease 0.3s;
   animation: efecto 1.2s infinite;
-      
+  /* Mobile optimization */
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Better positioning for mobile */
+  bottom: max(20px, env(safe-area-inset-bottom, 20px));
+  right: max(20px, env(safe-area-inset-right, 20px));
   }
 
   .whatsapp:hover{
     transform: scale(1.1);
     transition: 0.3s;
-
   }
+
+  .whatsapp:active{
+    transform: scale(0.95);
+    transition: 0.1s;
+  }
+
   .whatsapp>a>img{
     width: 50px;
-     transition: ease 1s;
-
+    height: 50px;
+    transition: ease 1s;
+    display: block;
   }
+
+  /* Enhanced mobile responsiveness */
   @media screen and (max-width: 768px){
+    .whatsapp{
+      padding: 10px;
+      bottom: max(15px, env(safe-area-inset-bottom, 15px));
+      right: max(15px, env(safe-area-inset-right, 15px));
+    }
+    .whatsapp>a>img{
+      width: 40px;
+      height: 40px;
+    }
+  }
 
-.whatsapp{
-  padding: 5px;
-}
-.whatsapp>a>img{
-  width: 30px;
+  @media screen and (max-width: 480px){
+    .whatsapp{
+      padding: 8px;
+      bottom: max(12px, env(safe-area-inset-bottom, 12px));
+      right: max(12px, env(safe-area-inset-right, 12px));
+    }
+    .whatsapp>a>img{
+      width: 35px;
+      height: 35px;
+    }
+  }
 
-}
-}
+  /* High DPI screens */
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .whatsapp>a>img{
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+    }
+  }
 
 }
 
@@ -417,6 +478,148 @@ const {description, title } = Astro.props;
 		
 		html {
 			scroll-behavior: auto;
+		}
+
+		.whatsapp {
+			animation: none !important;
+		}
+	}
+
+	/* Mobile-specific optimizations */
+	@media screen and (max-width: 768px) {
+		/* Better touch targets */
+		button, a, input, textarea, select {
+			min-height: 44px;
+			touch-action: manipulation;
+		}
+
+		/* Improved typography for mobile */
+		h1 { font-size: 2rem; line-height: 1.2; }
+		h2 { font-size: 1.75rem; line-height: 1.3; }
+		h3 { font-size: 1.5rem; line-height: 1.4; }
+		h4 { font-size: 1.25rem; line-height: 1.4; }
+		
+		/* Better spacing for mobile */
+		.container {
+			padding-left: var(--mobile-padding);
+			padding-right: var(--mobile-padding);
+		}
+
+		/* Optimize grid layouts for mobile */
+		.grid {
+			gap: 1rem;
+		}
+
+		/* Better form inputs on mobile */
+		input, textarea, select {
+			font-size: 16px; /* Prevents zoom on iOS */
+			border-radius: 8px;
+			padding: 12px;
+		}
+
+		/* Improve readability */
+		p, li {
+			font-size: 1rem;
+			line-height: 1.6;
+		}
+	}
+
+	/* Small mobile devices */
+	@media screen and (max-width: 480px) {
+		:root {
+			--mobile-padding: var(--mobile-padding-sm);
+		}
+
+		/* Tighter spacing on small screens */
+		.container {
+			padding-left: var(--mobile-padding-sm);
+			padding-right: var(--mobile-padding-sm);
+		}
+
+		/* Smaller typography */
+		h1 { font-size: 1.75rem; }
+		h2 { font-size: 1.5rem; }
+		h3 { font-size: 1.25rem; }
+
+		/* Tighter grid gaps */
+		.grid {
+			gap: 0.75rem;
+		}
+	}
+
+	/* Landscape mobile optimization */
+	@media screen and (max-height: 500px) and (orientation: landscape) {
+		/* Reduce vertical spacing in landscape */
+		.py-24 { padding-top: 3rem; padding-bottom: 3rem; }
+		.py-16 { padding-top: 2rem; padding-bottom: 2rem; }
+		.py-12 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+	}
+
+	/* iOS specific optimizations */
+	@supports (-webkit-touch-callout: none) {
+		/* iOS Safari optimizations */
+		body {
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+		}
+
+		/* Allow text selection where needed */
+		p, h1, h2, h3, h4, h5, h6 {
+			-webkit-user-select: text;
+			user-select: text;
+		}
+
+		/* Fix iOS viewport issues */
+		body {
+			min-height: -webkit-fill-available;
+		}
+	}
+
+	/* Android specific optimizations */
+	@media screen and (-webkit-min-device-pixel-ratio: 1.5) and (max-width: 768px) {
+		/* Better rendering on Android */
+		* {
+			-webkit-tap-highlight-color: rgba(255, 185, 25, 0.2);
+		}
+	}
+
+	/* Performance optimizations for mobile */
+	@media screen and (max-width: 768px) {
+		/* Reduce animations on mobile for better performance */
+		[data-animate] {
+			transition-duration: 0.3s;
+		}
+
+		/* Optimize transforms for mobile */
+		.transform {
+			will-change: transform;
+			-webkit-backface-visibility: hidden;
+			backface-visibility: hidden;
+		}
+	}
+
+	/* High contrast mode support */
+	@media (prefers-contrast: high) {
+		/* Improve contrast for accessibility */
+		.bg-white\/90 {
+			background-color: white;
+		}
+		
+		.text-gray-700 {
+			color: black;
+		}
+	}
+
+	/* Focus improvements for mobile keyboard navigation */
+	@media screen and (max-width: 768px) {
+		:focus {
+			outline: 2px solid #ffb919;
+			outline-offset: 2px;
+		}
+
+		/* Better focus indicators for touch */
+		button:focus, a:focus {
+			background-color: rgba(255, 185, 25, 0.1);
 		}
 	}
 

@@ -78,18 +78,18 @@ const plans = {
   });
 </script>
 
-<div class="w-full max-w-6xl mx-auto p-4">
-  <div class="text-center mb-12">
-    <h2 class="text-4xl font-extrabold text-[#01577a] sm:text-5xl" data-animate="fade-up" data-delay="200">
-     Planes- sedes
+<div class="w-full max-w-6xl mx-auto p-3 sm:p-4">
+  <div class="text-center mb-8 sm:mb-12">
+    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#01577a]" data-animate="fade-up" data-delay="200">
+     Planes - sedes
     </h2>
-    <p class="text-[#01577a] mt-2 text-center" data-animate="fade-up" data-delay="300">los precios reflejados son mensuales</p>
+    <p class="text-[#01577a] mt-2 text-center text-sm sm:text-base" data-animate="fade-up" data-delay="300">los precios reflejados son mensuales</p>
     
   </div>
-  <div class="flex justify-center gap-4 mb-8" data-animate="scale" data-delay="400">
+  <div class="flex justify-center gap-4 mb-6 sm:mb-8" data-animate="scale" data-delay="400">
     <button
       id="monthlyBtn"
-      class="px-6 py-2 rounded-lg font-medium animate-pulse bg-[#01577a] text-white"
+      class="px-4 sm:px-6 py-2 rounded-lg font-medium animate-pulse bg-[#01577a] text-white text-sm sm:text-base touch-manipulation"
     >
       Chorrillos
     </button>
@@ -100,26 +100,26 @@ const plans = {
       Surco
     </button>-->
   </div>
- <div id="monthlyPlans" class="grid md:grid-cols-2 lg:grid-cols-4 gap-4" data-stagger="fade-up" data-stagger-delay="150">
+ <div id="monthlyPlans" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4" data-stagger="fade-up" data-stagger-delay="150">
     {plans.monthly.map(plan => (
   <div class="border rounded-xl shadow-lg bg-[#01577a] transform hover:scale-105 transition-all duration-300 hover:shadow-xl">
-        <div class="space-y-1 text-center border-b p-6">
-          <h3 class="text-2xl font-bold">{plan.name}</h3>
-          <div class="text-3xl font-bold text-[#ffb919]">{plan.price}</div>
+        <div class="space-y-1 text-center border-b p-4 sm:p-6">
+          <h3 class="text-xl sm:text-2xl font-bold">{plan.name}</h3>
+          <div class="text-2xl sm:text-3xl font-bold text-[#ffb919]">{plan.price}</div>
         </div>
-        <div class="p-6">
-          <ul class="space-y-4">
+        <div class="p-4 sm:p-6">
+          <ul class="space-y-3 sm:space-y-4">
             {plan.features.map(feature => (
-              <li class="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 text-green-500 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                 </svg>
-                <span>{feature}</span>
+                <span class="text-sm sm:text-base leading-tight">{feature}</span>
               </li>
             ))}
           </ul>
-          <button class="w-full mt-6 bg-[#f8ecbc] text-[#01577a] py-2 rounded-lg hover:bg-[#ffb919] ease-in-out duration-700 transform hover:scale-105">
-            <a href="https://wa.me/51929418895" target="_blank">Seleccionar Plan</a>
+          <button class="w-full mt-4 sm:mt-6 bg-[#f8ecbc] text-[#01577a] py-3 sm:py-2 rounded-lg hover:bg-[#ffb919] ease-in-out duration-700 transform hover:scale-105 active:scale-95 transition-all touch-manipulation">
+            <a href="https://wa.me/51929418895" target="_blank" class="block w-full h-full text-sm sm:text-base font-medium">Seleccionar Plan</a>
           </button>
         </div>
       </div>

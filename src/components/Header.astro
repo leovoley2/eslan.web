@@ -1,36 +1,36 @@
-<!-- Modern Header with Glass Morphism -->
+<!-- Modern Header with Enhanced Mobile Support -->
 <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-lg border-b border-gray-100/50 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16 lg:h-20">
+    <div class="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
+        <div class="flex items-center justify-between h-14 sm:h-16 lg:h-20">
             <!-- Logo -->
             <div class="flex-shrink-0">
                 <a href="/" class="flex items-center group">
-                    <img src="/Principal.svg" alt="Arena voleibol club" class="h-8 lg:h-10 w-auto transition-transform duration-300 group-hover:scale-105">
+                    <img src="/Principal.svg" alt="Arena voleibol club" class="h-7 sm:h-8 lg:h-10 w-auto transition-transform duration-300 group-hover:scale-105">
                 </a>
             </div>
 
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
                 <a href="/" 
-                   class="nav-link relative px-3 lg:px-4 py-2 text-sm lg:text-base font-medium text-gray-700 hover:text-[#ffb919] transition-all duration-300 group">
+                   class="nav-link relative px-2 md:px-3 lg:px-4 py-2 text-sm lg:text-base font-medium text-gray-700 hover:text-[#ffb919] transition-all duration-300 group">
                     <span class="relative z-10">Inicio</span>
                     <div class="absolute inset-0 bg-gradient-to-r from-[#ffb919]/10 to-[#01577a]/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
                 </a>
                 
                 <a href="/nosotros" 
-                   class="nav-link relative px-3 lg:px-4 py-2 text-sm lg:text-base font-medium text-gray-700 hover:text-[#ffb919] transition-all duration-300 group">
+                   class="nav-link relative px-2 md:px-3 lg:px-4 py-2 text-sm lg:text-base font-medium text-gray-700 hover:text-[#ffb919] transition-all duration-300 group">
                     <span class="relative z-10">Nosotros</span>
                     <div class="absolute inset-0 bg-gradient-to-r from-[#ffb919]/10 to-[#01577a]/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
                 </a>
                 
                 <a href="/servicios" 
-                   class="nav-link relative px-3 lg:px-4 py-2 text-sm lg:text-base font-medium text-gray-700 hover:text-[#ffb919] transition-all duration-300 group">
+                   class="nav-link relative px-2 md:px-3 lg:px-4 py-2 text-sm lg:text-base font-medium text-gray-700 hover:text-[#ffb919] transition-all duration-300 group">
                     <span class="relative z-10">Servicios</span>
                     <div class="absolute inset-0 bg-gradient-to-r from-[#ffb919]/10 to-[#01577a]/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
                 </a>
                 
                 <a href="/contacto" 
-                   class="nav-link relative px-3 lg:px-4 py-2 text-sm lg:text-base font-medium text-gray-700 hover:text-[#ffb919] transition-all duration-300 group">
+                   class="nav-link relative px-2 md:px-3 lg:px-4 py-2 text-sm lg:text-base font-medium text-gray-700 hover:text-[#ffb919] transition-all duration-300 group">
                     <span class="relative z-10">Contacto</span>
                     <div class="absolute inset-0 bg-gradient-to-r from-[#ffb919]/10 to-[#01577a]/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
                 </a>
@@ -39,58 +39,91 @@
             <!-- CTA Button -->
             <div class="hidden md:block">
                 <a href="/aprendo" 
-                   class="inline-flex items-center px-4 lg:px-6 py-2 lg:py-2.5 bg-gradient-to-r from-[#ffb919] to-[#01577a] text-white text-sm lg:text-base font-semibold rounded-full hover:shadow-lg hover:shadow-[#ffb919]/25 transform hover:scale-105 transition-all duration-300">
-                    <span>Aprende Jugando</span>
-                    <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                   class="inline-flex items-center px-3 md:px-4 lg:px-6 py-1.5 md:py-2 lg:py-2.5 bg-gradient-to-r from-[#ffb919] to-[#01577a] text-white text-xs md:text-sm lg:text-base font-semibold rounded-full hover:shadow-lg hover:shadow-[#ffb919]/25 transform hover:scale-105 transition-all duration-300">
+                    <span class="hidden lg:inline">Aprende Jugando</span>
+                    <span class="lg:hidden">Aprende</span>
+                    <svg class="ml-1 lg:ml-2 w-3 md:w-4 h-3 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                     </svg>
                 </a>
             </div>
 
-            <!-- Mobile menu button -->
+            <!-- Enhanced Mobile menu button -->
             <div class="md:hidden">
                 <button id="mobile-menu-button" 
-                        class="relative inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-[#ffb919] hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#ffb919] transition-colors duration-200">
+                        class="relative inline-flex items-center justify-center p-3 rounded-lg text-gray-700 hover:text-[#ffb919] hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#ffb919] transition-colors duration-200 touch-manipulation"
+                        aria-label="Abrir menú principal"
+                        aria-expanded="false">
                     <span class="sr-only">Abrir menú principal</span>
-                    <!-- Hamburger icon -->
-                    <div class="hamburger-lines">
-                        <span class="line line1 block w-6 h-0.5 bg-current transition-all duration-300"></span>
-                        <span class="line line2 block w-6 h-0.5 bg-current mt-1.5 transition-all duration-300"></span>
-                        <span class="line line3 block w-6 h-0.5 bg-current mt-1.5 transition-all duration-300"></span>
+                    <!-- Enhanced Hamburger icon -->
+                    <div class="hamburger-lines w-6 h-6 flex flex-col justify-center">
+                        <span class="line line1 block w-6 h-0.5 bg-current transition-all duration-300 rounded-full"></span>
+                        <span class="line line2 block w-6 h-0.5 bg-current mt-1.5 transition-all duration-300 rounded-full"></span>
+                        <span class="line line3 block w-6 h-0.5 bg-current mt-1.5 transition-all duration-300 rounded-full"></span>
                     </div>
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Mobile menu -->
-    <div id="mobile-menu" class="md:hidden hidden">
-        <div class="bg-white/95 backdrop-blur-lg border-t border-gray-100/50">
-            <div class="px-4 pt-4 pb-6 space-y-2">
+    <!-- Enhanced Mobile menu -->
+    <div id="mobile-menu" class="md:hidden hidden transform transition-all duration-300 ease-in-out">
+        <div class="bg-white/95 backdrop-blur-lg border-t border-gray-100/50 shadow-lg">
+            <div class="px-4 pt-6 pb-8 space-y-1 max-h-screen overflow-y-auto">
                 <a href="/" 
-                   class="block px-4 py-3 text-base font-medium text-gray-700 hover:text-[#ffb919] hover:bg-gradient-to-r hover:from-[#ffb919]/10 hover:to-[#01577a]/10 rounded-lg transition-all duration-300">
-                    Inicio
+                   class="mobile-nav-link block px-4 py-4 text-lg font-medium text-gray-700 hover:text-[#ffb919] hover:bg-gradient-to-r hover:from-[#ffb919]/10 hover:to-[#01577a]/10 rounded-xl transition-all duration-300 touch-manipulation"
+                   data-mobile-link>
+                    <div class="flex items-center justify-between">
+                        <span>Inicio</span>
+                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
                 </a>
                 
                 <a href="/nosotros" 
-                   class="block px-4 py-3 text-base font-medium text-gray-700 hover:text-[#ffb919] hover:bg-gradient-to-r hover:from-[#ffb919]/10 hover:to-[#01577a]/10 rounded-lg transition-all duration-300">
-                    Nosotros
+                   class="mobile-nav-link block px-4 py-4 text-lg font-medium text-gray-700 hover:text-[#ffb919] hover:bg-gradient-to-r hover:from-[#ffb919]/10 hover:to-[#01577a]/10 rounded-xl transition-all duration-300 touch-manipulation"
+                   data-mobile-link>
+                    <div class="flex items-center justify-between">
+                        <span>Nosotros</span>
+                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
                 </a>
                 
                 <a href="/servicios" 
-                   class="block px-4 py-3 text-base font-medium text-gray-700 hover:text-[#ffb919] hover:bg-gradient-to-r hover:from-[#ffb919]/10 hover:to-[#01577a]/10 rounded-lg transition-all duration-300">
-                    Servicios
+                   class="mobile-nav-link block px-4 py-4 text-lg font-medium text-gray-700 hover:text-[#ffb919] hover:bg-gradient-to-r hover:from-[#ffb919]/10 hover:to-[#01577a]/10 rounded-xl transition-all duration-300 touch-manipulation"
+                   data-mobile-link>
+                    <div class="flex items-center justify-between">
+                        <span>Servicios</span>
+                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
                 </a>
                 
                 <a href="/contacto" 
-                   class="block px-4 py-3 text-base font-medium text-gray-700 hover:text-[#ffb919] hover:bg-gradient-to-r hover:from-[#ffb919]/10 hover:to-[#01577a]/10 rounded-lg transition-all duration-300">
-                    Contacto
+                   class="mobile-nav-link block px-4 py-4 text-lg font-medium text-gray-700 hover:text-[#ffb919] hover:bg-gradient-to-r hover:from-[#ffb919]/10 hover:to-[#01577a]/10 rounded-xl transition-all duration-300 touch-manipulation"
+                   data-mobile-link>
+                    <div class="flex items-center justify-between">
+                        <span>Contacto</span>
+                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
                 </a>
                 
-                <div class="pt-4">
+                <div class="pt-6 border-t border-gray-200 mt-6">
                     <a href="/aprendo" 
-                       class="block w-full text-center px-4 py-3 bg-gradient-to-r from-[#ffb919] to-[#01577a] text-white font-semibold rounded-lg hover:shadow-lg transform hover:scale-105 transition-all duration-300">
-                        Aprende Jugando
+                       class="block w-full text-center px-6 py-4 bg-gradient-to-r from-[#ffb919] to-[#01577a] text-white text-lg font-semibold rounded-xl hover:shadow-lg transform active:scale-95 transition-all duration-300 touch-manipulation"
+                       data-mobile-link>
+                        <div class="flex items-center justify-center space-x-2">
+                            <span>Aprende Jugando</span>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                            </svg>
+                        </div>
                     </a>
                 </div>
             </div>
@@ -103,49 +136,115 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     const hamburgerLines = document.querySelectorAll('.hamburger-lines .line');
+    const mobileLinks = document.querySelectorAll('[data-mobile-link]');
+    let isMenuOpen = false;
 
+    // Enhanced mobile menu functionality
     if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', function() {
-            const isOpen = !mobileMenu.classList.contains('hidden');
-            
-            if (isOpen) {
-                // Close menu
-                mobileMenu.classList.add('hidden');
-                // Reset hamburger
-                (hamburgerLines[0] as HTMLElement).style.transform = 'rotate(0deg) translateY(0)';
-                (hamburgerLines[1] as HTMLElement).style.opacity = '1';
-                (hamburgerLines[2] as HTMLElement).style.transform = 'rotate(0deg) translateY(0)';
-            } else {
-                // Open menu
-                mobileMenu.classList.remove('hidden');
-                // Animate to X
-                (hamburgerLines[0] as HTMLElement).style.transform = 'rotate(45deg) translateY(8px)';
-                (hamburgerLines[1] as HTMLElement).style.opacity = '0';
-                (hamburgerLines[2] as HTMLElement).style.transform = 'rotate(-45deg) translateY(-8px)';
+        // Toggle menu
+        mobileMenuButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            toggleMobileMenu();
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (isMenuOpen && !mobileMenu.contains(e.target as Node) && !mobileMenuButton.contains(e.target as Node)) {
+                closeMobileMenu();
             }
         });
 
-        // Close menu when clicking on links
-        const mobileLinks = mobileMenu.querySelectorAll('a');
+        // Close menu on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && isMenuOpen) {
+                closeMobileMenu();
+                mobileMenuButton.focus();
+            }
+        });
+
+        // Close menu when clicking on mobile links
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                // Reset hamburger
-                (hamburgerLines[0] as HTMLElement).style.transform = 'rotate(0deg) translateY(0)';
-                (hamburgerLines[1] as HTMLElement).style.opacity = '1';
-                (hamburgerLines[2] as HTMLElement).style.transform = 'rotate(0deg) translateY(0)';
+                setTimeout(() => closeMobileMenu(), 150);
             });
         });
+
+        // Touch gesture support for mobile menu
+        let startY = 0;
+        mobileMenu.addEventListener('touchstart', function(e) {
+            startY = e.touches[0].clientY;
+        }, { passive: true });
+
+        mobileMenu.addEventListener('touchmove', function(e) {
+            const currentY = e.touches[0].clientY;
+            const diff = startY - currentY;
+            
+            // Close menu on swipe up
+            if (diff > 50 && isMenuOpen) {
+                closeMobileMenu();
+            }
+        }, { passive: true });
+
+        function toggleMobileMenu() {
+            if (isMenuOpen) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        }
+
+        function openMobileMenu() {
+            isMenuOpen = true;
+            mobileMenu.classList.remove('hidden');
+            mobileMenuButton.setAttribute('aria-expanded', 'true');
+            
+            // Animate hamburger to X
+            setTimeout(() => {
+                (hamburgerLines[0] as HTMLElement).style.transform = 'rotate(45deg) translateY(8px)';
+                (hamburgerLines[1] as HTMLElement).style.opacity = '0';
+                (hamburgerLines[2] as HTMLElement).style.transform = 'rotate(-45deg) translateY(-8px)';
+            }, 50);
+
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+            
+            // Add slide down animation
+            mobileMenu.style.transform = 'translateY(-100%)';
+            requestAnimationFrame(() => {
+                mobileMenu.style.transform = 'translateY(0)';
+            });
+        }
+
+        function closeMobileMenu() {
+            isMenuOpen = false;
+            mobileMenuButton.setAttribute('aria-expanded', 'false');
+            
+            // Reset hamburger
+            (hamburgerLines[0] as HTMLElement).style.transform = 'rotate(0deg) translateY(0)';
+            (hamburgerLines[1] as HTMLElement).style.opacity = '1';
+            (hamburgerLines[2] as HTMLElement).style.transform = 'rotate(0deg) translateY(0)';
+
+            // Add slide up animation
+            mobileMenu.style.transform = 'translateY(-100%)';
+            
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.style.transform = 'translateY(0)';
+                // Re-enable body scroll
+                document.body.style.overflow = '';
+            }, 300);
+        }
     }
 
-    // Add scroll effect to header
+    // Enhanced scroll effect for mobile
     let lastScrollY = window.scrollY;
+    let ticking = false;
     const header = document.querySelector('header');
     
-    window.addEventListener('scroll', () => {
+    function updateHeader() {
         const currentScrollY = window.scrollY;
         
-        if (currentScrollY > 10) {
+        if (currentScrollY > 20) {
             header?.classList.add('bg-white/95', 'shadow-md');
             header?.classList.remove('bg-white/90');
         } else {
@@ -153,13 +252,75 @@ document.addEventListener('DOMContentLoaded', function() {
             header?.classList.remove('bg-white/95', 'shadow-md');
         }
         
+        // Hide header on scroll down, show on scroll up (mobile only)
+        if (window.innerWidth < 768) {
+            if (currentScrollY > lastScrollY && currentScrollY > 100 && !isMenuOpen) {
+                header?.classList.add('-translate-y-full');
+            } else {
+                header?.classList.remove('-translate-y-full');
+            }
+        }
+        
         lastScrollY = currentScrollY;
+        ticking = false;
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(updateHeader);
+            ticking = true;
+        }
+    }
+
+    window.addEventListener('scroll', requestTick, { passive: true });
+
+    // Optimize for mobile performance
+    if ('ontouchstart' in window) {
+        // Add touch-specific optimizations
+        document.body.classList.add('touch-device');
+        
+        // Improve scroll performance on mobile
+        const passiveEvents = ['touchstart', 'touchmove', 'touchend'];
+        passiveEvents.forEach(event => {
+            document.addEventListener(event, function() {}, { passive: true });
+        });
+    }
+
+    // Handle orientation change
+    window.addEventListener('orientationchange', function() {
+        if (isMenuOpen) {
+            // Close menu on orientation change
+            isMenuOpen = false;
+            mobileMenuButton.setAttribute('aria-expanded', 'false');
+            
+            // Reset hamburger
+            (hamburgerLines[0] as HTMLElement).style.transform = 'rotate(0deg) translateY(0)';
+            (hamburgerLines[1] as HTMLElement).style.opacity = '1';
+            (hamburgerLines[2] as HTMLElement).style.transform = 'rotate(0deg) translateY(0)';
+
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+        
+        // Recalculate heights after orientation change
+        setTimeout(() => {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }, 100);
     });
+
+    // Set initial viewport height
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
 });
 </script>
 
 <style>
-/* Additional styles for modern header */
+/* Enhanced Mobile Navigation Styles */
+header {
+    transition: all 0.3s ease, transform 0.3s ease;
+}
+
 .nav-link::after {
     content: '';
     position: absolute;
@@ -176,19 +337,105 @@ document.addEventListener('DOMContentLoaded', function() {
     width: 80%;
 }
 
-/* Smooth transitions for mobile menu */
+/* Enhanced Mobile Menu Styles */
 #mobile-menu {
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    max-height: calc(100vh - 3.5rem);
+    max-height: calc(var(--vh, 1vh) * 100 - 3.5rem);
 }
 
-/* Hamburger animation */
+/* Mobile menu animations */
+.mobile-nav-link {
+    position: relative;
+    overflow: hidden;
+}
+
+.mobile-nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 185, 25, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.mobile-nav-link:active::before {
+    left: 100%;
+}
+
+/* Enhanced hamburger animation */
+.hamburger-lines {
+    position: relative;
+}
+
 .hamburger-lines .line {
+    transform-origin: center;
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-/* Improve glass morphism effect */
-header {
-    transition: all 0.3s ease;
+/* Touch optimization */
+.touch-manipulation {
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* Improved touch targets for mobile */
+@media (max-width: 768px) {
+    .mobile-nav-link {
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+    }
+    
+    /* Larger touch targets */
+    #mobile-menu-button {
+        min-width: 48px;
+        min-height: 48px;
+    }
+    
+    /* Better spacing for mobile */
+    header .max-w-7xl {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+    header .max-w-7xl {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+    
+    .mobile-nav-link {
+        padding: 1.25rem 1rem;
+        font-size: 1.125rem;
+    }
+}
+
+/* Very small devices */
+@media (max-width: 360px) {
+    header .h-14 {
+        height: 3rem;
+    }
+    
+    .mobile-nav-link {
+        padding: 1rem 0.75rem;
+    }
+}
+
+/* Landscape mobile optimization */
+@media (max-height: 500px) and (orientation: landscape) {
+    #mobile-menu {
+        max-height: calc(100vh - 2.5rem);
+    }
+    
+    .mobile-nav-link {
+        padding: 0.75rem 1rem;
+    }
 }
 
 /* Active page indicator */
@@ -199,5 +446,66 @@ header {
 
 .nav-link[aria-current="page"]::after {
     width: 80%;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    header,
+    .hamburger-lines .line,
+    .mobile-nav-link,
+    #mobile-menu {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .mobile-nav-link {
+        border: 1px solid currentColor;
+        margin-bottom: 0.25rem;
+    }
+}
+
+/* Focus improvements for keyboard navigation */
+.mobile-nav-link:focus {
+    outline: 2px solid #ffb919;
+    outline-offset: 2px;
+}
+
+#mobile-menu-button:focus {
+    outline: 2px solid #ffb919;
+    outline-offset: 2px;
+}
+
+/* Smooth scroll behavior for anchor links */
+html {
+    scroll-behavior: smooth;
+}
+
+/* iOS safe area support */
+@supports (padding: max(0px)) {
+    #mobile-menu {
+        padding-left: max(1rem, env(safe-area-inset-left));
+        padding-right: max(1rem, env(safe-area-inset-right));
+    }
+}
+
+/* Improve visual feedback on touch */
+.mobile-nav-link:active {
+    transform: scale(0.98);
+    background-color: rgba(255, 185, 25, 0.1);
+}
+
+/* Better button states */
+#mobile-menu-button:active {
+    transform: scale(0.95);
+}
+
+/* Optimize for notched devices */
+@media screen and (max-width: 768px) {
+    header {
+        padding-top: env(safe-area-inset-top);
+    }
 }
 </style>

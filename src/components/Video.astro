@@ -6,24 +6,68 @@
     autoplay
     loop
     muted 
+    playsinline
     data-parallax
     style="clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 50% 100%, 0 85%);"
     ></video>
     
-    <!-- Hero text overlay with animations -->
-    <div class="absolute inset-0 flex items-center justify-center">
-        <div class="text-center text-white">
-            <h1 data-animate="fade-up" data-delay="500" class="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">
+    <!-- Hero text overlay with mobile-optimized animations -->
+    <div class="absolute inset-0 flex items-center justify-center px-4 sm:px-6 lg:px-8">
+        <div class="text-center text-white max-w-4xl">
+            <h1 data-animate="fade-up" data-delay="500" class="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 drop-shadow-lg leading-tight">
                 Arena Voleibol Club
             </h1>
-            <p data-animate="fade-up" data-delay="700" class="text-xl md:text-2xl mb-8 drop-shadow-md">
+            <p data-animate="fade-up" data-delay="700" class="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 drop-shadow-md max-w-2xl mx-auto">
                 Descubre tu pasión por el voleibol de playa
             </p>
             <a href="#main" data-animate="scale" data-delay="900" 
-               class="inline-block px-8 py-3 bg-gradient-to-r from-[#ffb919] to-[#01577a] text-white font-semibold rounded-full hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+               class="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#ffb919] to-[#01577a] text-white text-base sm:text-lg font-semibold rounded-full hover:shadow-lg transform hover:scale-105 active:scale-95 transition-all duration-300 touch-manipulation">
                 Conoce más
             </a>
         </div>
     </div>
     
 </div>
+
+<style>
+/* Mobile-specific video optimizations */
+@media screen and (max-width: 768px) {
+    video {
+        /* Better mobile video performance */
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+        /* Optimize for mobile rendering */
+        will-change: transform;
+    }
+    
+    /* Adjust hero text for mobile */
+    .absolute.inset-0 {
+        padding-top: 4rem; /* Account for mobile header */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    video {
+        /* More aggressive clipping for small screens */
+        clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 50% 100%, 0 90%) !important;
+    }
+}
+
+/* Landscape mobile optimization */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .absolute.inset-0 h1 {
+        font-size: 1.75rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .absolute.inset-0 p {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .absolute.inset-0 a {
+        padding: 0.5rem 1.5rem;
+        font-size: 0.875rem;
+    }
+}
+</style>
