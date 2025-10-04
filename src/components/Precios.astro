@@ -4,11 +4,7 @@
 
 const plans = {
   monthly: [
-    {
-      name: 'Clase',
-      price: 'S/30',
-      features: ['1 clase', '2 horas de entrenamiento', '30 min fisico, 1 hora de tecnico tactico y 30 de juego']
-    },
+  
     {
       name: 'Basico',
       price: 'S/130',
@@ -23,6 +19,11 @@ const plans = {
       name: 'Avanzado',
       price: 'S/200',
       features: ['3 veces por semana', '30 min fisico, 1 hora de tecnico tactico y 30 de juego', 'Acesoramiento fisico', 'Acesoramiento de fuerza', 'Videos de corrección de técnica']
+    },
+      {
+      name: 'Primium',
+      price: 'S/230',
+      features: ['4 veces por semana', '30 min fisico, 1 hora de tecnico tactico y 30 de juego', 'Acesoramiento fisico', 'Acesoramiento de fuerza', 'Videos de corrección de técnica']
     }
   ],
   annual: [
@@ -92,15 +93,15 @@ const plans = {
     >
       Chorrillos
     </button>
-    <button
+   <!--<button
       id="annualBtn"
       class="px-6 py-2 rounded-lg font-medium bg-gray-200 text-gray-700"
     >
       Surco
-    </button>
+    </button>-->
   </div>
 
-  <div id="monthlyPlans" class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+ <!--  <div id="monthlyPlans" class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
     {plans.monthly.map(plan => (
   <div class="border rounded-xl shadow-lg bg-[#01577a]">
         <div class="space-y-1 text-center border-b p-6">
@@ -126,7 +127,7 @@ const plans = {
     ))}
   </div>
 
-  <div id="annualPlans" class="hidden grid md:grid-cols-2 lg:grid-cols-4">
+<div id="annualPlans" class="hidden grid md:grid-cols-2 lg:grid-cols-4">
     {plans.annual.map(plan => (
       <div class="border rounded-xl shadow-lg bg-[#01577a]">
         <div class="space-y-1 text-center border-b p-6">
@@ -151,5 +152,5 @@ const plans = {
         </div>
       </div>
     ))}
-  </div>
+  </div>-->
 </div>
