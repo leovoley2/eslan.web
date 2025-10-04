@@ -3,16 +3,39 @@
 ---
 
 <script>
-import emailjs from '@emailjs/browser';
+// Type declaration for EmailJS
+declare global {
+  interface Window {
+    emailjs: any;
+  }
+  var emailjs: any;
+}
+
+// Load EmailJS from CDN
+(function() {
+  const script = document.createElement('script');
+  script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+  script.onload = function() {
+    // Initialize EmailJS after it loads
+    if (typeof window.emailjs !== 'undefined') {
+      window.emailjs.init("dG-vxHRYY4yYtgoJn");
+    }
+  };
+  document.head.appendChild(script);
+})();
 
 document.addEventListener('DOMContentLoaded', () => {
- emailjs.init("dG-vxHRYY4yYtgoJn");
-
  const form = document.getElementById('contactForm');
  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
  form?.addEventListener('submit', async (e) => {
    e.preventDefault();
+   
+   // Check if EmailJS is loaded
+   if (typeof window.emailjs === 'undefined') {
+     alert('Servicio de email no disponible. Por favor intente más tarde.');
+     return;
+   }
    
    const formData = new FormData(e.target as HTMLFormElement);
    const email = formData.get('email') as string;
@@ -39,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
    submitButton.textContent = 'Enviando...';
 
    try {
-     const result = await emailjs.send(
+     const result = await window.emailjs.send(
        'service_fayk1hj',
        'template_5e9osht',
        {
