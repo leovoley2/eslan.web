@@ -1,98 +1,74 @@
+---
+// No se necesita JavaScript del lado del servidor para este componente estático.
+---
 
-<div class="overflow-hidden bg-[#01577a] py-24 sm:py-32">
-    <div class="mx-auto max-w-7xl px-6 lg:px-8">
-      <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-        <div class="lg:pr-8 lg:pt-4" data-animate="fade-right" data-delay="200">
-          <div class="lg:max-w-lg">
-       
-            <p class="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl" data-animate="fade-up" data-delay="300">Pasión por la Arena, Forjamos Campeones</p>
-            <p class="mt-5 text-lg leading-8 text-white font-semibold" data-animate="fade-up" data-delay="400">En Arena Voleibol Club, nacimos de un sueño: llevar el vóley playa a otro nivel en Perú. Más que un club, somos una comunidad que vive y respira este deporte. Creamos el ambiente perfecto para que, con cada entrenamiento, no solo te superes a ti mismo, sino que también inspires a otros a seguir tus pasos.</p>
-            <dl class="mt-10 max-w-xl space-y-8 text-base leading-7 text-white lg:max-w-none" data-stagger="fade-up" data-stagger-delay="100">
-              <div class="relative pl-9">
-                <dt class="inline font-semibold text-white">
-                  <svg class="absolute left-1 top-1 h-6 w-5 text-white" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <img class="h-5 w-5 absolute left-1 top-1" src="/voley.svg" alt="voleibol de playa">
-                  </svg>
-                  Nuestra Misión: 
-                </dt>
-                <dd class="inline text-white">Tu Máximo Potencial
-Creemos en el poder del esfuerzo y la constancia. Guiado por entrenadores profesionales, te brindamos las herramientas y la técnica que necesitas para desatar tu verdadero potencial en la cancha.</dd>
-              </div>
-              <div class="relative pl-9">
-                <dt class="inline font-semibold text-white">
-                  <svg class="absolute left-1 top-1 h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <img class="h-5 w-5 absolute left-1 top-1" src="/voley.svg" alt="voleibol de playa">
-                  </svg>
-                Nuestra Visión: 
-                </dt>
-                <dd class="inline text-white">Un Estilo de Vida Saludable
-Queremos transformar vidas a través del vóley playa. Buscamos masificar este increíble deporte, convirtiéndolo en una poderosa herramienta para mejorar la salud, el bienestar y la calidad de vida de más peruanos.</dd>
-              </div>
-             
-            </dl>
+<section id="nosotros" class="bg-gray-900 text-white py-16 sm:py-24">
+  <div class="container mx-auto px-6 lg:px-8">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
+
+      <div class="lg:col-span-3">
+        <h2 class="text-4xl font-bold tracking-tight text-cyan-400 sm:text-5xl mb-6">
+          Pasión por la Arena, <span class="block">Forjamos Campeones</span>
+        </h2>
+        <p class="text-lg text-gray-300 leading-8 mb-10">
+          En Arena Voleibol Club, nacimos de un sueño: llevar el vóley playa a otro nivel en Perú. Más que un club, somos una comunidad que vive y respira este deporte. Creamos el ambiente perfecto para que, con cada entrenamiento, no solo te superes a ti mismo, sino que también inspires a otros a seguir tus pasos.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <article>
+            <h3 class="text-2xl font-semibold text-white mb-3">
+              Nuestra Misión: Tu Máximo Potencial
+            </h3>
+            <p class="text-gray-400">
+              Creemos en el poder del esfuerzo y la constancia. Guiado por entrenadores profesionales, te brindamos las herramientas y la técnica que necesitas para desatar tu verdadero potencial en la cancha.
+            </p>
+          </article>
+          
+          <article>
+            <h3 class="text-2xl font-semibold text-white mb-3">
+              Nuestra Visión: Un Estilo de Vida Saludable
+            </h3>
+            <p class="text-gray-400">
+              Queremos transformar vidas a través del vóley playa. Buscamos masificar este increíble deporte, convirtiéndolo en una poderosa herramienta para mejorar la salud, el bienestar y la calidad de vida de más peruanos.
+            </p>
+          </article>
+        </div>
+      </div>
+
+      <div class="lg:col-span-2">
+        <div class="bg-cyan-800/50 backdrop-blur-sm rounded-xl p-8 shadow-2xl border border-cyan-700/50">
+          <h3 class="text-3xl font-bold text-center mb-8 text-white">
+            Entrena en Chorrillos
+          </h3>
+          
+          <div class="space-y-8">
+            <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
+              <h4 class="font-bold text-xl text-cyan-400 mb-2">ENTRENAMIENTOS GRUPALES</h4>
+              <p class="text-gray-300 mb-4">
+                Únete a nuestra comunidad y entrena con otros apasionados del vóley playa.
+              </p>
+              <p class="text-white font-medium">Lunes, Miércoles, Viernes y Sábados</p>
+              <p class="text-gray-400 mb-5">7:00 AM a 9:00 AM</p>
+              <a href="#contacto" class="w-full inline-block text-center bg-cyan-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-cyan-500 transition-colors duration-300">
+                ¡Quiero Inscribirme!
+              </a>
+            </div>
+
+            <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
+              <h4 class="font-bold text-xl text-cyan-400 mb-2">ENTRENAMIENTOS PERSONALIZADOS</h4>
+              <p class="text-gray-300 mb-4">
+                ¿Buscas un plan a tu medida? Acelera tu progreso con un plan enfocado en tus objetivos.
+              </p>
+              <p class="text-white font-medium mb-5">Horarios Flexibles</p>
+              <a href="#contacto" class="w-full inline-block text-center bg-gray-700 text-white font-semibold py-3 px-6 rounded-lg hover:bg-gray-600 transition-colors duration-300">
+                Solicitar Información
+              </a>
+            </div>
           </div>
         </div>
-        <div
-  class="block rounded-lg intro text-center shadow-secondary-1 dark:bg-surface-dark dark:text-white text-surface" data-animate="fade-left" data-delay="300">
-  <div
-    class="border-b-2 border-neutral-100 px-6 py-3 dark:border-white/10 text-4xl">
-    Elige Tu Entrenamiento en Nuestra Sede de Chorrillos
-  </div>
-  <div class="p-6">
-    <h5
-      class="mb-2 text-xl font-medium leading-tight">
-    ENTRENAMIENTOS GRUPALES
-
-Únete a nuestra comunidad y entrena con otros apasionados del vóley playa. Perfecto para mejorar tu técnica, estrategia y condición física en un ambiente de equipo.
-
-Horarios:
-Lunes, Miércoles, Viernes y Sábados
-
-    </h5>
-    <p class="mb-4 text-base">
-     7:00 AM a 9:00 AM
-    </p>
-    <button
-      type="button"
-      class="inline-block text-2xl rounded bg-primary px-6 pb-2 pt-2.5 font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
-      data-twe-ripple-init
-      data-twe-ripple-color="light">
-      <!--Horario Nocturno Sede Surco-->
-    </button>
-  </div>
-  <!--<div
-    class="border-t-2 text-1xl border-neutral-100 px-6 py-3 dark:border-white/10 text-surface/75 dark:text-white/75">
-    <h5
-      class="mb-2 text-xl font-medium leading-tight">
-    Martes y Jueves
-    </h5>
-    <p class="mb-4 text-base">
-      de 7:00 a 9:00 PM.
-    </p>
-  </div>-->
-  <button
-      type="button"
-      class="inline-block text-2xl rounded bg-primary px-6 pb-2 pt-2.5 font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
-      data-twe-ripple-init
-      data-twe-ripple-color="light">
-      ENTRENAMIENTOS PERSONALIZADOS
-    </button>
-    <div
-    class="border-t-2 text-1xl border-neutral-100 px-6 py-3 dark:border-white/10 text-surface/75 dark:text-white/75">
-    <h5
-      class="mb-2 text-xl font-medium leading-tight">
-   ¿Buscas un plan a tu medida? Trabaja uno a uno con nuestros entrenadores para enfocarte en tus objetivos específicos, perfeccionar tus habilidades y acelerar tu progreso.
-
-Horarios:
-Flexibles. Coordina directamente con tu entrenador el día y la hora que más te convenga.
-    </h5>
-   <!-- <p class="mb-4 text-base">
-      de 5:00 a 7:00 PM.
-    </p>
-  </div> -->
-  
-</div>
       </div>
+
     </div>
   </div>
-  
+</section>
