@@ -17,15 +17,31 @@ import Action from '../components/Callaction.astro';
 
 <Layout title="Arena Voleibol club - Inicio" description="Descubre y aprende voleibol de playa en Lima Perú">
 	<Video />
-	<main>
-	<Cliente />
-	<Intro />
-	<Bento />
-	<Action />
-	<Precios />
-	<Equipo />
-	<PreFooter />
-	<Testimonio />
+	<main id="main">
+	<div data-animate="fade-up" data-delay="200">
+		<Cliente />
+	</div>
+	<div data-animate="fade-up" data-delay="300">
+		<Intro />
+	</div>
+	<div data-animate="scale" data-delay="400">
+		<Bento />
+	</div>
+	<div data-animate="fade-left" data-delay="200">
+		<Action />
+	</div>
+	<div data-animate="fade-up" data-delay="300">
+		<Precios />
+	</div>
+	<div data-animate="fade-right" data-delay="200">
+		<Equipo />
+	</div>
+	<div data-animate="fade-up" data-delay="300">
+		<PreFooter />
+	</div>
+	<div data-animate="slide-up" data-delay="400">
+		<Testimonio />
+	</div>
 	</main>
 </Layout>
 

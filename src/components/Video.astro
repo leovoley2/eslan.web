@@ -1,4 +1,4 @@
-<div class="w-full relative">
+<div class="w-full relative overflow-hidden">
    
     <video 
     class="w-full h-screen object-cover object-top"
@@ -6,7 +6,24 @@
     autoplay
     loop
     muted 
+    data-parallax
     style="clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 50% 100%, 0 85%);"
     ></video>
+    
+    <!-- Hero text overlay with animations -->
+    <div class="absolute inset-0 flex items-center justify-center">
+        <div class="text-center text-white">
+            <h1 data-animate="fade-up" data-delay="500" class="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">
+                Arena Voleibol Club
+            </h1>
+            <p data-animate="fade-up" data-delay="700" class="text-xl md:text-2xl mb-8 drop-shadow-md">
+                Descubre tu pasión por el voleibol de playa
+            </p>
+            <a href="#main" data-animate="scale" data-delay="900" 
+               class="inline-block px-8 py-3 bg-gradient-to-r from-[#ffb919] to-[#01577a] text-white font-semibold rounded-full hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+                Conoce más
+            </a>
+        </div>
+    </div>
     
 </div>

@@ -28,6 +28,127 @@ const {description, title } = Astro.props;
 		  </div>
 		<slot />
 		<Footer />
+		
+		<!-- Scroll Animation Script -->
+		<script>
+			// Scroll Animation System
+			document.addEventListener('DOMContentLoaded', function() {
+				// Create intersection observer for scroll animations
+				const observerOptions = {
+					threshold: 0.1,
+					rootMargin: '0px 0px -50px 0px'
+				};
+
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							const element = entry.target;
+							const animationType = element.getAttribute('data-animate');
+							const delay = element.getAttribute('data-delay') || '0';
+							
+							setTimeout(() => {
+								element.classList.add('animate-in');
+								
+								// Add specific animation classes
+								switch (animationType) {
+									case 'fade-up':
+										element.classList.add('fade-up-in');
+										break;
+									case 'fade-left':
+										element.classList.add('fade-left-in');
+										break;
+									case 'fade-right':
+										element.classList.add('fade-right-in');
+										break;
+									case 'scale':
+										element.classList.add('scale-in');
+										break;
+									case 'slide-up':
+										element.classList.add('slide-up-in');
+										break;
+									default:
+										element.classList.add('fade-in');
+								}
+							}, parseInt(delay));
+							
+							// Stop observing this element
+							observer.unobserve(element);
+						}
+					});
+				}, observerOptions);
+
+				// Observe all elements with data-animate attribute
+				const animatedElements = document.querySelectorAll('[data-animate]');
+				animatedElements.forEach(el => {
+					observer.observe(el);
+				});
+
+				// Staggered animations for children
+				const staggeredContainers = document.querySelectorAll('[data-stagger]');
+				staggeredContainers.forEach(container => {
+					const children = container.children;
+					const staggerDelay = parseInt(container.getAttribute('data-stagger-delay')) || 100;
+					
+					Array.from(children).forEach((child, index) => {
+						child.setAttribute('data-animate', container.getAttribute('data-stagger'));
+						child.setAttribute('data-delay', (index * staggerDelay).toString());
+						observer.observe(child);
+					});
+				});
+
+				// Parallax effect for hero sections
+				const parallaxElements = document.querySelectorAll('[data-parallax]');
+				
+				function updateParallax() {
+					const scrolled = window.pageYOffset;
+					
+					parallaxElements.forEach(element => {
+						const rate = scrolled * -0.5;
+						(element as HTMLElement).style.transform = `translateY(${rate}px)`;
+					});
+				}
+
+				if (parallaxElements.length > 0) {
+					window.addEventListener('scroll', updateParallax);
+				}
+
+				// Counter animations
+				const counters = document.querySelectorAll('[data-counter]');
+				const counterObserver = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							const counter = entry.target;
+							const target = parseInt(counter.getAttribute('data-counter'));
+							const duration = parseInt(counter.getAttribute('data-duration')) || 2000;
+							
+							animateCounter(counter, target, duration);
+							counterObserver.unobserve(counter);
+						}
+					});
+				}, { threshold: 0.5 });
+
+				counters.forEach(counter => {
+					counterObserver.observe(counter);
+				});
+
+				function animateCounter(element, target, duration) {
+					let start = 0;
+					const increment = target / (duration / 16);
+					
+					function updateCounter() {
+						start += increment;
+						if (start < target) {
+							element.textContent = Math.floor(start);
+							requestAnimationFrame(updateCounter);
+						} else {
+							element.textContent = target;
+						}
+					}
+					
+					updateCounter();
+				}
+			});
+		</script>
 	</body>
 </html>
 <style is:global>
@@ -101,6 +222,203 @@ const {description, title } = Astro.props;
 
 }
 }
+
+}
+
+	/* Scroll Animation Styles */
+	[data-animate] {
+		opacity: 0;
+		transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	}
+
+	/* Fade animations */
+	[data-animate="fade"] {
+		opacity: 0;
+	}
+
+	[data-animate="fade"].animate-in,
+	.fade-in {
+		opacity: 1;
+	}
+
+	/* Fade up animation */
+	[data-animate="fade-up"] {
+		opacity: 0;
+		transform: translateY(50px);
+	}
+
+	[data-animate="fade-up"].animate-in,
+	.fade-up-in {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	/* Fade left animation */
+	[data-animate="fade-left"] {
+		opacity: 0;
+		transform: translateX(-50px);
+	}
+
+	[data-animate="fade-left"].animate-in,
+	.fade-left-in {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+	/* Fade right animation */
+	[data-animate="fade-right"] {
+		opacity: 0;
+		transform: translateX(50px);
+	}
+
+	[data-animate="fade-right"].animate-in,
+	.fade-right-in {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+	/* Scale animation */
+	[data-animate="scale"] {
+		opacity: 0;
+		transform: scale(0.8);
+	}
+
+	[data-animate="scale"].animate-in,
+	.scale-in {
+		opacity: 1;
+		transform: scale(1);
+	}
+
+	/* Slide up animation */
+	[data-animate="slide-up"] {
+		opacity: 0;
+		transform: translateY(100px);
+	}
+
+	[data-animate="slide-up"].animate-in,
+	.slide-up-in {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	/* Enhanced animations with spring effect */
+	.animate-in {
+		animation-fill-mode: both;
+	}
+
+	/* Stagger delay utilities */
+	[data-stagger] > * {
+		transition-delay: 0.1s;
+	}
+
+	/* Parallax elements */
+	[data-parallax] {
+		will-change: transform;
+	}
+
+	/* Counter animation */
+	[data-counter] {
+		font-variant-numeric: tabular-nums;
+	}
+
+	/* Smooth scroll behavior */
+	html {
+		scroll-behavior: smooth;
+	}
+
+	/* Performance optimizations */
+	[data-animate] {
+		will-change: opacity, transform;
+		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
+	}
+
+	/* Animation entrance variants */
+	@keyframes bounceIn {
+		0% {
+			opacity: 0;
+			transform: scale(0.3);
+		}
+		50% {
+			opacity: 1;
+			transform: scale(1.05);
+		}
+		70% {
+			transform: scale(0.9);
+		}
+		100% {
+			opacity: 1;
+			transform: scale(1);
+		}
+	}
+
+	@keyframes slideInUp {
+		0% {
+			opacity: 0;
+			transform: translateY(100px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes fadeInLeft {
+		0% {
+			opacity: 0;
+			transform: translateX(-100px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+
+	@keyframes fadeInRight {
+		0% {
+			opacity: 0;
+			transform: translateX(100px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+
+	/* Special animation classes */
+	.bounce-in {
+		animation: bounceIn 0.8s ease-out;
+	}
+
+	.slide-in-up {
+		animation: slideInUp 0.8s ease-out;
+	}
+
+	.fade-in-left {
+		animation: fadeInLeft 0.8s ease-out;
+	}
+
+	.fade-in-right {
+		animation: fadeInRight 0.8s ease-out;
+	}
+
+	/* Hover enhance animations */
+	[data-animate]:hover {
+		transform: translateY(-2px);
+		transition: transform 0.3s ease;
+	}
+
+	/* Reduce motion for accessibility */
+	@media (prefers-reduced-motion: reduce) {
+		[data-animate] {
+			transition: none !important;
+			animation: none !important;
+		}
+		
+		html {
+			scroll-behavior: auto;
+		}
+	}
 
 	
 </style>
