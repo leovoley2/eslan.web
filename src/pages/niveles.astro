@@ -10,7 +10,16 @@ import Layout from '../layouts/Layout.astro';
                 <div class="items-center md:flex md:space-x-6">
                     <div class="md:w-1/2">
                         <h2 class="text-4xl font-semibold text-gray-800">Conoce tu nivel de juego <br> Es tu momento</h2>
-                        <p class="max-w-md text-2xl mt-4 text-black">Nuestros entrenadores son los encargados de analizar y evaluar el nivel de juego que tiene cada participante. con esto podemos brindarte una mejor acesoria y ver como mejorar esas deficiiencias por medio de un entrenamiento planificado</p>
+                        <p class="max-w-md text-2xl mt-4 text-black">Nuestros entrenadores son los encargados de analizar y evaluar el nivel de juego que tiene cada participante. con esto podemos brindarte una mejor asesoría y ver como mejorar esas deficiencias por medio de un entrenamiento planificado</p>
+                        
+                        <!-- Interactive Level Finder -->
+                        <div class="mt-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-3">🎯 Encuentra tu nivel ideal</h3>
+                            <button id="startQuiz" class="w-full py-3 px-6 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-md hover:from-blue-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-105">
+                                Comenzar Evaluación Rápida
+                            </button>
+                        </div>
+                        
                         <a href="https://wa.me/51929418895" class="block mt-3 w-40 py-4 px-8 text-center rounded-md text-white font-medium bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600" target="_blank">
                             Agenda un entrenamiento</a>
                     </div>
@@ -26,6 +35,49 @@ import Layout from '../layouts/Layout.astro';
                 </div>
             </div>
         </section>
+        
+        <!-- Quick Quiz Modal -->
+        <div id="quizModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center p-4">
+            <div class="bg-white rounded-lg max-w-2xl w-full max-h-90vh overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-2xl font-bold text-gray-800">Evaluación Rápida de Nivel</h3>
+                        <button id="closeQuiz" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                    </div>
+                    
+                    <div id="quizContent">
+                        <div class="progress-bar mb-6">
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div id="progressBar" class="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-2">Pregunta <span id="currentQuestion">1</span> de <span id="totalQuestions">5</span></p>
+                        </div>
+                        
+                        <div id="questionContainer" class="mb-6">
+                            <!-- Questions will be inserted here -->
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <button id="prevQuestion" class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 disabled:opacity-50" disabled>Anterior</button>
+                            <button id="nextQuestion" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50">Siguiente</button>
+                        </div>
+                    </div>
+                    
+                    <div id="quizResult" class="hidden">
+                        <div class="text-center">
+                            <div class="mb-4">
+                                <div id="resultIcon" class="text-6xl mb-2"></div>
+                                <h4 id="resultTitle" class="text-2xl font-bold text-gray-800 mb-2"></h4>
+                                <p id="resultDescription" class="text-gray-600 mb-4"></p>
+                            </div>
+                            <button id="viewLevels" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg hover:from-blue-600 hover:to-purple-600">
+                                Ver Detalles del Nivel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!--- <section class="bg-white">
             <div class="max-w-5xl px-6 py-16 mx-auto">
                 <div class="items-center md:flex md:space-x-6">
@@ -49,111 +101,678 @@ import Layout from '../layouts/Layout.astro';
             </div>
         </section>-->
 	</main>
-   <section>
-        <!-- component -->
-<div class="m-2 space-y-2 container mx-auto">
-    <div
-      class="group flex flex-col gap-2 rounded-lg hero2 p-5 text-white"
-      tabindex="1"
-    >
-      <div class="flex cursor-pointer items-center justify-between">
-        <span class="underline"> Nivel de iniciación 0 </span>
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/9/96/Chevron-icon-drop-down-menu-WHITE.png"
-          class="h-2 w-3 transition-all duration-500 group-focus:-rotate-180"
-        />
-      </div>
-      <div
-        class="invisible h-auto max-h-0 items-center opacity-0 transition-all group-focus:visible group-focus:max-h-screen group-focus:opacity-100 group-focus:duration-1000"
-      >
-      No poseo ninguna experiencia en voleibol indoor ni de playa, juego eventualmente al voleibol. me he inscrito alguna academia pero no he durado mucho tiempo, no logro hacer tres toques seguidos de toques de dedos o antebrazo.
-      </div>
-    </div>
-  
-    <div
-      class="group flex flex-col gap-2 rounded-lg hero2 p-5 text-white"
-      tabindex="2"
-    >
-      <div class="flex cursor-pointer items-center justify-between">
-        <span class="underline"> Nivel de iniciación 1</span>
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/9/96/Chevron-icon-drop-down-menu-WHITE.png"
-          class="h-2 w-3 transition-all duration-500 group-focus:-rotate-180"
-        />
-      </div>
-      <div
-        class="invisible h-auto max-h-0 items-center opacity-0 transition-all group-focus:visible group-focus:max-h-screen group-focus:opacity-100 group-focus:duration-1000"
-      >
-      Tengo experiencia en entrenamiento en el voleibol por meses, juego eventualmente con amigos, tengo conocimiento de las reglas básicas del voleibol,
-       tengo dominio técnico de los fundamentos, puedo completar una jugada de 3 toques
-      </div>
-    </div>
-  
-    <div
-      class="group flex flex-col gap-2 rounded-lg hero2 p-5 text-white"
-      tabindex="3"
-    >
-      <div class="flex cursor-pointer items-center justify-between">
-        <span class="underline"> Nivel intermedio </span>
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/9/96/Chevron-icon-drop-down-menu-WHITE.png"
-          class="h-2 w-3 transition-all duration-500 group-focus:-rotate-180"
-        />
-      </div>
-      <div
-        class="invisible h-auto max-h-0 items-center opacity-0 transition-all group-focus:visible group-focus:max-h-screen group-focus:opacity-100 group-focus:duration-1000"
-      >
-      Soy capaz de tener domino del servicio. tengo control en la recepción del saque, 
-      puedo dirigirlo al centro de la cancha, tengo dominio del fundamento del ataque. 
-      tengo control a la hora de colocar la bola en el campo contrario.
-       Conozco perfectamente los conceptos básicos como: Aproximarme a mi compañero cuando recibe,
-        estar cerca de él en cualquier momento del punto para continuar con el juego de manera más fluida,
-         colocar hacia delante de mi tanto de ante brazos como de dedos, no ir a la red corriendo antes de ver la colocación.
-
-      </div>
-    </div>
-    <div
-      class="group flex flex-col gap-2 rounded-lg hero2 p-5 text-white"
-      tabindex="4"
-    >
-      <div class="flex cursor-pointer items-center justify-between">
-        <span class="underline"> Nivel intermedio 1 </span>
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/9/96/Chevron-icon-drop-down-menu-WHITE.png"
-          class="h-2 w-3 transition-all duration-500 group-focus:-rotate-180"
-        />
-      </div>
-      <div
-        class="invisible h-auto max-h-0 items-center opacity-0 transition-all group-focus:visible group-focus:max-h-screen group-focus:opacity-100 group-focus:duration-1000"
-      >
-      <li>Tengo dominio de los diferentes tipos de ataques (ataque fuerte, pokey, palmeó, «cut» toque corto, «over» toque por encima del bloqueo).</li>
-      <li>Suelo jugar con bloqueo y me se salir del bloqueo perfectamente</li>
-      <li>Conozco las señas del bloqueo.</li>
-      <li>Se cómo usar variables ambientales como el viento y el sol a mi favor.</li>
-      <li>Se hacer defensas de balones a una mano.</li>
-
-
-      </div>
-    </div>
-    <div
-      class="group flex flex-col gap-2 rounded-lg hero2 p-5 text-white"
-      tabindex="4"
-    >
-      <div class="flex cursor-pointer items-center justify-between">
-        <span class="underline"> Nivel Avanzado </span>
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/9/96/Chevron-icon-drop-down-menu-WHITE.png"
-          class="h-2 w-3 transition-all duration-500 group-focus:-rotate-180"
-        />
-      </div>
-      <div
-        class="invisible h-auto max-h-0 items-center opacity-0 transition-all group-focus:visible group-focus:max-h-screen group-focus:opacity-100 group-focus:duration-1000"
-      >
-      Tengo dominio del servicio en salto o de potencia. tengo una correcta aproximación al ataque. conozco las fases del juego( K1 Y K2). Se ubicarme en defensa en dependencia de la señal del bloqueo, se jugar  cuando tengo un bloque delante se que golpe realizar.
-
-      </div>
-    </div>
-  </div>
-   </section>
+   <section class="py-16 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-white mb-4">Niveles de Entrenamiento</h2>
+                <p class="text-xl text-blue-200 max-w-3xl mx-auto">Descubre en qué nivel te encuentras y qué habilidades puedes desarrollar en cada etapa</p>
+                
+                <!-- Level Comparison Toggle -->
+                <div class="mt-8 flex justify-center">
+                    <button id="toggleComparison" class="px-6 py-3 bg-white bg-opacity-20 backdrop-blur-sm text-white rounded-lg hover:bg-opacity-30 transition-all duration-300">
+                        📊 Comparar Niveles
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Levels Container -->
+            <div id="levelsContainer" class="space-y-4">
+                <!-- Nivel Iniciación 0 -->
+                <div class="level-card bg-white bg-opacity-10 backdrop-blur-sm rounded-xl border border-white border-opacity-20 overflow-hidden transition-all duration-500 hover:bg-opacity-20" data-level="beginner0">
+                    <div class="level-header cursor-pointer p-6 flex items-center justify-between" onclick="toggleLevel(this)">
+                        <div class="flex items-center space-x-4">
+                            <div class="level-icon bg-red-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg">0</div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-white">Nivel de Iniciación 0</h3>
+                                <div class="skill-bar mt-2">
+                                    <div class="bg-gray-600 h-2 rounded-full">
+                                        <div class="bg-red-500 h-2 rounded-full transition-all duration-1000" style="width: 10%"></div>
+                                    </div>
+                                    <p class="text-sm text-gray-300 mt-1">Principiante absoluto</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="level-indicator hidden md:block text-white bg-red-500 px-3 py-1 rounded-full text-sm">Principiante</span>
+                            <svg class="chevron w-6 h-6 text-white transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="level-content max-h-0 overflow-hidden transition-all duration-500">
+                        <div class="p-6 pt-0">
+                            <div class="bg-white bg-opacity-5 rounded-lg p-4 mb-4">
+                                <p class="text-gray-200 leading-relaxed">
+                                    No poseo ninguna experiencia en voleibol indoor ni de playa, juego eventualmente al voleibol. Me he inscrito en alguna academia pero no he durado mucho tiempo, no logro hacer tres toques seguidos de toques de dedos o antebrazo.
+                                </p>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="skills-section">
+                                    <h4 class="text-white font-semibold mb-2">🎯 Objetivos de este nivel:</h4>
+                                    <ul class="text-gray-300 text-sm space-y-1">
+                                        <li>• Aprender fundamentos básicos</li>
+                                        <li>• Desarrollar coordinación</li>
+                                        <li>• Familiarizarse con las reglas</li>
+                                    </ul>
+                                </div>
+                                <div class="cta-section">
+                                    <button class="w-full py-2 px-4 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors duration-300">
+                                        Comenzar desde cero
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Nivel Iniciación 1 -->
+                <div class="level-card bg-white bg-opacity-10 backdrop-blur-sm rounded-xl border border-white border-opacity-20 overflow-hidden transition-all duration-500 hover:bg-opacity-20" data-level="beginner1">
+                    <div class="level-header cursor-pointer p-6 flex items-center justify-between" onclick="toggleLevel(this)">
+                        <div class="flex items-center space-x-4">
+                            <div class="level-icon bg-orange-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg">1</div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-white">Nivel de Iniciación 1</h3>
+                                <div class="skill-bar mt-2">
+                                    <div class="bg-gray-600 h-2 rounded-full">
+                                        <div class="bg-orange-500 h-2 rounded-full transition-all duration-1000" style="width: 30%"></div>
+                                    </div>
+                                    <p class="text-sm text-gray-300 mt-1">Fundamentos básicos</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="level-indicator hidden md:block text-white bg-orange-500 px-3 py-1 rounded-full text-sm">Básico</span>
+                            <svg class="chevron w-6 h-6 text-white transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="level-content max-h-0 overflow-hidden transition-all duration-500">
+                        <div class="p-6 pt-0">
+                            <div class="bg-white bg-opacity-5 rounded-lg p-4 mb-4">
+                                <p class="text-gray-200 leading-relaxed">
+                                    Tengo experiencia en entrenamiento en el voleibol por meses, juego eventualmente con amigos, tengo conocimiento de las reglas básicas del voleibol, tengo dominio técnico de los fundamentos, puedo completar una jugada de 3 toques.
+                                </p>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="skills-section">
+                                    <h4 class="text-white font-semibold mb-2">🎯 Objetivos de este nivel:</h4>
+                                    <ul class="text-gray-300 text-sm space-y-1">
+                                        <li>• Perfeccionar técnica básica</li>
+                                        <li>• Desarrollar jugadas de 3 toques</li>
+                                        <li>• Mejorar coordinación en equipo</li>
+                                    </ul>
+                                </div>
+                                <div class="cta-section">
+                                    <button class="w-full py-2 px-4 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition-colors duration-300">
+                                        Perfeccionar técnica
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Nivel Intermedio -->
+                <div class="level-card bg-white bg-opacity-10 backdrop-blur-sm rounded-xl border border-white border-opacity-20 overflow-hidden transition-all duration-500 hover:bg-opacity-20" data-level="intermediate">
+                    <div class="level-header cursor-pointer p-6 flex items-center justify-between" onclick="toggleLevel(this)">
+                        <div class="flex items-center space-x-4">
+                            <div class="level-icon bg-yellow-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg">2</div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-white">Nivel Intermedio</h3>
+                                <div class="skill-bar mt-2">
+                                    <div class="bg-gray-600 h-2 rounded-full">
+                                        <div class="bg-yellow-500 h-2 rounded-full transition-all duration-1000" style="width: 60%"></div>
+                                    </div>
+                                    <p class="text-sm text-gray-300 mt-1">Técnica desarrollada</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="level-indicator hidden md:block text-white bg-yellow-500 px-3 py-1 rounded-full text-sm">Intermedio</span>
+                            <svg class="chevron w-6 h-6 text-white transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="level-content max-h-0 overflow-hidden transition-all duration-500">
+                        <div class="p-6 pt-0">
+                            <div class="bg-white bg-opacity-5 rounded-lg p-4 mb-4">
+                                <p class="text-gray-200 leading-relaxed">
+                                    Soy capaz de tener dominio del servicio. Tengo control en la recepción del saque, puedo dirigirlo al centro de la cancha, tengo dominio del fundamento del ataque. Tengo control a la hora de colocar la bola en el campo contrario. Conozco perfectamente los conceptos básicos como aproximarme a mi compañero cuando recibe, estar cerca de él en cualquier momento del punto para continuar con el juego de manera más fluida.
+                                </p>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="skills-section">
+                                    <h4 class="text-white font-semibold mb-2">🎯 Objetivos de este nivel:</h4>
+                                    <ul class="text-gray-300 text-sm space-y-1">
+                                        <li>• Dominar servicios variados</li>
+                                        <li>• Mejorar colocación estratégica</li>
+                                        <li>• Desarrollar juego táctico</li>
+                                    </ul>
+                                </div>
+                                <div class="cta-section">
+                                    <button class="w-full py-2 px-4 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg transition-colors duration-300">
+                                        Mejorar estrategia
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Nivel Intermedio 1 -->
+                <div class="level-card bg-white bg-opacity-10 backdrop-blur-sm rounded-xl border border-white border-opacity-20 overflow-hidden transition-all duration-500 hover:bg-opacity-20" data-level="intermediate1">
+                    <div class="level-header cursor-pointer p-6 flex items-center justify-between" onclick="toggleLevel(this)">
+                        <div class="flex items-center space-x-4">
+                            <div class="level-icon bg-green-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg">3</div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-white">Nivel Intermedio 1</h3>
+                                <div class="skill-bar mt-2">
+                                    <div class="bg-gray-600 h-2 rounded-full">
+                                        <div class="bg-green-500 h-2 rounded-full transition-all duration-1000" style="width: 80%"></div>
+                                    </div>
+                                    <p class="text-sm text-gray-300 mt-1">Técnica avanzada</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="level-indicator hidden md:block text-white bg-green-500 px-3 py-1 rounded-full text-sm">Avanzado</span>
+                            <svg class="chevron w-6 h-6 text-white transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="level-content max-h-0 overflow-hidden transition-all duration-500">
+                        <div class="p-6 pt-0">
+                            <div class="bg-white bg-opacity-5 rounded-lg p-4 mb-4">
+                                <ul class="text-gray-200 leading-relaxed space-y-2">
+                                    <li>• Tengo dominio de los diferentes tipos de ataques (ataque fuerte, pokey, palmeó, «cut» toque corto, «over» toque por encima del bloqueo).</li>
+                                    <li>• Suelo jugar con bloqueo y me sé salir del bloqueo perfectamente</li>
+                                    <li>• Conozco las señas del bloqueo.</li>
+                                    <li>• Sé cómo usar variables ambientales como el viento y el sol a mi favor.</li>
+                                    <li>• Sé hacer defensas de balones a una mano.</li>
+                                </ul>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="skills-section">
+                                    <h4 class="text-white font-semibold mb-2">🎯 Objetivos de este nivel:</h4>
+                                    <ul class="text-gray-300 text-sm space-y-1">
+                                        <li>• Dominar múltiples tipos de ataque</li>
+                                        <li>• Perfeccionar técnicas de bloqueo</li>
+                                        <li>• Adaptarse a condiciones ambientales</li>
+                                    </ul>
+                                </div>
+                                <div class="cta-section">
+                                    <button class="w-full py-2 px-4 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors duration-300">
+                                        Pulir técnica avanzada
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Nivel Avanzado -->
+                <div class="level-card bg-white bg-opacity-10 backdrop-blur-sm rounded-xl border border-white border-opacity-20 overflow-hidden transition-all duration-500 hover:bg-opacity-20" data-level="advanced">
+                    <div class="level-header cursor-pointer p-6 flex items-center justify-between" onclick="toggleLevel(this)">
+                        <div class="flex items-center space-x-4">
+                            <div class="level-icon bg-purple-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg">4</div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-white">Nivel Avanzado</h3>
+                                <div class="skill-bar mt-2">
+                                    <div class="bg-gray-600 h-2 rounded-full">
+                                        <div class="bg-purple-500 h-2 rounded-full transition-all duration-1000" style="width: 95%"></div>
+                                    </div>
+                                    <p class="text-sm text-gray-300 mt-1">Nivel competitivo</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="level-indicator hidden md:block text-white bg-purple-500 px-3 py-1 rounded-full text-sm">Experto</span>
+                            <svg class="chevron w-6 h-6 text-white transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="level-content max-h-0 overflow-hidden transition-all duration-500">
+                        <div class="p-6 pt-0">
+                            <div class="bg-white bg-opacity-5 rounded-lg p-4 mb-4">
+                                <p class="text-gray-200 leading-relaxed">
+                                    Tengo dominio del servicio en salto o de potencia. Tengo una correcta aproximación al ataque. Conozco las fases del juego (K1 Y K2). Sé ubicarme en defensa en dependencia de la señal del bloqueo, sé qué golpe realizar cuando tengo un bloque delante.
+                                </p>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="skills-section">
+                                    <h4 class="text-white font-semibold mb-2">🎯 Objetivos de este nivel:</h4>
+                                    <ul class="text-gray-300 text-sm space-y-1">
+                                        <li>• Dominar servicios de potencia</li>
+                                        <li>• Perfeccionar fases de juego</li>
+                                        <li>• Preparación competitiva</li>
+                                    </ul>
+                                </div>
+                                <div class="cta-section">
+                                    <button class="w-full py-2 px-4 bg-purple-500 hover:bg-purple-600 text-white rounded-lg transition-colors duration-300">
+                                        Entrenamiento competitivo
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Comparison View (Hidden by default) -->
+            <div id="comparisonView" class="hidden mt-8">
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6">
+                    <h3 class="text-2xl font-bold text-white mb-6 text-center">Comparación de Niveles</h3>
+                    <div class="grid md:grid-cols-5 gap-4 text-center">
+                        <div class="comparison-column">
+                            <h4 class="font-semibold text-white mb-4">Iniciación 0</h4>
+                            <div class="space-y-2 text-sm text-gray-300">
+                                <div class="bg-red-500 bg-opacity-20 p-2 rounded">Sin experiencia</div>
+                                <div class="bg-red-500 bg-opacity-20 p-2 rounded">Aprendiendo reglas</div>
+                                <div class="bg-red-500 bg-opacity-20 p-2 rounded">Coordinación básica</div>
+                            </div>
+                        </div>
+                        <div class="comparison-column">
+                            <h4 class="font-semibold text-white mb-4">Iniciación 1</h4>
+                            <div class="space-y-2 text-sm text-gray-300">
+                                <div class="bg-orange-500 bg-opacity-20 p-2 rounded">Fundamentos básicos</div>
+                                <div class="bg-orange-500 bg-opacity-20 p-2 rounded">3 toques seguidos</div>
+                                <div class="bg-orange-500 bg-opacity-20 p-2 rounded">Reglas conocidas</div>
+                            </div>
+                        </div>
+                        <div class="comparison-column">
+                            <h4 class="font-semibold text-white mb-4">Intermedio</h4>
+                            <div class="space-y-2 text-sm text-gray-300">
+                                <div class="bg-yellow-500 bg-opacity-20 p-2 rounded">Servicio controlado</div>
+                                <div class="bg-yellow-500 bg-opacity-20 p-2 rounded">Ataques básicos</div>
+                                <div class="bg-yellow-500 bg-opacity-20 p-2 rounded">Táctica inicial</div>
+                            </div>
+                        </div>
+                        <div class="comparison-column">
+                            <h4 class="font-semibold text-white mb-4">Intermedio 1</h4>
+                            <div class="space-y-2 text-sm text-gray-300">
+                                <div class="bg-green-500 bg-opacity-20 p-2 rounded">Múltiples ataques</div>
+                                <div class="bg-green-500 bg-opacity-20 p-2 rounded">Bloqueo avanzado</div>
+                                <div class="bg-green-500 bg-opacity-20 p-2 rounded">Adaptación ambiental</div>
+                            </div>
+                        </div>
+                        <div class="comparison-column">
+                            <h4 class="font-semibold text-white mb-4">Avanzado</h4>
+                            <div class="space-y-2 text-sm text-gray-300">
+                                <div class="bg-purple-500 bg-opacity-20 p-2 rounded">Servicio potencia</div>
+                                <div class="bg-purple-500 bg-opacity-20 p-2 rounded">Fases de juego</div>
+                                <div class="bg-purple-500 bg-opacity-20 p-2 rounded">Nivel competitivo</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 	
 </Layout>
+
+<script>
+    // Quiz questions and answers
+    const quizQuestions = [
+        {
+            question: "¿Cuál es tu experiencia previa con el voleibol?",
+            answers: [
+                { text: "Nunca he jugado voleibol", points: { beginner0: 3, beginner1: 0, intermediate: 0, intermediate1: 0, advanced: 0 } },
+                { text: "He jugado ocasionalmente con amigos", points: { beginner0: 1, beginner1: 2, intermediate: 0, intermediate1: 0, advanced: 0 } },
+                { text: "He tomado clases por algunos meses", points: { beginner0: 0, beginner1: 3, intermediate: 1, intermediate1: 0, advanced: 0 } },
+                { text: "Entreno regularmente hace más de un año", points: { beginner0: 0, beginner1: 0, intermediate: 2, intermediate1: 3, advanced: 1 } },
+                { text: "Juego de forma competitiva", points: { beginner0: 0, beginner1: 0, intermediate: 0, intermediate1: 1, advanced: 3 } }
+            ]
+        },
+        {
+            question: "¿Puedes completar una secuencia de 3 toques seguidos?",
+            answers: [
+                { text: "No, me es muy difícil", points: { beginner0: 3, beginner1: 0, intermediate: 0, intermediate1: 0, advanced: 0 } },
+                { text: "A veces, pero no consistentemente", points: { beginner0: 1, beginner1: 3, intermediate: 0, intermediate1: 0, advanced: 0 } },
+                { text: "Sí, la mayoría de las veces", points: { beginner0: 0, beginner1: 1, intermediate: 3, intermediate1: 1, advanced: 0 } },
+                { text: "Siempre, y con diferentes técnicas", points: { beginner0: 0, beginner1: 0, intermediate: 1, intermediate1: 3, advanced: 2 } },
+                { text: "Perfectamente, con estrategia", points: { beginner0: 0, beginner1: 0, intermediate: 0, intermediate1: 1, advanced: 3 } }
+            ]
+        },
+        {
+            question: "¿Qué tan bien conoces las reglas del voleibol?",
+            answers: [
+                { text: "No conozco las reglas básicas", points: { beginner0: 3, beginner1: 0, intermediate: 0, intermediate1: 0, advanced: 0 } },
+                { text: "Conozco algunas reglas básicas", points: { beginner0: 1, beginner1: 3, intermediate: 1, intermediate1: 0, advanced: 0 } },
+                { text: "Conozco bien las reglas principales", points: { beginner0: 0, beginner1: 1, intermediate: 3, intermediate1: 1, advanced: 0 } },
+                { text: "Conozco reglas avanzadas y señas", points: { beginner0: 0, beginner1: 0, intermediate: 1, intermediate1: 3, advanced: 2 } },
+                { text: "Domino completamente las reglas y fases de juego", points: { beginner0: 0, beginner1: 0, intermediate: 0, intermediate1: 1, advanced: 3 } }
+            ]
+        },
+        {
+            question: "¿Cómo describirías tu servicio?",
+            answers: [
+                { text: "No puedo servir consistentemente", points: { beginner0: 3, beginner1: 1, intermediate: 0, intermediate1: 0, advanced: 0 } },
+                { text: "Sirvo por debajo, a veces pasa", points: { beginner0: 1, beginner1: 3, intermediate: 0, intermediate1: 0, advanced: 0 } },
+                { text: "Sirvo por arriba con control", points: { beginner0: 0, beginner1: 1, intermediate: 3, intermediate1: 1, advanced: 0 } },
+                { text: "Manejo diferentes tipos de servicio", points: { beginner0: 0, beginner1: 0, intermediate: 1, intermediate1: 3, advanced: 1 } },
+                { text: "Domino servicio en salto y de potencia", points: { beginner0: 0, beginner1: 0, intermediate: 0, intermediate1: 1, advanced: 3 } }
+            ]
+        },
+        {
+            question: "¿Qué tan cómodo te sientes con el bloqueo y la defensa?",
+            answers: [
+                { text: "No sé bloquear ni defender", points: { beginner0: 3, beginner1: 1, intermediate: 0, intermediate1: 0, advanced: 0 } },
+                { text: "Puedo hacer defensas básicas", points: { beginner0: 1, beginner1: 3, intermediate: 1, intermediate1: 0, advanced: 0 } },
+                { text: "Bloqueo ocasionalmente y defiendo decentemente", points: { beginner0: 0, beginner1: 1, intermediate: 3, intermediate1: 1, advanced: 0 } },
+                { text: "Manejo bloqueo con señas y defensas a una mano", points: { beginner0: 0, beginner1: 0, intermediate: 1, intermediate1: 3, advanced: 1 } },
+                { text: "Domino bloqueo estratégico y defensa posicional", points: { beginner0: 0, beginner1: 0, intermediate: 0, intermediate1: 1, advanced: 3 } }
+            ]
+        }
+    ];
+
+    const levelDescriptions = {
+        beginner0: {
+            title: "Nivel de Iniciación 0",
+            icon: "🏐",
+            description: "Perfecto para comenzar desde cero. Te ayudaremos a desarrollar los fundamentos básicos."
+        },
+        beginner1: {
+            title: "Nivel de Iniciación 1", 
+            icon: "⭐",
+            description: "Ya tienes una base. Vamos a perfeccionar tu técnica y consistencia."
+        },
+        intermediate: {
+            title: "Nivel Intermedio",
+            icon: "🔥",
+            description: "Tienes buen control. Es hora de desarrollar estrategia y técnicas avanzadas."
+        },
+        intermediate1: {
+            title: "Nivel Intermedio 1",
+            icon: "💪",
+            description: "Excelente nivel técnico. Perfeccionemos tu juego táctico y competitivo."
+        },
+        advanced: {
+            title: "Nivel Avanzado",
+            icon: "🏆",
+            description: "Eres un jugador experimentado. Preparémonos para la competición."
+        }
+    };
+
+    let currentQuestionIndex = 0;
+    let userAnswers = [];
+
+    // Modal functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const startQuizBtn = document.getElementById('startQuiz');
+        const closeQuizBtn = document.getElementById('closeQuiz');
+        const quizModal = document.getElementById('quizModal');
+
+        if (startQuizBtn) {
+            startQuizBtn.addEventListener('click', function() {
+                if (quizModal) {
+                    quizModal.classList.remove('hidden');
+                    quizModal.classList.add('flex');
+                    showQuestion(0);
+                }
+            });
+        }
+
+        if (closeQuizBtn) {
+            closeQuizBtn.addEventListener('click', function() {
+                if (quizModal) {
+                    quizModal.classList.add('hidden');
+                    quizModal.classList.remove('flex');
+                    resetQuiz();
+                }
+            });
+        }
+
+        // Quiz navigation
+        const nextBtn = document.getElementById('nextQuestion');
+        const prevBtn = document.getElementById('prevQuestion');
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', function() {
+                const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+                if (!selectedAnswer) {
+                    alert('Por favor selecciona una respuesta');
+                    return;
+                }
+
+                userAnswers[currentQuestionIndex] = parseInt((selectedAnswer as HTMLInputElement).value);
+
+                if (currentQuestionIndex < quizQuestions.length - 1) {
+                    showQuestion(currentQuestionIndex + 1);
+                } else {
+                    showResult();
+                }
+            });
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', function() {
+                if (currentQuestionIndex > 0) {
+                    showQuestion(currentQuestionIndex - 1);
+                }
+            });
+        }
+
+        // Level comparison
+        const toggleComparisonBtn = document.getElementById('toggleComparison');
+        if (toggleComparisonBtn) {
+            toggleComparisonBtn.addEventListener('click', function() {
+                const comparisonView = document.getElementById('comparisonView');
+                if (comparisonView) {
+                    const isVisible = !comparisonView.classList.contains('hidden');
+                    
+                    if (isVisible) {
+                        comparisonView.classList.add('hidden');
+                        this.textContent = '📊 Comparar Niveles';
+                    } else {
+                        comparisonView.classList.remove('hidden');
+                        this.textContent = '📋 Ver Lista Detallada';
+                        comparisonView.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        }
+
+        // Animate cards on load
+        const levelCards = document.querySelectorAll('.level-card');
+        levelCards.forEach((card, index) => {
+            const htmlCard = card as HTMLElement;
+            htmlCard.style.opacity = '0';
+            htmlCard.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                htmlCard.style.transition = 'all 0.6s ease';
+                htmlCard.style.opacity = '1';
+                htmlCard.style.transform = 'translateY(0)';
+            }, index * 100);
+        });
+    });
+
+    // Quiz functionality
+    function showQuestion(index) {
+        currentQuestionIndex = index;
+        const question = quizQuestions[index];
+        const container = document.getElementById('questionContainer');
+        
+        if (container) {
+            container.innerHTML = `
+                <h4 class="text-lg font-semibold text-gray-800 mb-4">${question.question}</h4>
+                <div class="space-y-3">
+                    ${question.answers.map((answer, i) => `
+                        <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                            <input type="radio" name="answer" value="${i}" class="mr-3">
+                            <span>${answer.text}</span>
+                        </label>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        // Update progress
+        const progressBar = document.getElementById('progressBar');
+        if (progressBar) {
+            const progress = ((index + 1) / quizQuestions.length) * 100;
+            (progressBar as HTMLElement).style.width = progress + '%';
+        }
+
+        const currentQuestionEl = document.getElementById('currentQuestion');
+        if (currentQuestionEl) {
+            currentQuestionEl.textContent = (index + 1).toString();
+        }
+
+        const totalQuestionsEl = document.getElementById('totalQuestions');
+        if (totalQuestionsEl) {
+            totalQuestionsEl.textContent = quizQuestions.length.toString();
+        }
+
+        // Update navigation buttons
+        const prevBtn = document.getElementById('prevQuestion') as HTMLButtonElement;
+        if (prevBtn) {
+            prevBtn.disabled = index === 0;
+        }
+
+        const nextBtn = document.getElementById('nextQuestion');
+        if (nextBtn) {
+            nextBtn.textContent = index === quizQuestions.length - 1 ? 'Finalizar' : 'Siguiente';
+        }
+    }
+
+    function showResult() {
+        // Calculate scores
+        const scores = { beginner0: 0, beginner1: 0, intermediate: 0, intermediate1: 0, advanced: 0 };
+        
+        userAnswers.forEach((answerIndex, questionIndex) => {
+            const answer = quizQuestions[questionIndex].answers[answerIndex];
+            Object.keys(answer.points).forEach(level => {
+                scores[level] += answer.points[level];
+            });
+        });
+
+        // Find highest score
+        const recommendedLevel = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+        const levelInfo = levelDescriptions[recommendedLevel];
+
+        // Show result
+        const quizContent = document.getElementById('quizContent');
+        const quizResult = document.getElementById('quizResult');
+        
+        if (quizContent) quizContent.classList.add('hidden');
+        if (quizResult) quizResult.classList.remove('hidden');
+        
+        const resultIcon = document.getElementById('resultIcon');
+        const resultTitle = document.getElementById('resultTitle');
+        const resultDescription = document.getElementById('resultDescription');
+        
+        if (resultIcon) resultIcon.textContent = levelInfo.icon;
+        if (resultTitle) resultTitle.textContent = levelInfo.title;
+        if (resultDescription) resultDescription.textContent = levelInfo.description;
+
+        const viewLevelsBtn = document.getElementById('viewLevels');
+        if (viewLevelsBtn) {
+            viewLevelsBtn.addEventListener('click', function() {
+                const quizModal = document.getElementById('quizModal');
+                if (quizModal) {
+                    quizModal.classList.add('hidden');
+                    quizModal.classList.remove('flex');
+                }
+                
+                // Highlight recommended level
+                const levelCard = document.querySelector(`[data-level="${recommendedLevel}"]`) as HTMLElement;
+                if (levelCard) {
+                    levelCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    levelCard.style.transform = 'scale(1.02)';
+                    levelCard.style.boxShadow = '0 0 20px rgba(59, 130, 246, 0.5)';
+                    setTimeout(() => {
+                        levelCard.style.transform = '';
+                        levelCard.style.boxShadow = '';
+                    }, 2000);
+                }
+                
+                resetQuiz();
+            });
+        }
+    }
+
+    function resetQuiz() {
+        currentQuestionIndex = 0;
+        userAnswers = [];
+        const quizContent = document.getElementById('quizContent');
+        const quizResult = document.getElementById('quizResult');
+        
+        if (quizContent) quizContent.classList.remove('hidden');
+        if (quizResult) quizResult.classList.add('hidden');
+    }
+
+    // Level accordion functionality
+    function toggleLevel(header) {
+        const card = header.closest('.level-card');
+        const content = card.querySelector('.level-content') as HTMLElement;
+        const chevron = header.querySelector('.chevron') as HTMLElement;
+        const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+        // Close all other cards
+        document.querySelectorAll('.level-card').forEach(otherCard => {
+            if (otherCard !== card) {
+                const otherContent = otherCard.querySelector('.level-content') as HTMLElement;
+                const otherChevron = otherCard.querySelector('.chevron') as HTMLElement;
+                if (otherContent) otherContent.style.maxHeight = '0px';
+                if (otherChevron) otherChevron.style.transform = 'rotate(0deg)';
+            }
+        });
+
+        // Toggle current card
+        if (isOpen) {
+            content.style.maxHeight = '0px';
+            chevron.style.transform = 'rotate(0deg)';
+        } else {
+            content.style.maxHeight = content.scrollHeight + 'px';
+            chevron.style.transform = 'rotate(180deg)';
+        }
+    }
+
+    // Make function globally available
+    (window as any).toggleLevel = toggleLevel;
+</script>
+
+<style>
+    .hero2 {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .level-card {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+    
+    .level-content {
+        transition: max-height 0.5s ease-in-out;
+    }
+    
+    .skill-bar .bg-red-500,
+    .skill-bar .bg-orange-500,
+    .skill-bar .bg-yellow-500,
+    .skill-bar .bg-green-500,
+    .skill-bar .bg-purple-500 {
+        transition: width 1s ease-in-out;
+    }
+    
+    .level-card:hover {
+        transform: translateY(-2px);
+    }
+    
+    #quizModal {
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+    }
+    
+    .comparison-column > div {
+        transition: all 0.3s ease;
+    }
+    
+    .comparison-column > div:hover {
+        transform: scale(1.05);
+    }
+    
+    .max-h-90vh {
+        max-height: 90vh;
+    }
+</style>
