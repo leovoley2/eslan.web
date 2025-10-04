@@ -1,110 +1,92 @@
-<!-- <section class="w-full p-20 max-w-6xl mx-auto ">
-<h3 class="uppercase text-4xl text-center font-semibold mb-10 text-balance mx-auto"> Voleibol playa</h3>
-<lite-youtube 
-class=" shadow-2xl shadow-white/10 rounded-xl" 
-videoId="xMwk0VWzdmE" 
-videotitle="Voleibol playa en Lima"></lite-youtube>
-</section>
+---
+// 1. Define aquí todas tus imágenes.
+// Para añadir una nueva, solo agrega otro objeto a la lista.
+// Asegúrate de que las rutas (src) sean correctas dentro de tu carpeta `public`.
+const images = [
+  { src: "/voleo.jpg", alt: "Jugadora realizando un voleo en la playa." },
+  { src: "/4.jpg", alt: "Balón de vóley playa oficial de la FIVB en la arena al atardecer." },
+  { src: "/3.jpg", alt: "Jugadora saltando para rematar el balón en un partido." },
+  { src: "/8.jpg", alt: "Foto grupal del equipo femenino de Arena Voleibol Club." },
+  { src: "/antebrazo.jpg", alt: "Jugadora recibiendo el balón con un antebrazo perfecto." },
+  { src: "/5.jpg", alt: "Dos jugadoras bloqueando un remate en la red." },
+  { src: "/10.jpg", alt: "Equipo completo de Arena Voleibol Club posando para una foto." },
+  { src: "/9.jpg", alt: "Foto del equipo juvenil de vóley playa." },
+  { src: "/6.jpg", alt: "Dos jugadores compitiendo en la red durante un entrenamiento." },
+  { src: "/7.jpg", alt: "Jugadores del club en un evento con ropa colorida." },
+  { src: "/12.jpg", alt: "Jugadora en el aire a punto de realizar un saque potente." },
+  // Agrega más imágenes aquí si lo deseas
+];
+---
 
-<script>
-    import '@justinribeiro/lite-youtube'
-</script>
--->
-<!-- component -->
-<div class="container mx-auto p-4">
-  <h5 class="text-center text-5xl font-bold my-4 text-[#01577a]">Galeria</h5>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="grid gap-4">
-        <div>
+<section 
+  class="bg-[#FFF8E1] py-16 sm:py-24"
+  x-data="{ 
+    open: false, 
+    imageSrc: '',
+    altText: '',
+    currentIndex: 0,
+    images: {images.map(img => ({ src: img.src, alt: img.alt }))}
+  }"
+  @keydown.escape.window="open = false"
+  @keydown.arrow-right.window="currentIndex = (currentIndex + 1) % images.length; imageSrc = images[currentIndex].src"
+  @keydown.arrow-left.window="currentIndex = (currentIndex - 1 + images.length) % images.length; imageSrc = images[currentIndex].src"
+>
+  <div class="container mx-auto px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="text-4xl font-bold tracking-tight text-[#01577a] sm:text-5xl">
+        Momentos en la Arena
+      </h2>
+      <p class="mt-4 text-lg leading-8 text-[#028ab1]">
+        Revive la energía de nuestros entrenamientos, partidos y la increíble comunidad que hemos formado.
+      </p>
+    </div>
+
+    <div class="columns-2 md:columns-3 lg:columns-4 gap-4 mt-12">
+      {images.map((image, index) => (
+        <div 
+          class="mb-4 break-inside-avoid cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
+          @click=`
+            open = true; 
+            imageSrc = '${image.src}'; 
+            altText = '${image.alt}';
+            currentIndex = ${index};
+          `
+        >
           <img
-            class="h-auto max-w-full rounded-lg"
-            src="/voleo.jpg"
-            alt=""
+            src={image.src}
+            alt={image.alt}
+            class="h-auto w-full object-cover transition-transform duration-300 ease-in-out hover:scale-110"
+            loading="lazy"
           />
         </div>
-        <div>
-          <img
-            class="h-auto max-w-full rounded-lg"
-            src="/antebrazo.jpg"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            class="h-auto max-w-full rounded-lg"
-            src="/6.jpg"
-            alt=""
-          />
-        </div>
-      </div>
-      <div class="grid gap-4">
-        <div>
-          <img
-            class="h-auto max-w-full rounded-lg"
-            src="/4.jpg"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            class="h-auto max-w-full rounded-lg"
-            src="/5.jpg"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            class="h-auto max-w-full rounded-lg"
-            src="/6.jpg"
-            alt=""
-          />
-        </div>
-      </div>
-      <div class="grid gap-4">
-        <div>
-          <img
-            class="h-auto max-w-full rounded-lg"
-            src="/3.jpg"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            class="h-auto max-w-full rounded-lg"
-            src="/10.jpg"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            class="h-auto max-w-full rounded-lg"
-            src="/7.jpg"
-            alt=""
-          />
-        </div>
-      </div>
-      <div class="grid gap-4">
-        <div>
-          <img
-            class="h-auto max-w-full rounded-lg"
-            src="/8.jpg"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            class="h-auto max-w-full rounded-lg"
-            src="/9.jpg"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            class="h-auto max-w-full rounded-lg"
-            src="/12.jpg"
-            alt=""
-          />
-        </div>
-      </div>
+      ))}
     </div>
   </div>
+
+  <div
+    x-show="open"
+    x-transition:enter="ease-out duration-300"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="ease-in duration-200"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 backdrop-blur-sm p-4"
+    style="display: none;"
+  >
+    <button @click="open = false" class="absolute top-4 right-4 text-white text-4xl z-50">&times;</button>
+    
+    <button 
+      @click="currentIndex = (currentIndex - 1 + images.length) % images.length; imageSrc = images[currentIndex].src"
+      class="absolute left-4 top-1/2 -translate-y-1/2 text-white text-4xl p-2 bg-black/30 rounded-full"
+    >&#10094;</button>
+    <button 
+      @click="currentIndex = (currentIndex + 1) % images.length; imageSrc = images[currentIndex].src"
+      class="absolute right-4 top-1/2 -translate-y-1/2 text-white text-4xl p-2 bg-black/30 rounded-full"
+    >&#10095;</button>
+
+    <div class="relative max-w-4xl max-h-[90vh] w-full h-full" @click.away="open = false">
+      <img :src="imageSrc" :alt="altText" class="w-full h-full object-contain">
+    </div>
+  </div>
+</section>
