@@ -1,197 +1,61 @@
 ---
 import Layout from '../layouts/Layout.astro';
+// 1. Define aquí los pilares de tu club (basado en tus "Metas").
+// Encuentra más íconos en https://heroicons.com/
+const pilares = [
+  {
+    nombre: 'Desarrollo Deportivo',
+    descripcion: 'Brindamos entrenamiento de excelencia para jugadores de todos los niveles, enfocados en mejorar la técnica y destreza en la cancha.',
+    // Icono: Trofeo
+    icono: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9a9 9 0 119 0zM16.5 18.75a9 9 0 10-9 0h9zM12.75 12.75h-1.5V9h1.5v3.75z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 15.75h.008v.008H12v-.008z" /><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75a7.5 7.5 0 0115 0v2.25a2.25 2.25 0 01-2.25 2.25h-10.5A2.25 2.25 0 014.5 15v-2.25z" /></svg>`
+  },
+  {
+    nombre: 'Promoción del Deporte',
+    descripcion: 'Fomentamos la participación y el entusiasmo por el vóley playa en la comunidad, organizando torneos y eventos para todas las edades.',
+    // Icono: Megáfono
+    icono: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" /></svg>`
+  },
+  {
+    nombre: 'Detección de Talentos',
+    descripcion: 'Identificamos y apoyamos a jóvenes con potencial para que representen a Perú en competencias nacionales e internacionales.',
+    // Icono: Estrella
+    icono: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" /></svg>`
+  },
+  {
+    nombre: 'Vida Saludable',
+    descripcion: 'Promovemos hábitos saludables y la actividad física regular como parte fundamental del bienestar integral de nuestros miembros.',
+    // Icono: Hoja
+    icono: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M15.182 8.418a3.375 3.375 0 00-4.773 0l-4.5 4.5a3.375 3.375 0 004.773 4.774l.73-1.46a.375.375 0 01.529-.158l.128.054a.375.375 0 01.158.53l-1.46.73a4.875 4.875 0 01-6.895-6.895l4.5-4.5a4.875 4.875 0 016.895 0l.73 1.46a.375.375 0 01-.158.529l-.054.128a.375.375 0 01-.53.158l-1.46-.73z" /></svg>`
+  }
+];
 ---
 
 <Layout title="Arena - Nosotros" description="Descubre más información sobre nosotros">
-	<!-- ====== About Section Start -->
-<section
-class="overflow-hidden pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] bg-[#0b8da7] dark:bg-dark"
->
-<div class="container mx-auto">
-   <div class="flex flex-wrap items-center justify-between -mx-4">
-	  <div class="w-full px-4 lg:w-6/12">
-		 <div class="flex items-center -mx-3 sm:-mx-4">
-			<div class="w-full px-3 sm:px-4 xl:w-1/2">
-			   <div class="py-3 sm:py-4">
-				  <img
-					 src="/4.jpg"
-					 alt=""
-					 class="w-full rounded-2xl"
-					 />
-			   </div>
-			   <div class="py-3 sm:py-4">
-				  <img
-					 src="/8.jpg"
-					 alt=""
-					 class="w-full rounded-2xl"
-					 />
-			   </div>
-			</div>
-			<div class="w-full px-3 sm:px-4 xl:w-1/2">
-			   <div class="relative z-10 my-4">
-				  <img
-					 src="/9.jpg"
-					 alt=""
-					 class="w-full rounded-2xl"
-					 />
-				  <span class="absolute -right-7 -bottom-7 z-[-1]">
-					 <svg
-						width="134"
-						height="106"
-						viewBox="0 0 134 106"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
-						>
-					 </svg>
-				  </span>
-			   </div>
-			</div>
-		 </div>
-	  </div>
-	  <div class="sm:container  w-full px-4 lg:w-1/2 xl:w-5/12">
-		 <div class= " container mt-10 lg:mt-0">
-			<h2
-			   class="mb-5 text-3xl font-bold text-dark text-[#ffb919] sm:text-[40px]/[48px]"
-			   >
-			  Nosotros
-			</h2>
-			<p class="mb-5 text-base text-white dark:text-dark-6">
-				Arena Voleibol Club es un club en Perú que se dedica a la enseñanza
-				del vóley de playa. El objetivo del club es promover el vóley de playa
-				como un deporte saludable y divertido en la comunidad local,
-				ofreciendo clases y entrenamientos para todas las edades y niveles de
-				habilidad. Además, el club también organiza torneos y eventos de vóley
-				de playa para fomentar la competencia sana y el espíritu de equipo. El
-				club también trabaja en colaboración con escuelas y otras
-				organizaciones para promover el vóley de playa entre los jóvenes y
-				fomentar el valor de la actividad física y el trabajo en equipo.
-			</p>
-			
-			<a
-			   href="javascript:void(0)"
-			   class="inline-flex items-center justify-center py-3 text-base font-medium text-center border border-transparent rounded-md px-7 bg-primary hover:bg-opacity-90"
-			   >
-			<h2 class="mb-5 text-3xl font-bold text-dark text-[#ffb919] sm:text-[40px]/[48px]" >Metas</h2>
-			</a>
-			<p class="mb-8 text-base text-white dark:text-dark-6">
-				<span class="mb-4 text-sm font-bold tracking-wide text-white ">Desarrollo Deportivo:</span> Brindar un entrenamiento de
-				excelencia en voleibol de playa para personas de
-				todas las edades y niveles de destreza. <br>
-				<span class="mb-4 text-sm font-bold tracking-wide text-white " >Promoción del Deporte:</span> Incrementar la
-				participación y el entusiasmo por el voleibol de
-				playa en nuestra comunidad. <br>
-				<span class="mb-4 text-sm font-bold tracking-wide text-white ">Detección de Talentos:</span> Identificar y apoyar a
-				jóvenes con talento que puedan representar a Perú
-				en competencias tanto nacionales como
-				internacionales. <br>
-				<span class="mb-4 text-sm font-bold tracking-wide text-white ">Vida Saludable:</span> Fomentar hábitos saludables y la
-				práctica regular de actividad física entre los
-				participantes.
-			 </p>
-		 </div>
-	  </div>
-   </div>
-</div>
-</section>
-<section class="bg-grey py-20 lg:py-[120px] dark:bg-dark">
-	<div class="container mx-auto">
-	  <div
-		class="relative z-10 overflow-hidden rounded bg-primary px-8 py-12 md:p-[70px]"
-	  >
-		<div class="-mx-4 flex flex-wrap items-center">
-		  <div class="w-full px-4 lg:w-1/2">
-			<span class="mb-4 block text-base font-medium text-white">
-			 
-			</span>
-			<h2
-			  class="mb-6 text-3xl font-bold leading-tight text-[#01577a] sm:mb-8 sm:text-[40px]/[48px] lg:mb-0"
-			>
-			  <span class="xs:block">Nuestra filosofía “Ponte en forma, diviértete, haz amigos” vivirá una gran experiencia
-			</h2>
-		  </div>
-		  <div class="w-full px-4 lg:w-1/2">
-			<div class="flex flex-wrap lg:justify-end">
-			  <a
-				href="https://wa.me/51929418895"
-				class="hover:bg-[#ffb919] ease-in-out duration-700 my-1 mr-4 inline-flex rounded-md bg-white px-7 py-3 text-base font-medium text-black transition"
-			  >
-				Contactanos
-			  </a>
-			  <a
-				href="javascript:void(0)"
-				class="my-1 inline-flex rounded-md bg-secondary px-7 py-3 text-base font-medium text-[#01577a] transition hover:bg-opacity-90"
-			  >
-				Un entrenamiento gratuito
-			  </a>
-			</div>
-		  </div>
-		</div>
 
-		<div>
-		  <span class="absolute left-0 top-0 z-[-1]">
-			<svg
-			  width="189"
-			  height="162"
-			  viewBox="0 0 189 162"
-			  fill="none"
-			  xmlns="http://www.w3.org/2000/svg"
-			>
-			  <ellipse
-				cx="16"
-				cy="-16.5"
-				rx="173"
-				ry="178.5"
-				transform="rotate(180 16 -16.5)"
-				fill="url(#paint0_linear)"
-			  />
-			  <defs>
-				<linearGradient
-				  id="paint0_linear"
-				  x1="-157"
-				  y1="-107.754"
-				  x2="98.5011"
-				  y2="-106.425"
-				  gradientUnits="userSpaceOnUse"
-				>
-				  <stop stop-color="white" stop-opacity="0.07" />
-				  <stop offset="1" stop-color="white" stop-opacity="0" />
-				</linearGradient>
-			  </defs>
-			</svg>
-		  </span>
-		  <span class="absolute bottom-0 right-0 z-[-1]">
-			<svg
-			  width="191"
-			  height="208"
-			  viewBox="0 0 191 208"
-			  fill="none"
-			  xmlns="http://www.w3.org/2000/svg"
-			>
-			  <ellipse
-				cx="173"
-				cy="178.5"
-				rx="173"
-				ry="178.5"
-				fill="url(#paint0_linear)"
-			  />
-			  <defs>
-				<linearGradient
-				  id="paint0_linear"
-				  x1="-3.27832e-05"
-				  y1="87.2457"
-				  x2="255.501"
-				  y2="88.5747"
-				  gradientUnits="userSpaceOnUse"
-				>
-				  <stop stop-color="white" stop-opacity="0.07" />
-				  <stop offset="1" stop-color="white" stop-opacity="0" />
-				</linearGradient>
-			  </defs>
-			</svg>
-		  </span>
-		</div>
-	  </div>
-	</div>
-  </section>
-<!-- ====== About Section End -->
+<section class="bg-white py-24 sm:py-32">
+  <div class="container mx-auto px-6 lg:px-8">
+    
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-4xl font-bold tracking-tight text-[#01577a] sm:text-5xl leading-tight">
+        Ponte en Forma, Diviértete y Haz Amigos.
+      </h2>
+      <p class="mt-6 text-lg leading-8 text-gray-700">
+        Esa es nuestra filosofía. En Arena Voleibol Club, creemos que el deporte es una herramienta para transformar vidas. Ofrecemos un espacio donde la competencia sana, la vida saludable y la amistad se encuentran en cada entrenamiento.
+      </p>
+    </div>
+
+    <div class="mt-20">
+      <dl class="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
+        {pilares.map((pilar) => (
+          <div class="flex flex-col items-center text-center p-4">
+            <div class="flex h-14 w-14 items-center justify-center rounded-full bg-cyan-100 text-[#01577a]" set:html={pilar.icono} />
+            <dt class="mt-4 font-semibold text-xl text-gray-900">{pilar.nombre}</dt>
+            <dd class="mt-2 text-base leading-7 text-gray-600">{pilar.descripcion}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+    
+  </div>
+</section>
 </Layout>
