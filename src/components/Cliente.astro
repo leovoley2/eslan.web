@@ -1,31 +1,82 @@
-<section>
-    <div class=" px-5 py-24 mx-auto lg:px-16">
-        <div class="flex flex-col w-full mb-8 text-center">
-            <span class="mb-4 text-sm font-bold tracking-wide text-black fon uppercase">
-        Se parte de nuestro equipo. coloca tu marca aqui.
-        <button class="w-24 mt-6 bg-[#f8ecbc] text-[#01577a] py-2 rounded-lg hover:bg-[#ffb919] ease-in-out duration-700">
-            <a href="https://wa.me/51929418895" target="_blank">Contactar</a>
-          </button>
-            </span>
-        </div>
-        <div class="mx-auto text-center">
-            <div class="grid grid-cols-5 gap-4 mx-auto lg:grid-cols-5">
-                <div>
-                    <img  class="h-4 mx-auto lg:h-12 bg-[#01577a]"  src="/images.png" alt="Figma">
-                </div>
-                <div>
-                    <img class="h-4 mx-auto lg:h-12 bg-[#01577a]" src="/images.png" alt="Framer">
-                </div>
-                <div>
-                    <img class="h-4 mx-auto lg:h-12 bg-[#01577a]" src="/images.png" alt="Sketch ">
-                </div>
-                <div>
-                    <img class="h-4 mx-auto lg:h-12 bg-[#01577a]" src="/images.png" alt="Sketch ">
-                </div>
-                <div>
-                    <img class="h-4 mx-auto lg:h-12 bg-[#01577a]" src="/images.png" alt="Invision">
-                </div>
-            </div>
-        </div>
+---
+// 1. Define aquí a tus sponsors.
+// Para añadir uno nuevo, solo agrega un objeto con su nombre, logo y web.
+// Guarda los logos en tu carpeta `public/sponsors/`.
+const sponsors = [
+  { 
+    name: 'Sponsor 1', 
+    logoSrc: '/sponsors/logo-placeholder.svg', // Reemplaza con la ruta real
+    websiteUrl: '#' 
+  },
+  { 
+    name: 'Sponsor 2', 
+    logoSrc: '/sponsors/logo-placeholder.svg', 
+    websiteUrl: '#' 
+  },
+  { 
+    name: 'Sponsor 3', 
+    logoSrc: '/sponsors/logo-placeholder.svg', 
+    websiteUrl: '#' 
+  },
+  { 
+    name: 'Sponsor 4', 
+    logoSrc: '/sponsors/logo-placeholder.svg', 
+    websiteUrl: '#' 
+  },
+  { 
+    name: 'Sponsor 5', 
+    logoSrc: '/sponsors/logo-placeholder.svg', 
+    websiteUrl: '#' 
+  },
+];
+// He creado un SVG placeholder que puedes usar mientras consigues los logos reales.
+// Crea la carpeta `public/sponsors` y guarda el código SVG de abajo como `logo-placeholder.svg`
+---
+
+<section id="sponsors" class="bg-[#fdf8e5]">
+  <div class="container mx-auto px-6 lg:px-8 py-20 sm:py-28">
+    
+    <div class="max-w-3xl mx-auto text-center mb-16">
+      <h2 class="text-4xl font-bold tracking-tight text-[#01577a] sm:text-5xl">
+        Impulsa tu Marca con Nosotros
+      </h2>
+      <p class="mt-6 text-lg leading-8 text-gray-700">
+        Al asociarte con Arena Voleibol Club, tu marca ganará visibilidad ante cientos de atletas, familias y aficionados al deporte. Apoya el crecimiento del vóley playa y conecta con una comunidad activa y apasionada.
+      </p>
+      <div class="mt-10">
+        <a 
+          href="https://wa.me/51929418895?text=Hola,%20estoy%20interesado%20en%20ser%20sponsor%20de%20Arena%20Voleibol%20Club." 
+          target="_blank"
+          class="inline-block bg-[#01577a] text-white font-bold py-3 px-8 text-base rounded-lg transition-transform duration-300 ease-in-out hover:scale-105 hover:bg-[#028ab1]"
+        >
+          Conviértete en Sponsor
+        </a>
+      </div>
     </div>
+
+    <div class="mt-12">
+      <h3 class="text-center text-base font-semibold text-gray-600 mb-8">
+        Marcas que confían y apuestan por nosotros
+      </h3>
+      <div class="mx-auto grid max-w-lg grid-cols-2 items-center gap-x-8 gap-y-12 sm:max-w-xl sm:grid-cols-3 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+        {sponsors.map((sponsor) => (
+          <a 
+            href={sponsor.websiteUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="transition-all duration-300 ease-in-out filter grayscale hover:grayscale-0 opacity-70 hover:opacity-100"
+          >
+            <img
+              class="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+              src={sponsor.logoSrc}
+              alt={sponsor.name}
+              width="158"
+              height="48"
+            />
+          </a>
+        ))}
+      </div>
+    </div>
+
+  </div>
 </section>
