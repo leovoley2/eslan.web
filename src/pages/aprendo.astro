@@ -1,4 +1,5 @@
 ---
+import Layout from '../layouts/Layout.astro';
 // 1. Define los beneficios aquí. 
 // Para añadir, quitar o cambiar uno, solo edita esta lista.
 // Puedes encontrar más íconos gratis en https://heroicons.com/
@@ -41,10 +42,21 @@ const beneficios = [
   }
 ];
 ---
+
+
+
+
+
+
+
+
+
+<Layout title="Arena Voleibol club - Aprende y crece jugando voleibol de playa junto a nosotros" description="Descubre y aprende voleibol de playa en Lima Perú">
+ 
 <div class="bg-white">
   <div class="relative isolate overflow-hidden">
     <div class="absolute inset-0 -z-10 h-full w-full">
-      <img src="/public/voleo.jpg" alt="Jugadora de voley playa rematando el balón con el atardecer de fondo." class="h-full w-full object-cover">
+      <img src="/antebrazo.jpg" alt="Jugadora de voley playa rematando el balón con el atardecer de fondo." class="h-full w-full object-cover">
       <div class="absolute inset-0 bg-gray-800/60 mix-blend-multiply"></div>
     </div>
     <div class="mx-auto max-w-7xl px-6 lg:px-8 py-24 sm:py-32 text-center">
@@ -99,10 +111,12 @@ const beneficios = [
                     </div>
                 </div>
                 <div class="lg:flex lg:flex-auto lg:justify-center">
-                    <img src="/public/equipo.jpg" alt="El equipo de Arena Voleibol Club sonriendo juntos en la playa después de un entrenamiento." class="w-full max-w-lg flex-none rounded-2xl bg-gray-50 object-cover shadow-xl"/>
+                    <img src="/lidia.png" alt="El equipo de Arena Voleibol Club sonriendo juntos en la playa después de un entrenamiento." class="w-full max-w-lg flex-none rounded-2xl bg-gray-50 object-cover shadow-xl"/>
                 </div>
             </div>
         </div>
     </div>
   </div>
 </div>
+      
+</Layout>
