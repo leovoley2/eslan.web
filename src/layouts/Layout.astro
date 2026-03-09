@@ -22,7 +22,14 @@ const {description, title } = Astro.props;
 		<title>{title}</title>
 		<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 	</head>
-	<body class="mobile-optimized">
+	<body class="mobile-optimized relative min-h-screen selection:bg-amber-400 selection:text-gray-900" style="background-color: #0a3d52;">
+        <!-- Ambient Glowing Background Elements -->
+        <div class="fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
+            <div class="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full blur-[120px] animate-blob opacity-30" style="background-color: rgba(255,185,25,0.4);"></div>
+            <div class="absolute top-[20%] right-[-5%] w-[35vw] h-[35vw] rounded-full blur-[140px] animate-blob animation-delay-2000 opacity-20" style="background-color: rgba(27,158,170,0.5);"></div>
+            <div class="absolute bottom-[-10%] left-[20%] w-[50vw] h-[50vw] rounded-full blur-[160px] animate-blob animation-delay-4000 opacity-20" style="background-color: rgba(10,91,138,0.6);"></div>
+        </div>
+
 		<Header />
 		<div class="whatsapp animate-bounce">
 			<a class="animate-ping"  href="https://wa.me/51929418895" target="_blank" ><img src='/whatsapp.png' alt='contactanos'/></a>
@@ -154,7 +161,7 @@ const {description, title } = Astro.props;
 </html>
 <style is:global>
 	:root {
-		color-scheme: dark;
+		color-scheme: light;
 		/* Mobile viewport variables */
 		--vh: 1vh;
 		--mobile-padding: 1rem;
@@ -162,7 +169,8 @@ const {description, title } = Astro.props;
 	}
 	html {
 		font-family: system-ui, sans-serif;
-		background-color: #f8ecbc;
+		background-color: #FAF4E1;
+
 		/* Better scroll behavior for mobile */
 		scroll-behavior: smooth;
 		-webkit-text-size-adjust: 100%;
@@ -186,18 +194,18 @@ const {description, title } = Astro.props;
 	}
 
 	p{
-		color: rgba(255, 255, 255, 0.9);
+		color: #374151; /* dark gray, readable on light background */
 		line-height: 1.6; /* Better readability on mobile */
 		margin-bottom: 1em;
-		font-weight: 100;
+		font-weight: 400;
 		font-size: 1em;
-		letter-spacing: .5px;
+		letter-spacing: .3px;
 		/* Better text rendering on small screens */
 		-webkit-font-smoothing: antialiased;
 	}
 
 	p strong{
-		color: white;
+		color: #111827;
 		font-weight: 700;
 		
 	}

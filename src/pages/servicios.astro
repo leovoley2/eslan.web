@@ -11,68 +11,75 @@ import Layout from '../layouts/Layout.astro';
 // lo he escrito directamente en el HTML para mayor claridad.
 ---
 
-<section class="bg-[#111827] text-white py-24 sm:py-32">
+<section class="relative z-10 py-24 sm:py-32">
   <div class="container mx-auto px-6 lg:px-8">
 
     <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-4xl font-bold tracking-tight sm:text-5xl">
+      <h2 class="text-4xl font-extrabold tracking-tight sm:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-arena-blue to-arena-dark">
         Desata tu Verdadero Potencial en la Arena
       </h2>
-      <p class="mt-6 text-lg leading-8 text-gray-300">
+      <p class="mt-6 text-lg leading-8 text-gray-800 font-medium font-serif">
         Nuestra metodología integral ataca cada pilar de tu rendimiento. Aquí es donde dejas de ser un jugador y te conviertes en una fuerza dominante en la cancha.
       </p>
     </div>
 
     <div class="mt-20 space-y-16">
 
-      <article class="bg-gray-800/50 rounded-2xl p-8 lg:p-12 border border-cyan-500/30 shadow-2xl shadow-cyan-500/5">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+      <article class="bg-white/80 backdrop-blur-xl rounded-3xl p-8 lg:p-12 border border-white/60 shadow-xl relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent pointer-events-none"></div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center relative z-10">
           <div class="lg:col-span-2">
-            <h3 class="text-3xl font-bold text-cyan-400">Programa de Alto Rendimiento 360°</h3>
-            <p class="mt-2 text-gray-300 font-semibold">Ideal para jugadores que buscan competir y romper sus límites.</p>
-            <p class="mt-4 text-gray-400">
+            <h3 class="text-3xl font-bold text-arena-blue">Programa de Alto Rendimiento 360°</h3>
+            <p class="mt-2 text-gray-900 font-bold">Ideal para jugadores que buscan competir y romper sus límites.</p>
+            <p class="mt-4 text-gray-800 font-medium">
               Esta es nuestra solución definitiva para la frustración en la cancha. Un sistema sinérgico que integra cuerpo, técnica y mente para una transformación total de tu juego.
             </p>
           </div>
           <div class="text-center">
-            <a href="#contacto" class="w-full inline-block bg-cyan-600 text-white font-bold py-3 px-6 rounded-lg text-lg hover:bg-cyan-500 transition-colors duration-300">
+            <a href="#contacto" class="w-full inline-block bg-gradient-to-r from-arena-cyan to-arena-blue text-white font-bold py-3 px-6 rounded-xl text-lg shadow-md hover:shadow-lg transform active:scale-95 transition-all duration-300 hover:-translate-y-1">
               Solicitar Evaluación
             </a>
           </div>
         </div>
 
-        <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="bg-gray-900 p-6 rounded-lg">
-            <h4 class="font-bold text-lg text-white">1. Potencia Física Inteligente</h4>
-            <p class="mt-2 text-sm text-gray-400">Construimos atletas explosivos, ágiles y resistentes a lesiones, optimizados para el movimiento en la arena.</p>
+        <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+          <div class="bg-white/60 p-6 rounded-2xl border border-white/50 shadow-inner">
+            <h4 class="font-bold text-lg text-arena-dark">1. Potencia Física Inteligente</h4>
+            <p class="mt-2 text-sm text-gray-700 font-medium">Construimos atletas explosivos, ágiles y resistentes a lesiones, optimizados para el movimiento en la arena.</p>
           </div>
-          <div class="bg-gray-900 p-6 rounded-lg">
-            <h4 class="font-bold text-lg text-white">2. Dominio Técnico Consolidado</h4>
-            <p class="mt-2 text-sm text-gray-400">Utilizamos análisis en video para pulir cada fundamento hasta convertirlo en un movimiento instintivo y eficaz.</p>
+          <div class="bg-white/60 p-6 rounded-2xl border border-white/50 shadow-inner">
+            <h4 class="font-bold text-lg text-arena-dark">2. Dominio Técnico Consolidado</h4>
+            <p class="mt-2 text-sm text-gray-700 font-medium">Utilizamos análisis en video para pulir cada fundamento hasta convertirlo en un movimiento instintivo y eficaz.</p>
           </div>
-          <div class="bg-gray-900 p-6 rounded-lg">
-            <h4 class="font-bold text-lg text-white">3. Fortaleza Cognitiva (Neuro-Vóley)</h4>
-            <p class="mt-2 text-sm text-gray-400">Entrenamos tu cerebro para acelerar la toma de decisiones, la anticipación y el control emocional bajo presión.</p>
+          <div class="bg-white/60 p-6 rounded-2xl border border-white/50 shadow-inner">
+            <h4 class="font-bold text-lg text-arena-dark">3. Fortaleza Cognitiva (Neuro-Vóley)</h4>
+            <p class="mt-2 text-sm text-gray-700 font-medium">Entrenamos tu cerebro para acelerar la toma de decisiones, la anticipación y el control emocional bajo presión.</p>
           </div>
         </div>
       </article>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         
-        <div class="bg-gray-800/50 p-8 rounded-2xl border border-gray-700">
-          <h3 class="text-2xl font-bold text-cyan-400">Clínicas Intensivas y Camps</h3>
-          <p class="mt-4 text-gray-400">
-            Para jugadores que buscan una inmersión total o mejorar una habilidad específica en un formato corto y de alto impacto.
-          </p>
-           <a href="#contacto" class="mt-6 inline-block text-cyan-400 font-semibold hover:text-cyan-300">Ver Próximas Fechas →</a>
+        <div class="bg-white/80 backdrop-blur-xl p-8 rounded-3xl border border-white/60 shadow-lg relative overflow-hidden group hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+          <div class="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent pointer-events-none"></div>
+          <div class="relative z-10">
+            <h3 class="text-2xl font-bold text-arena-blue drop-shadow-sm">Clínicas Intensivas y Camps</h3>
+            <p class="mt-4 text-gray-800 font-medium">
+              Para jugadores que buscan una inmersión total o mejorar una habilidad específica en un formato corto y de alto impacto.
+            </p>
+             <a href="#contacto" class="mt-6 inline-block text-arena-cyan font-bold hover:text-arena-blue transition-colors">Ver Próximas Fechas →</a>
+          </div>
         </div>
 
-        <div class="bg-gray-800/50 p-8 rounded-2xl border border-gray-700">
-          <h3 class="text-2xl font-bold text-cyan-400">Programa Escolar "Semillero de Arena"</h3>
-          <p class="mt-4 text-gray-400">
-            Nuestro programa formativo donde los más jóvenes aprenden valores, disciplina y el amor por el vóley playa en un ambiente divertido.
-          </p>
-          <a href="#contacto" class="mt-6 inline-block text-cyan-400 font-semibold hover:text-cyan-300">Inscribir a mi Hijo/a →</a>
+        <div class="bg-white/80 backdrop-blur-xl p-8 rounded-3xl border border-white/60 shadow-lg relative overflow-hidden group hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+          <div class="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent pointer-events-none"></div>
+          <div class="relative z-10">
+            <h3 class="text-2xl font-bold text-arena-blue drop-shadow-sm">Programa Escolar "Semillero de Arena"</h3>
+            <p class="mt-4 text-gray-800 font-medium">
+              Nuestro programa formativo donde los más jóvenes aprenden valores, disciplina y el amor por el vóley playa en un ambiente divertido.
+            </p>
+            <a href="#contacto" class="mt-6 inline-block text-arena-cyan font-bold hover:text-arena-blue transition-colors">Inscribir a mi Hijo/a →</a>
+          </div>
         </div>
 
       </div>

@@ -1,82 +1,130 @@
 ---
-// 1. Define aquí a tus sponsors.
-// Para añadir uno nuevo, solo agrega un objeto con su nombre, logo y web.
-// Guarda los logos en tu carpeta `public/sponsors/`.
+// Sponsors/Clients section
 const sponsors = [
-  { 
-    name: 'Sponsor 1', 
-    logoSrc: '/sponsors/logo-placeholder.svg', // Reemplaza con la ruta real
-    websiteUrl: '#' 
-  },
-  { 
-    name: 'Sponsor 2', 
-    logoSrc: '/sponsors/logo-placeholder.svg', 
-    websiteUrl: '#' 
-  },
-  { 
-    name: 'Sponsor 3', 
-    logoSrc: '/sponsors/logo-placeholder.svg', 
-    websiteUrl: '#' 
-  },
-  { 
-    name: 'Sponsor 4', 
-    logoSrc: '/sponsors/logo-placeholder.svg', 
-    websiteUrl: '#' 
-  },
-  { 
-    name: 'Sponsor 5', 
-    logoSrc: '/sponsors/logo-placeholder.svg', 
-    websiteUrl: '#' 
-  },
+  { name: 'Sponsor 1', logoSrc: '/sponsors/logo-placeholder.svg', websiteUrl: '#' },
+  { name: 'Sponsor 2', logoSrc: '/sponsors/logo-placeholder.svg', websiteUrl: '#' },
+  { name: 'Sponsor 3', logoSrc: '/sponsors/logo-placeholder.svg', websiteUrl: '#' },
+  { name: 'Sponsor 4', logoSrc: '/sponsors/logo-placeholder.svg', websiteUrl: '#' },
+  { name: 'Sponsor 5', logoSrc: '/sponsors/logo-placeholder.svg', websiteUrl: '#' },
 ];
-// He creado un SVG placeholder que puedes usar mientras consigues los logos reales.
-// Crea la carpeta `public/sponsors` y guarda el código SVG de abajo como `logo-placeholder.svg`
+
+const stats = [
+  { value: '500+', label: 'Atletas activos', icon: '🏐' },
+  { value: '5+', label: 'Años de experiencia', icon: '🏆' },
+  { value: '2', label: 'Sedes en Lima', icon: '📍' },
+  { value: '12K+', label: 'Seguidores en redes', icon: '📱' },
+];
+
+const benefits = [
+  { icon: '👁️', title: 'Visibilidad masiva', desc: 'Tu marca frente a cientos de atletas, familias y aficionados cada semana.' },
+  { icon: '📸', title: 'Presencia digital', desc: 'Logo en nuestro sitio web, redes sociales y material de torneos.' },
+  { icon: '🤝', title: 'Asociación de marca', desc: 'Vincúlate con los valores del deporte: esfuerzo, salud y comunidad.' },
+  { icon: '🎯', title: 'Público segmentado', desc: 'Reach directo a jóvenes activos y familias con poder adquisitivo.' },
+];
 ---
 
-<section id="sponsors" class="bg-[#fdf8e5]">
-  <div class="container mx-auto px-6 lg:px-8 py-20 sm:py-28">
-    
-    <div class="max-w-3xl mx-auto text-center mb-16">
-      <h2 class="text-4xl font-bold tracking-tight text-[#01577a] sm:text-5xl">
-        Impulsa tu Marca con Nosotros
-      </h2>
-      <p class="mt-6 text-lg leading-8 text-gray-700">
-        Al asociarte con Arena Voleibol Club, tu marca ganará visibilidad ante cientos de atletas, familias y aficionados al deporte. Apoya el crecimiento del vóley playa y conecta con una comunidad activa y apasionada.
-      </p>
-      <div class="mt-10">
-        <a 
-          href="https://wa.me/51929418895?text=Hola,%20estoy%20interesado%20en%20ser%20sponsor%20de%20Arena%20Voleibol%20Club." 
-          target="_blank"
-          class="inline-block bg-[#01577a] text-white font-bold py-3 px-8 text-base rounded-lg transition-transform duration-300 ease-in-out hover:scale-105 hover:bg-[#028ab1]"
-        >
-          Conviértete en Sponsor
-        </a>
-      </div>
+<section id="sponsors" class="relative z-10 overflow-hidden">
+  
+  <!-- Hero banner de sponsor -->
+  <div class="relative py-20 sm:py-28 px-6 overflow-hidden" style="background: linear-gradient(135deg, #0a3d52 0%, #0d4a6b 50%, #0a5b8a 100%);">
+    <!-- Decorative elements -->
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-0 left-0 w-72 h-72 rounded-full opacity-20" style="background: rgba(255,185,25,0.3); filter: blur(80px);"></div>
+      <div class="absolute bottom-0 right-0 w-80 h-80 rounded-full opacity-15" style="background: rgba(27,158,170,0.4); filter: blur(100px);"></div>
+      <!-- Volleyball net pattern -->
+      <div class="absolute inset-0 opacity-5" style="background-image: repeating-linear-gradient(0deg, transparent, transparent 40px, #fff 40px, #fff 41px), repeating-linear-gradient(90deg, transparent, transparent 40px, #fff 40px, #fff 41px);"></div>
     </div>
 
-    <div class="mt-12">
-      <h3 class="text-center text-base font-semibold text-gray-600 mb-8">
-        Marcas que confían y apuestan por nosotros
-      </h3>
-      <div class="mx-auto grid max-w-lg grid-cols-2 items-center gap-x-8 gap-y-12 sm:max-w-xl sm:grid-cols-3 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
-        {sponsors.map((sponsor) => (
-          <a 
-            href={sponsor.websiteUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="transition-all duration-300 ease-in-out filter grayscale hover:grayscale-0 opacity-70 hover:opacity-100"
-          >
-            <img
-              class="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
-              src={sponsor.logoSrc}
-              alt={sponsor.name}
-              width="158"
-              height="48"
-            />
-          </a>
+    <div class="relative z-10 max-w-5xl mx-auto text-center">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 mb-8">
+        <span class="text-amber-400 text-sm">⚡</span>
+        <span class="text-white/90 text-sm font-semibold tracking-wide uppercase">Oportunidad de Sponsorship</span>
+      </div>
+
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
+        Haz que tu marca brille
+        <span class="block text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-300">en la arena</span>
+      </h2>
+
+      <p class="text-lg sm:text-xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed">
+        Asocia tu marca con el deporte, la energía y la comunidad más apasionada del vóley playa en Lima. Miles de ojos sobre tu logo cada semana.
+      </p>
+
+      <a
+        href="https://wa.me/51929418895?text=Hola,%20estoy%20interesado%20en%20ser%20sponsor%20de%20Arena%20Voleibol%20Club."
+        target="_blank"
+        class="inline-flex items-center gap-3 bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 font-black py-4 px-10 text-lg rounded-full shadow-[0_8px_30px_0_rgba(255,185,25,0.4)] hover:shadow-[0_12px_40px_0_rgba(255,185,25,0.6)] hover:scale-105 transform transition-all duration-300 active:scale-95"
+      >
+        <span>Quiero ser Sponsor</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Estadísticas strip -->
+  <div class="bg-amber-400 py-6 px-6">
+    <div class="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-6">
+      {stats.map(stat => (
+        <div class="text-center">
+          <div class="text-2xl mb-1">{stat.icon}</div>
+          <div class="text-3xl font-black text-gray-900">{stat.value}</div>
+          <div class="text-sm font-semibold text-gray-700">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Beneficios -->
+  <div class="bg-white py-16 sm:py-20 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <h3 class="text-3xl sm:text-4xl font-black text-gray-900 mb-3">¿Por qué patrocinar Arena?</h3>
+        <p class="text-gray-500 text-lg">Todo lo que tu marca gana al asociarse con nosotros</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        {benefits.map(b => (
+          <div class="group p-6 rounded-2xl border border-gray-100 hover:border-arena-cyan/50 shadow-[0_4px_20px_0_rgba(10,91,138,0.08)] hover:shadow-[0_8px_30px_0_rgba(27,158,170,0.18)] transition-all duration-300 hover:-translate-y-1">
+            <div class="text-3xl mb-4">{b.icon}</div>
+            <h4 class="font-bold text-gray-900 text-base mb-2">{b.title}</h4>
+            <p class="text-gray-500 text-sm leading-relaxed">{b.desc}</p>
+          </div>
         ))}
       </div>
-    </div>
 
+      <!-- Logos de marcas -->
+      <div class="border-t border-gray-100 pt-12">
+        <p class="text-center text-sm font-bold text-gray-400 uppercase tracking-widest mb-8">
+          Marcas que confían y apuestan por nosotros
+        </p>
+        <div class="flex flex-wrap justify-center items-center gap-6 sm:gap-10">
+          {sponsors.map((sponsor) => (
+            <a
+              href={sponsor.websiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex items-center justify-center w-36 h-16 rounded-xl border border-dashed border-gray-300 hover:border-arena-cyan hover:bg-arena-cyan/5 transition-all duration-300"
+            >
+              <span class="text-xs font-semibold text-gray-400 group-hover:text-arena-cyan transition-colors">Tu Logo Aquí</span>
+            </a>
+          ))}
+        </div>
+        
+        <!-- CTA secundario -->
+        <div class="mt-10 text-center">
+          <p class="text-gray-500 text-sm mb-4">¿Tu marca aún no está aquí?</p>
+          <a
+            href="https://wa.me/51929418895?text=Hola,%20estoy%20interesado%20en%20ser%20sponsor%20de%20Arena%20Voleibol%20Club."
+            target="_blank"
+            class="inline-flex items-center gap-2 border-2 border-arena-blue text-arena-blue font-bold py-3 px-8 rounded-full hover:bg-arena-blue hover:text-white transition-all duration-300"
+          >
+            <span>Únete como Sponsor</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
+
 </section>
