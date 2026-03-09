@@ -1,238 +1,952 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-
-// src/components/LocationsGallery.astro
 const locations = [
   {
     id: 'sede1',
     name: 'Sede Chorrillos',
-    address: 'Playa Agua dulce',
-    phone: '929418895',
-    schedule: 'Lun - Mie - Vie: 7:00 - 9:00 AM',
+    subtitle: 'Playa Agua Dulce',
+    address: 'Playa Agua dulce, Chorrillos',
+    phone: '929 418 895',
+    schedule: 'Lun · Mié · Vie  Sab: 6:30 - 8:30 AM',
     email: 'arenavoleibolclub@gmail.com',
-    mapUrl: 'https://maps.app.goo.gl/sHBHCijPnvBbEjnp6',
+    mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.7!2d-77.0227!3d-12.1764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105b7e14f5e8a4d%3A0x0!2sPlaya+Agua+Dulce!5e0!3m2!1ses!2spe!4v1700000000000',
+    mapDir: 'https://www.google.com/maps/dir/?api=1&destination=Playa+Agua+dulce+Chorrillos',
+    whatsapp: 'https://wa.me/51929418895?text=Hola!%20Estoy%20interesado%20en%20la%20Sede%20Chorrillos',
     images: [
-      {
-        url: '/IMG_2639.jpg',
-        title: 'Recepción',
-        description: 'Área de recepción moderna y acogedora'
-      },
-      {
-        url: '/IMG_2640.jpg',
-        title: 'Oficinas',
-        description: 'Espacios de trabajo colaborativo'
-      },
-      {
-        url: '/IMG_20240214_091235_Original.JPG',
-        title: 'Sala de Reuniones',
-        description: 'Sala equipada para conferencias'
-      },
-      {
-        url: '/IMG_20240214_091235_Original.JPG',
-        title: 'Cafetería',
-        description: 'Zona de descanso y refrigerio'
-      }
+      { url: '/IMG_2639.jpg', label: 'Cancha Principal' },
+      { url: '/IMG_2640.jpg', label: 'Área de entrenamiento' },
+      { url: '/IMG_20240214_091235_Original.JPG', label: 'Amanecer en la playa' },
     ]
   },
   {
     id: 'sede2',
     name: 'Sede Surco',
-    address: 'Jr. Progreso 576',
-    phone: '929418895',
-    schedule: 'Mar - Juv: 5:00 - 9:00 PM',
+    subtitle: 'Jr. Progreso 576',
+    address: 'Jr. Progreso 576, Surco',
+    phone: '929 418 895',
+    schedule: 'Mar · Jue: 6:00 - 8:00 PM',
     email: 'arenavoleibolclub@gmail.com',
-    mapUrl: 'https://maps.app.goo.gl/sHBHCijPnvBbEjnp6',
+    mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.2!2d-76.9913!3d-12.1495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c77e0bea2a43%3A0x3fc94a78b6f0756b!2sJr.+Progreso+576+Surco!5e0!3m2!1ses!2spe!4v1700000000001',
+    mapDir: 'https://www.google.com/maps/dir/?api=1&destination=Jr.+Progreso+576+Surco',
+    whatsapp: 'https://wa.me/51929418895?text=Hola!%20Estoy%20interesado%20en%20la%20Sede%20Surco',
     images: [
-      {
-        url: '/arenanocturno.png',
-        title: 'Fachada',
-        description: 'Entrada principal del edificio'
-      },
-      {
-        url: '/IMG_2640.jpg',
-        title: 'Área de Trabajo',
-        description: 'Espacio de trabajo moderno'
-      },
-      {
-        url: '/IMG_2640.jpg',
-        title: 'Sala de Juntas',
-        description: 'Espacio para reuniones ejecutivas'
-      },
-      {
-        url: '/IMG_2640.jpg',
-        title: 'Terraza',
-        description: 'Área de descanso al aire libre'
-      }
+      { url: '/arenanocturno.png', label: 'Cancha nocturna' },
+      { url: '/IMG_2640.jpg', label: 'Entrenamiento' },
+      { url: '/IMG_2639.jpg', label: 'Instalaciones' },
     ]
   }
 ];
-     
 ---
 
+<Layout title="Arena Voleibol Club - Contacto" description="Contáctanos y comienza la diversión con el voleibol de playa. Sedes en Chorrillos y Surco." hideFooterForm={true}>
 
-<Layout title="Arena Voleibol club - contacto" description="Contactanos y comienza la diversión con el voleibol de playa">
-   <!-- component -->
-   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const locationSelect = document.getElementById('locationSelect');
-      const locationContainers = document.querySelectorAll('[id^="location-"]');
-      const modal = document.getElementById('imageModal');
-      const modalImage = document.getElementById('modalImage');
-      const modalTitle = document.getElementById('modalTitle');
-      const modalDescription = document.getElementById('modalDescription');
-      const closeModal = document.getElementById('closeModal');
-  
-      locationSelect?.addEventListener('change', (e) => {
-        const target = e.target as HTMLSelectElement;
-        const selectedLocation = target.value;
-        
-        locationContainers.forEach(container => {
-          container.classList.add('hidden');
-        });
-        
-        document.getElementById(`location-${selectedLocation}`)?.classList.remove('hidden');
-      });
-  
-      document.querySelectorAll('.gallery-image').forEach(image => {
-        image.addEventListener('click', (e) => {
-          const target = e.currentTarget as HTMLElement;
-          if (modal && modalImage && modalTitle && modalDescription) {
-            modalImage.setAttribute('src', target.dataset.image || '');
-            modalTitle.textContent = target.dataset.title || '';
-            modalDescription.textContent = target.dataset.description || '';
-            modal.classList.remove('hidden');
-          }
-        });
-      });
-  
-      closeModal?.addEventListener('click', () => {
-        modal?.classList.add('hidden');
+  <!-- ===== HERO ===== -->
+  <section class="contact-hero">
+    <div class="hero-bg-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+    <div class="hero-content">
+      <span class="hero-badge">📍 Encuéntranos</span>
+      <h1 class="hero-title">Hablemos de <span class="hero-accent">Voleibol</span></h1>
+      <p class="hero-desc">Dos sedes listas para recibírtе. Elige la más cercana y únete a la comunidad Arena.</p>
+    </div>
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#f8f9fa"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ===== SEDES TABS ===== -->
+  <section class="sedes-section">
+    <div class="container">
+
+      <!-- Tab buttons -->
+      <div class="sede-tabs" role="tablist">
+        {locations.map((loc, i) => (
+          <button
+            class={`sede-tab ${i === 0 ? 'active' : ''}`}
+            data-tab={loc.id}
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+          >
+            <span class="tab-icon">🏐</span>
+            <div>
+              <span class="tab-name">{loc.name}</span>
+              <span class="tab-sub">{loc.subtitle}</span>
+            </div>
+          </button>
+        ))}
+      </div>
+
+      <!-- Tab panels -->
+      {locations.map((loc, i) => (
+        <div id={`panel-${loc.id}`} class={`sede-panel ${i !== 0 ? 'hidden' : ''}`} role="tabpanel">
+          <div class="sede-grid">
+
+            <!-- LEFT: Info + Map -->
+            <div class="info-col">
+              <div class="info-card">
+                <div class="info-header">
+                  <h2 class="info-name">{loc.name}</h2>
+                  <span class="info-badge">{loc.subtitle}</span>
+                </div>
+
+                <ul class="info-list">
+                  <li class="info-item">
+                    <span class="info-icon">📍</span>
+                    <div>
+                      <span class="info-label">Dirección</span>
+                      <span class="info-value">{loc.address}</span>
+                    </div>
+                  </li>
+                  <li class="info-item">
+                    <span class="info-icon">📞</span>
+                    <div>
+                      <span class="info-label">Teléfono</span>
+                      <a href={`tel:+51${loc.phone.replace(/\s/g,'')}`} class="info-link">{loc.phone}</a>
+                    </div>
+                  </li>
+                  <li class="info-item">
+                    <span class="info-icon">🕐</span>
+                    <div>
+                      <span class="info-label">Horario</span>
+                      <span class="info-value">{loc.schedule}</span>
+                    </div>
+                  </li>
+                  <li class="info-item">
+                    <span class="info-icon">✉️</span>
+                    <div>
+                      <span class="info-label">Email</span>
+                      <a href={`mailto:${loc.email}`} class="info-link">{loc.email}</a>
+                    </div>
+                  </li>
+                </ul>
+
+                <div class="info-actions">
+                  <a href={loc.mapDir} target="_blank" rel="noopener noreferrer" class="btn-primary">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                    Cómo llegar
+                  </a>
+                  <a href={loc.whatsapp} target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+                    <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.549 4.122 1.514 5.857L.042 23.25A.75.75 0 00.75 24h.033l5.519-1.444A11.936 11.936 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.716 9.716 0 01-4.946-1.352l-.354-.211-3.67.961.978-3.572-.23-.368A9.713 9.713 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z" fill-rule="evenodd" clip-rule="evenodd"/></svg>
+                    WhatsApp
+                  </a>
+                </div>
+              </div>
+
+              <!-- Map -->
+              <div class="map-card">
+                <iframe
+                  src={loc.mapEmbed}
+                  class="map-iframe"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  title={`Mapa ${loc.name}`}
+                ></iframe>
+              </div>
+            </div>
+
+            <!-- RIGHT: Gallery + Form -->
+            <div class="right-col">
+              <!-- Gallery -->
+              <div class="gallery-grid">
+                {loc.images.map((img, idx) => (
+                  <div class={`gallery-item ${idx === 0 ? 'gallery-featured' : ''}`}>
+                    <img src={img.url} alt={img.label} loading="lazy" />
+                    <div class="gallery-overlay">
+                      <span>{img.label}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ===== CONTACT FORM ===== -->
+  <section class="form-section">
+    <div class="container">
+      <div class="form-wrapper">
+        <div class="form-left">
+          <span class="section-badge">💬 Escríbenos</span>
+          <h2 class="form-title">¿Tienes alguna<br/><span class="accent">pregunta?</span></h2>
+          <p class="form-desc">Completa el formulario y te respondemos a la brevedad.</p>
+
+          <ul class="contact-quick">
+            <li>
+              <span class="q-icon">⚡</span>
+              <span>Respuesta en menos de 24 horas</span>
+            </li>
+            <li>
+              <span class="q-icon">🏐</span>
+              <span>Clases para todos los niveles</span>
+            </li>
+            <li>
+              <span class="q-icon">🌊</span>
+              <span>Voleibol de playa en Lima</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="form-right">
+          <form id="contactFormPage" class="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cf-name">Nombre completo</label>
+                <input type="text" id="cf-name" name="name" placeholder="Tu nombre" required autocomplete="name"/>
+              </div>
+              <div class="form-group">
+                <label for="cf-email">Correo electrónico</label>
+                <input type="email" id="cf-email" name="email" placeholder="tu@email.com" required autocomplete="email"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="cf-phone">Teléfono (opcional)</label>
+              <input type="tel" id="cf-phone" name="phone" placeholder="+51 999 000 000" autocomplete="tel"/>
+            </div>
+            <div class="form-group">
+              <label for="cf-interest">¿En qué estás interesado?</label>
+              <select id="cf-interest" name="interest">
+                <option value="">Selecciona una opción</option>
+                <option value="clases">Clases de voleibol</option>
+                <option value="clinicas">Clínicas y talleres</option>
+                <option value="torneos">Torneos</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="cf-message">Mensaje</label>
+              <textarea id="cf-message" name="message" rows="4" placeholder="Cuéntanos más sobre lo que necesitas..." required></textarea>
+            </div>
+            <button type="submit" class="form-submit" id="form-submit-btn">
+              <span class="btn-text">Enviar mensaje</span>
+              <svg class="btn-arrow" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </button>
+          </form>
+          <div id="form-success" class="form-success hidden">
+            <span class="success-icon">✅</span>
+            <h3>¡Mensaje enviado!</h3>
+            <p>Gracias por escribirnos. Te contactaremos pronto.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SOCIAL CTA ===== -->
+  <section class="social-section">
+    <div class="container">
+      <div class="social-card">
+        <div class="social-text">
+          <h3>Síguenos en redes</h3>
+          <p>Mira nuestros entrenamientos, torneos y mucho más</p>
+        </div>
+        <div class="social-links">
+          <a href="https://www.instagram.com/arena_voleibolclub" target="_blank" rel="noopener noreferrer" class="social-btn instagram">
+            <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            Instagram
+          </a>
+          <a href="https://www.facebook.com/p/Arena-voleibol-club-100092486123346/" target="_blank" rel="noopener noreferrer" class="social-btn facebook">
+            <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            Facebook
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  // ── Tabs ──
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll<HTMLButtonElement>('.sede-tab');
+    const panels = document.querySelectorAll<HTMLElement>('.sede-panel');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const targetId = tab.dataset.tab;
+        tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+        panels.forEach(p => p.classList.add('hidden'));
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        document.getElementById(`panel-${targetId}`)?.classList.remove('hidden');
       });
     });
-  </script>
-  
-  <div class="max-w-6xl mx-auto p-4 relative z-10 py-12">
-    <h2 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-arena-blue to-arena-dark text-center mb-8 drop-shadow-sm">Nuestras Sedes</h2>
-    
-    <div class="mb-12 flex flex-col items-center">
-      <label for="locationSelect" class="block text-base font-bold text-arena-dark mb-3">
-        Selecciona una sede
-      </label>
-      <select
-        id="locationSelect"
-        class="block w-full max-w-sm rounded-xl border border-white/60 bg-white/60 backdrop-blur-md shadow-inner focus:border-arena-cyan focus:ring-2 focus:ring-arena-cyan/30 text-gray-900 py-3 px-4 font-medium transition-all"
-      >
-        {locations.map(location => (
-          <option value={location.id}>{location.name}</option>
-        ))}
-      </select>
-    </div>
-  
-    {locations.map((location, index) => (
-      <div id={`location-${location.id}`} class={index === 0 ? '' : 'hidden'}>
-        <div class="grid md:grid-cols-2 gap-8 mb-12">
-          <!-- Información y mapa -->
-          <div class="bg-white/80 backdrop-blur-2xl rounded-3xl border border-white/60 shadow-xl overflow-hidden relative group">
-            <div class="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent pointer-events-none"></div>
-            <div class="aspect-video w-full relative z-10 border-b border-gray-200">
-              <iframe
-                src={location.mapUrl}
-                class="w-full h-full border-0"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
-            
-            <div class="p-8 relative z-10">
-              <h3 class="text-3xl font-bold mb-6 text-arena-blue drop-shadow-sm">{location.name}</h3>
-              
-              <div class="space-y-4 text-gray-800 font-medium">
-                <div class="flex items-start gap-4">
-                  <svg class="h-6 w-6 text-arena-cyan shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  <p>{location.address}</p>
-                </div>
-                
-                <div class="flex items-center gap-4">
-                  <svg class="h-6 w-6 text-arena-cyan shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                  <p>{location.phone}</p>
-                </div>
-                
-                <div class="flex items-center gap-4">
-                  <svg class="h-6 w-6 text-arena-cyan shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <p>{location.schedule}</p>
-                </div>
-                
-                <div class="flex items-center gap-4">
-                  <svg class="h-6 w-6 text-arena-cyan shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                  <p>{location.email}</p>
-                </div>
-              </div>
-              
-              <a 
-                href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(location.address)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="mt-8 w-full inline-block text-center bg-gradient-to-r from-arena-cyan to-arena-blue text-white font-bold py-3 px-4 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-1 active:scale-95 transition-all duration-300"
-              >
-                Cómo llegar
-              </a>
-            </div>
-          </div>
-  
-          <!-- Galería de imágenes -->
-          <div class="grid grid-cols-1 gap-6">
-            {location.images.map(image => (
-              <div
-                class="gallery-image cursor-pointer overflow-hidden rounded-3xl border border-white/60 bg-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.05)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_8px_32px_0_rgba(78,178,229,0.2)] group"
-                data-image={image.url}
-                data-title={image.title}
-                data-description={image.description}
-              >
-                <img
-                  src={image.url}
-                  alt={image.title}
-                  class="w-full h-48 object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
-                />
-                <div class="p-5 bg-white/80 backdrop-blur-md border-t border-white/50 text-gray-900 border-t border-gray-100 relative z-10">
-                  <h3 class="font-bold text-xl mb-1 text-arena-dark">{image.title}</h3>
-                  <p class="text-gray-600 font-medium text-sm">{image.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    ))}
-  
-    <!-- Modal -->
-    <div id="imageModal" style="display: none;" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 transition-opacity">
-      <div class="bg-white/95 backdrop-blur-2xl rounded-3xl border border-white/20 shadow-2xl max-w-4xl w-full overflow-hidden">
-        <div class="p-4 border-b border-gray-200 flex justify-between items-center bg-white/50">
-          <h3 id="modalTitle" class="text-2xl font-bold text-arena-dark"></h3>
-          <button id="closeModal" class="text-gray-500 hover:text-arena-cyan hover:bg-gray-100 p-2 rounded-full transition-colors">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-          </button>
-        </div>
-        <div class="p-6">
-          <img id="modalImage" class="w-full rounded-2xl shadow-inner max-h-[70vh] object-contain bg-gray-50" src="" alt="" />
-          <p id="modalDescription" class="mt-6 text-gray-800 font-medium text-lg text-center"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-   
-</Layout>
-<!-- component -->
+
+    // ── Contact Form ──
+    const form = document.getElementById('contactFormPage') as HTMLFormElement | null;
+    const successDiv = document.getElementById('form-success');
+    const submitBtn = document.getElementById('form-submit-btn') as HTMLButtonElement | null;
+
+    // Load EmailJS
+    const ejsScript = document.createElement('script');
+    ejsScript.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+    ejsScript.onload = () => {
+      if ((window as any).emailjs) {
+        (window as any).emailjs.init("dG-vxHRYY4yYtgoJn");
+      }
+    };
+    document.head.appendChild(ejsScript);
+
+    // Inline error helpers
+    function showError(fieldId: string, msg: string) {
+      clearError(fieldId);
+      const field = document.getElementById(fieldId);
+      if (!field) return;
+      const err = document.createElement('span');
+      err.className = 'field-error';
+      err.textContent = msg;
+      field.parentElement?.appendChild(err);
+      field.classList.add('field-invalid');
+    }
+    function clearError(fieldId: string) {
+      const field = document.getElementById(fieldId);
+      field?.classList.remove('field-invalid');
+      field?.parentElement?.querySelector('.field-error')?.remove();
+    }
+    function clearAllErrors() {
+      form?.querySelectorAll('.field-error').forEach(el => el.remove());
+      form?.querySelectorAll('.field-invalid').forEach(el => el.classList.remove('field-invalid'));
+    }
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearAllErrors();
+
+      const emailjs = (window as any).emailjs;
+      if (!emailjs) {
+        showError('cf-name', 'Servicio de email no disponible. Intenta más tarde.');
+        return;
+      }
+
+      const fd = new FormData(form);
+      const name    = (fd.get('name')     as string ?? '').trim();
+      const email   = (fd.get('email')    as string ?? '').trim();
+      const phone   = (fd.get('phone')    as string ?? '').trim();
+      const interest = (fd.get('interest') as string ?? '').trim();
+      const message = (fd.get('message')  as string ?? '').trim();
+
+      let hasError = false;
+      if (!name || name.length < 2) {
+        showError('cf-name', 'Ingresa un nombre válido (mínimo 2 caracteres).');
+        hasError = true;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showError('cf-email', 'Ingresa un correo electrónico válido.');
+        hasError = true;
+      }
+      if (!message || message.length < 10) {
+        showError('cf-message', 'El mensaje debe tener al menos 10 caracteres.');
+        hasError = true;
+      }
+      if (hasError) return;
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        const btnText = submitBtn.querySelector('.btn-text');
+        if (btnText) btnText.textContent = 'Enviando…';
+      }
+
+      try {
+        const result = await emailjs.send('service_fayk1hj', 'template_5e9osht', {
+          from_name : name,
+          reply_to  : email,
+          phone     : phone || 'No proporcionado',
+          interest  : interest || 'No especificado',
+          message   : message,
+        });
+
+        if (result.text === 'OK') {
+          form.classList.add('hidden');
+          successDiv?.classList.remove('hidden');
+        } else {
+          throw new Error('Respuesta inesperada del servidor');
+        }
+      } catch (err) {
+        console.error('EmailJS error:', err);
+        showError('cf-message', 'Error al enviar. Por favor intenta nuevamente o escríbenos por WhatsApp.');
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          const btnText = submitBtn.querySelector('.btn-text');
+          if (btnText) btnText.textContent = 'Enviar mensaje';
+        }
+      }
+    });
+
+    // Clear errors on input
+    ['cf-name','cf-email','cf-message'].forEach(id => {
+      document.getElementById(id)?.addEventListener('input', () => clearError(id));
+    });
+  });
+</script>
+
+<style>
+/* =======================================
+   VARIABLES & BASE
+======================================= */
+:root {
+  --navy: #01577a;
+  --navy-dark: #023d55;
+  --amber: #ffb919;
+  --amber-light: #ffd166;
+  --white: #ffffff;
+  --gray-50: #f8f9fa;
+  --gray-100: #f1f3f5;
+  --gray-400: #adb5bd;
+  --gray-600: #6c757d;
+  --gray-800: #343a40;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --shadow-md: 0 4px 24px rgba(1,87,122,0.10);
+  --shadow-lg: 0 8px 40px rgba(1,87,122,0.15);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* =======================================
+   HERO
+======================================= */
+.contact-hero {
+  position: relative;
+  background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, #025f88 100%);
+  padding: 8rem 1.5rem 5rem;
+  overflow: hidden;
+  text-align: center;
+}
+
+.hero-bg-shapes { position: absolute; inset: 0; pointer-events: none; }
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,185,25,0.08);
+}
+.shape-1 { width: 500px; height: 500px; top: -200px; right: -150px; }
+.shape-2 { width: 300px; height: 300px; bottom: -100px; left: -80px; background: rgba(255,255,255,0.04); }
+.shape-3 { width: 200px; height: 200px; top: 50%; right: 25%; transform: translateY(-50%); }
+
+.hero-content { position: relative; z-index: 2; }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255,185,25,0.15);
+  border: 1px solid rgba(255,185,25,0.3);
+  color: var(--amber);
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.hero-title {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+.hero-accent { color: var(--amber); }
+
+.hero-desc {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.75);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.hero-wave {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  line-height: 0;
+}
+.hero-wave svg { width: 100%; height: 70px; display: block; }
+
+/* =======================================
+   SEDES SECTION
+======================================= */
+.sedes-section {
+  background: var(--gray-50);
+  padding: 4rem 0 5rem;
+}
+
+/* Tabs */
+.sede-tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.sede-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--radius-lg);
+  border: 2px solid transparent;
+  background: var(--white);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: var(--shadow-md);
+  text-align: left;
+}
+.sede-tab:hover {
+  border-color: var(--navy);
+  transform: translateY(-2px);
+}
+.sede-tab.active {
+  background: var(--navy);
+  border-color: var(--navy);
+  box-shadow: 0 8px 24px rgba(1,87,122,0.3);
+}
+.tab-icon { font-size: 1.4rem; }
+.tab-name {
+  display: block;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--gray-800);
+}
+.sede-tab.active .tab-name { color: var(--white); }
+.tab-sub {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--gray-600);
+}
+.sede-tab.active .tab-sub { color: rgba(255,255,255,0.7); }
+
+/* Panel */
+.sede-panel.hidden { display: none; }
+
+.sede-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Info Card */
+.info-col { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.info-card {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(1,87,122,0.08);
+}
+
+.info-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+  flex-wrap: wrap;
+}
+.info-name {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin: 0;
+}
+.info-badge {
+  background: rgba(255,185,25,0.15);
+  color: #a87000;
+  border: 1px solid rgba(255,185,25,0.4);
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.info-list { list-style: none; padding: 0; margin: 0 0 1.75rem; display: flex; flex-direction: column; gap: 1rem; }
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding: 0.75rem 1rem;
+  background: var(--gray-50);
+  border-radius: 0.75rem;
+  border-left: 3px solid var(--amber);
+}
+.info-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.05rem; }
+.info-label {
+  display: block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gray-600);
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
+.info-value { display: block; font-size: 0.95rem; color: var(--gray-800); font-weight: 500; }
+.info-link {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--navy);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.info-link:hover { color: var(--amber); }
+
+.info-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+.btn-primary {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.2rem;
+  background: var(--navy);
+  color: var(--white);
+  border-radius: 0.875rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(1,87,122,0.3);
+}
+.btn-primary:hover {
+  background: var(--navy-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(1,87,122,0.35);
+}
+
+.btn-whatsapp {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.2rem;
+  background: #25d366;
+  color: var(--white);
+  border-radius: 0.875rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(37,211,102,0.3);
+}
+.btn-whatsapp:hover {
+  background: #1da851;
+  transform: translateY(-2px);
+}
+
+/* Map */
+.map-card {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 3px solid var(--white);
+  height: 260px;
+}
+.map-iframe { width: 100%; height: 100%; border: none; display: block; }
+
+/* Gallery */
+.right-col { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 220px 150px;
+  gap: 0.75rem;
+}
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+}
+.gallery-item.gallery-featured {
+  grid-column: 1 / -1;
+  border-radius: 1.25rem;
+}
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.gallery-item:hover img { transform: scale(1.07); }
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(1,87,122,0.75) 0%, transparent 60%);
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.gallery-item:hover .gallery-overlay { opacity: 1; }
+.gallery-overlay span {
+  color: var(--white);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* =======================================
+   FORM SECTION
+======================================= */
+.form-section {
+  background: var(--navy-dark);
+  padding: 5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+.form-section::before {
+  content: '';
+  position: absolute;
+  top: -150px; right: -150px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(255,185,25,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.form-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255,185,25,0.15);
+  border: 1px solid rgba(255,185,25,0.3);
+  color: var(--amber);
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.form-title {
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+.form-title .accent { color: var(--amber); }
+
+.form-desc {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.contact-quick { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.85rem; }
+.contact-quick li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: rgba(255,255,255,0.8);
+  font-size: 0.95rem;
+}
+.q-icon { font-size: 1.1rem; flex-shrink: 0; }
+
+/* Form */
+.form-right {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+.form-group label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--gray-800);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 0.8rem 1rem;
+  border: 2px solid var(--gray-100);
+  border-radius: 0.75rem;
+  font-size: 0.95rem;
+  color: var(--gray-800);
+  background: var(--gray-50);
+  transition: all 0.2s ease;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--navy);
+  background: var(--white);
+  box-shadow: 0 0 0 4px rgba(1,87,122,0.1);
+}
+.form-group textarea { resize: none; }
+
+.form-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--amber) 0%, #f5a800 100%);
+  color: var(--navy-dark);
+  border: none;
+  border-radius: 0.875rem;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 20px rgba(255,185,25,0.4);
+  margin-top: 0.5rem;
+}
+.form-submit:hover:not(:disabled) {
+  background: linear-gradient(135deg, #ffc233 0%, var(--amber) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(255,185,25,0.5);
+}
+.form-submit:disabled { opacity: 0.65; cursor: not-allowed; }
+.btn-arrow { flex-shrink: 0; }
+
+.form-success {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+.form-success.hidden { display: none; }
+.success-icon { font-size: 3rem; display: block; margin-bottom: 1rem; }
+.form-success h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 0.5rem;
+}
+.form-success p { color: var(--gray-600); }
+
+/* Inline validation */
+.field-error {
+  display: block;
+  color: #dc2626;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 0.35rem;
+  padding-left: 0.25rem;
+}
+.field-invalid {
+  border-color: #dc2626 !important;
+  box-shadow: 0 0 0 3px rgba(220,38,38,0.12) !important;
+}
+
+
+/* =======================================
+   SOCIAL SECTION
+======================================= */
+.social-section {
+  background: var(--gray-50);
+  padding: 3rem 0;
+}
+
+.social-card {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 2rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(1,87,122,0.07);
+  flex-wrap: wrap;
+}
+.social-text h3 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 0.25rem;
+}
+.social-text p { color: var(--gray-600); font-size: 0.95rem; }
+
+.social-links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 0.875rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+.social-btn.instagram {
+  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  color: var(--white);
+  box-shadow: 0 4px 14px rgba(220,39,67,0.3);
+}
+.social-btn.facebook {
+  background: #1877f2;
+  color: var(--white);
+  box-shadow: 0 4px 14px rgba(24,119,242,0.3);
+}
+.social-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+/* =======================================
+   RESPONSIVE
+======================================= */
+@media (max-width: 900px) {
+  .sede-grid { grid-template-columns: 1fr; }
+  .form-wrapper { grid-template-columns: 1fr; gap: 3rem; }
+  .form-left { text-align: center; }
+  .contact-quick { align-items: center; }
+}
+
+@media (max-width: 640px) {
+  .form-row { grid-template-columns: 1fr; }
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .gallery-item.gallery-featured { grid-column: auto; }
+  .info-actions { flex-direction: column; }
+  .btn-primary, .btn-whatsapp { flex: none; width: 100%; }
+  .social-card { flex-direction: column; text-align: center; }
+  .sede-tabs { flex-direction: column; }
+  .sede-tab { width: 100%; }
+}
+</style>

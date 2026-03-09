@@ -5,9 +5,10 @@ import Footer from '../components/Footer.astro';
 interface Props {
 	description: string;
 	title: string;
+	hideFooterForm?: boolean;
 }
 
-const {description, title } = Astro.props;
+const {description, title, hideFooterForm = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -35,7 +36,7 @@ const {description, title } = Astro.props;
 			<a class="animate-ping"  href="https://wa.me/51929418895" target="_blank" ><img src='/whatsapp.png' alt='contactanos'/></a>
 		  </div>
 		<slot />
-		<Footer />
+		<Footer hideForm={hideFooterForm} />
 		
 		<!-- Scroll Animation Script -->
 		<script>
