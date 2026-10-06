@@ -41,7 +41,12 @@
             </nav>
 
             <!-- CTA Button -->
-            <div class="hidden md:block">
+            <div class="hidden md:flex items-center gap-2">
+                <a href="/#reservas"
+                   class="inline-flex items-center px-3 md:px-4 lg:px-6 py-1.5 md:py-2 lg:py-2.5 border-2 border-[#01577a] text-[#01577a] text-xs md:text-sm lg:text-base font-semibold rounded-full hover:bg-[#01577a] hover:text-white transform hover:scale-105 transition-all duration-300">
+                    <span class="hidden lg:inline">Reservar Clase</span>
+                    <span class="lg:hidden">Reservar</span>
+                </a>
                 <a href="/aprendo" 
                    class="inline-flex items-center px-3 md:px-4 lg:px-6 py-1.5 md:py-2 lg:py-2.5 bg-gradient-to-r from-[#ffb919] to-[#01577a] text-white text-xs md:text-sm lg:text-base font-semibold rounded-full hover:shadow-lg hover:shadow-[#ffb919]/25 transform hover:scale-105 transition-all duration-300">
                     <span class="hidden lg:inline">Aprende Jugando</span>
@@ -118,7 +123,12 @@
                     </div>
                 </a>
                 
-                <div class="pt-6 border-t border-gray-200 mt-6">
+                <div class="pt-6 border-t border-gray-200 mt-6 space-y-3">
+                    <a href="/#reservas"
+                       class="block w-full text-center px-6 py-4 border-2 border-[#01577a] text-[#01577a] text-lg font-semibold rounded-xl hover:bg-[#01577a] hover:text-white transform active:scale-95 transition-all duration-300 touch-manipulation"
+                       data-mobile-link>
+                        Reservar Clase
+                    </a>
                     <a href="/aprendo" 
                        class="block w-full text-center px-6 py-4 bg-gradient-to-r from-[#ffb919] to-[#01577a] text-white text-lg font-semibold rounded-xl hover:shadow-lg transform active:scale-95 transition-all duration-300 touch-manipulation"
                        data-mobile-link>
@@ -168,7 +178,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Close menu when clicking on mobile links
         mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
+            link.addEventListener('click', (e) => {
+                const url = new URL((link as HTMLAnchorElement).href);
+                const target = url.hash && url.pathname === window.location.pathname
+                    ? document.querySelector(url.hash)
+                    : null;
+
+                // Same-page anchor: body scroll is locked while the menu is open,
+                // so scroll only after the menu has closed and unlocked it
+                if (target) {
+                    e.preventDefault();
+                    closeMobileMenu();
+                    setTimeout(() => {
+                        history.pushState(null, '', url.hash);
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }, 320);
+                    return;
+                }
+
                 setTimeout(() => closeMobileMenu(), 150);
             });
         });
