@@ -1,62 +1,84 @@
 ---
 import Layout from '../layouts/Layout.astro';
-// 1. Define aquí los pilares de tu club (basado en tus "Metas").
-// Encuentra más íconos en https://heroicons.com/
+import PageHeader from '../components/PageHeader.astro';
+import Icon from '../components/Icon.astro';
+import Equipo from '../components/equipo.astro';
+
 const pilares = [
   {
-    nombre: 'Desarrollo Deportivo',
-    descripcion: 'Brindamos entrenamiento de excelencia para jugadores de todos los niveles, enfocados en mejorar la técnica y destreza en la cancha.',
-    // Icono: Trofeo
-    icono: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9a9 9 0 119 0zM16.5 18.75a9 9 0 10-9 0h9zM12.75 12.75h-1.5V9h1.5v3.75z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 15.75h.008v.008H12v-.008z" /><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75a7.5 7.5 0 0115 0v2.25a2.25 2.25 0 01-2.25 2.25h-10.5A2.25 2.25 0 014.5 15v-2.25z" /></svg>`
+    nombre: 'Desarrollo deportivo',
+    descripcion: 'Entrenamiento de excelencia para jugadores de todos los niveles, enfocado en mejorar la técnica y la destreza en la cancha.',
+    icono: 'trophy',
   },
   {
-    nombre: 'Promoción del Deporte',
-    descripcion: 'Fomentamos la participación y el entusiasmo por el vóley playa en la comunidad, organizando torneos y eventos para todas las edades.',
-    // Icono: Megáfono
-    icono: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" /></svg>`
+    nombre: 'Promoción del deporte',
+    descripcion: 'Fomentamos la participación y el entusiasmo por el vóley playa en la comunidad, con torneos y eventos para todas las edades.',
+    icono: 'megaphone',
   },
   {
-    nombre: 'Detección de Talentos',
+    nombre: 'Detección de talentos',
     descripcion: 'Identificamos y apoyamos a jóvenes con potencial para que representen a Perú en competencias nacionales e internacionales.',
-    // Icono: Estrella
-    icono: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" /></svg>`
+    icono: 'star',
   },
   {
-    nombre: 'Vida Saludable',
-    descripcion: 'Promovemos hábitos saludables y la actividad física regular como parte fundamental del bienestar integral de nuestros miembros.',
-    // Icono: Hoja
-    icono: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M15.182 8.418a3.375 3.375 0 00-4.773 0l-4.5 4.5a3.375 3.375 0 004.773 4.774l.73-1.46a.375.375 0 01.529-.158l.128.054a.375.375 0 01.158.53l-1.46.73a4.875 4.875 0 01-6.895-6.895l4.5-4.5a4.875 4.875 0 016.895 0l.73 1.46a.375.375 0 01-.158.529l-.054.128a.375.375 0 01-.53.158l-1.46-.73z" /></svg>`
-  }
-];
+    nombre: 'Vida saludable',
+    descripcion: 'Promovemos hábitos saludables y la actividad física regular como parte del bienestar integral de nuestros miembros.',
+    icono: 'heart',
+  },
+] as const;
 ---
 
-<Layout title="Arena - Nosotros" description="Descubre más información sobre nosotros">
+<Layout title="Nosotros · Arena Voleibol Club" description="Conoce la filosofía, los pilares y el equipo de Arena Voleibol Club, escuela de vóley playa en Lima.">
+  <PageHeader
+    eyebrow="Nosotros"
+    title="Ponte en forma, diviértete y haz amigos"
+    description="Esa es nuestra filosofía. En Arena Voleibol Club creemos que el deporte transforma vidas: un espacio donde la competencia sana, la vida saludable y la amistad se encuentran en cada entrenamiento."
+    image="/10.jpg"
+  />
 
-<section class="relative z-10 py-24 sm:py-32 pb-12">
-  <div class="container mx-auto px-6 lg:px-8">
-    
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-arena-blue to-arena-dark sm:text-5xl leading-tight drop-shadow-sm">
-        Ponte en Forma, Diviértete y Haz Amigos.
-      </h2>
-      <p class="mt-8 text-xl leading-8 text-gray-800 font-medium bg-white/60 inline-block px-6 py-4 rounded-3xl backdrop-blur-md border border-white/60 shadow-sm">
-        Esa es nuestra filosofía. En <span class="text-arena-blue font-bold">Arena Voleibol Club</span>, creemos que el deporte es una herramienta para transformar vidas. Ofrecemos un espacio donde la competencia sana, la vida saludable y la amistad se encuentran en cada entrenamiento.
-      </p>
-    </div>
+  <main>
+    <section class="section bg-white">
+      <div class="container-site">
+        <div class="max-w-2xl">
+          <p class="eyebrow">Nuestros pilares</p>
+          <h2 class="title-section">Lo que guía cada entrenamiento</h2>
+        </div>
 
-    <div class="mt-20">
-      <dl class="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
-        {pilares.map((pilar) => (
-          <div class="flex flex-col items-center text-center p-8 bg-white/80 backdrop-blur-xl rounded-3xl border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] hover:-translate-y-2 hover:shadow-[0_8px_32px_0_rgba(78,178,229,0.3)] transition-all duration-500 group relative overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-b from-white/40 to-transparent pointer-events-none"></div>
-            <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-arena-cyan to-arena-blue text-white shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 relative z-10" set:html={pilar.icono} />
-            <dt class="mt-6 font-bold text-xl text-arena-dark relative z-10">{pilar.nombre}</dt>
-            <dd class="mt-4 text-base leading-7 text-gray-700 font-medium relative z-10">{pilar.descripcion}</dd>
+        <dl class="mt-12 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+          {pilares.map((pilar) => (
+            <div data-animate>
+              <dt>
+                <span class="icon-tile"><Icon name={pilar.icono} /></span>
+                <span class="mt-5 block font-display text-lg font-bold text-ink-900">{pilar.nombre}</span>
+              </dt>
+              <dd class="mt-2 text-sm leading-relaxed text-ink-500">{pilar.descripcion}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+
+    <section class="bg-white pb-16 sm:pb-24">
+      <div class="container-site grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
+        <div class="aspect-[4/3] overflow-hidden rounded-xl bg-sand-100">
+          <img src="/8.jpg" alt="Equipo femenino de Arena Voleibol Club" loading="lazy" class="h-full w-full object-cover" />
+        </div>
+        <div>
+          <p class="eyebrow">Comunidad</p>
+          <h2 class="title-section">Más que un club, una comunidad</h2>
+          <p class="lead">
+            Entrenamos en Chorrillos y Surco con grupos de todos los niveles. Aquí encontrarás coaches que te corrigen con detalle, compañeros que te empujan a mejorar y torneos para medir tu progreso.
+          </p>
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a href="/#reservas" class="btn-primary">Reservar clase</a>
+            <a href="/servicios" class="btn-secondary">Ver servicios</a>
           </div>
-        ))}
-      </dl>
+        </div>
+      </div>
+    </section>
+
+    <div class="border-t border-ink-100">
+      <Equipo />
     </div>
-    
-  </div>
-</section>
+  </main>
 </Layout>

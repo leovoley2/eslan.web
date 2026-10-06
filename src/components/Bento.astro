@@ -1,82 +1,63 @@
 ---
-import BentoItem from './BentoItem.astro'
+import Icon from './Icon.astro';
+
+const programas = [
+  {
+    titulo: 'Aprende jugando',
+    texto: 'Aprende este deporte, ejercítate, haz nuevos amigos y vive la energía de la playa.',
+    imagen: '/ataque.jpg',
+    href: '/aprendo',
+    cta: 'Ver beneficios',
+  },
+  {
+    titulo: '¿Qué nivel tienes?',
+    texto: 'Autoevalúate en 5 preguntas y descubre qué entrenamiento te ayuda a subir de nivel.',
+    imagen: '/mascuino.jpg',
+    href: '/niveles',
+    cta: 'Evaluar mi nivel',
+  },
+  {
+    titulo: 'Clínicas por fundamento',
+    texto: 'Sesiones enfocadas en saque, recepción, ataque, bloqueo y defensa, de iniciación a alto rendimiento.',
+    imagen: '/grupal.jpg',
+    href: '/clinicas',
+    cta: 'Ver clínicas',
+  },
+  {
+    titulo: 'Torneos',
+    texto: 'Competencias durante todo el año para medir tu progreso y vivir la emoción del juego.',
+    imagen: '/tomando.jpg',
+    href: '/contacto',
+    cta: 'Consultar fechas',
+  },
+];
 ---
 
-<section
-class={`
-    w-full max-w-[1400px]
-    grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-10 auto-rows-[20rem] sm:auto-rows-[25rem] lg:auto-rows-[30rem] gap-3 sm:gap-4
-    mx-auto p-4 sm:p-6 md:p-12 lg:p-20
-  `}
-data-stagger="scale" data-stagger-delay="150"
->
-<BentoItem class="col-span-1 sm:col-span-2 lg:col-span-4" title="Aprende Jugando">
-    <div
-        slot="image"
-        class="absolute left-0 top-0 bottom-0 w-full
-        h-full group-hover:scale-110 transition-scale duration-1000
-        ease-in-out opacity-90 bg-blend-luminosity bg-blue-200  -z-10 bg-cover bg-center bg-no-repeat
-        "
-        style="background-image:url('/ataque.jpg');"
-    />
-        
-    
-    <p slot="conten" class="max-w-xl text-sm sm:text-base text-gray-100">Vas aprender de este maravilloso deporte, te vas a ejercitar, vas hacer nuevos amigos y vivirás toda la energía de este ambiente tan hermoso
-        <a href="/aprendo" class="block mt-4 w-full sm:w-40 py-3 sm:py-4 px-4 sm:px-6 text-center rounded-xl sm:rounded-2xl text-white font-semibold bg-gradient-to-r from-arena-cyan to-arena-blue hover:shadow-lg hover:shadow-arena-cyan/30 transform hover:scale-105 active:scale-95 transition-all duration-300 touch-manipulation">
-            Ver más
-           </a>
-    </p>
-</BentoItem>
+<section class="section bg-white">
+  <div class="container-site">
+    <div class="max-w-2xl">
+      <p class="eyebrow">Programas</p>
+      <h2 class="title-section">Todo lo que puedes vivir en la arena</h2>
+    </div>
 
-<BentoItem class="col-span-1 sm:col-span-2 lg:col-span-6" title="Que nivel de juego crees que tienes?">
-    <div
-    slot="image"
-    class="absolute left-0 top-0 bottom-0 w-full 
-    h-full group-hover:scale-110 transition-scale duration-1000
-    ease-in-out opacity-90 bg-blend-luminosity bg-blue-200 bg-center bg-no-repeat -z-10 bg-cover
-    "
-    style="background-image:url('/mascuino.jpg');"
-/>
-<p slot="conten" class="max-w-xl text-sm sm:text-base text-gray-100">Auto evaluate y crece con nosotros al siguiente nivel.
-    <a href="/niveles" class="block mt-4 w-full sm:w-40 py-3 sm:py-4 px-4 sm:px-6 text-center rounded-xl sm:rounded-2xl text-white font-semibold bg-gradient-to-r from-arena-mid to-arena-dark hover:shadow-lg hover:shadow-arena-mid/30 transform hover:scale-105 active:scale-95 transition-all duration-300 touch-manipulation">
-        Ver más
-       </a>
-</p>
-
-</BentoItem>
-
-<BentoItem class="col-span-1 sm:col-span-2 lg:col-span-6" title="Nuestras Clinicas">
-    <div
-    slot="image"
-    class="absolute left-0 top-0 bottom-0 w-full
-    h-full group-hover:scale-110 transition-scale duration-1000
-    ease-in-out opacity-90 bg-blend-luminosity bg-blue-200 bg-center bg-no-repeat -z-10 bg-cover
-    "
-    style="background-image:url('/grupal.jpg');"
-/>
-<p slot="conten" class="max-w-xl text-sm sm:text-base text-gray-100">Arena voleibol club cuenta con la mejor estructura y el mejor equipo de profesionales para brindar entrenamientos de iniciación o de alto rendimiento.
-    <a href="/clinicas" class="block mt-4 w-full sm:w-40 py-3 sm:py-4 px-4 sm:px-6 text-center rounded-xl sm:rounded-2xl text-gray-900 font-semibold bg-gradient-to-r from-arena-light to-arena-mid hover:shadow-lg hover:shadow-arena-light/30 transform hover:scale-105 active:scale-95 transition-all duration-300 touch-manipulation">
-        Ver más
-       </a>
-</p>
-
-</BentoItem>
-
-<BentoItem class="col-span-1 sm:col-span-2 lg:col-span-4" title="Torneos">
-  
-    <div
-    slot="image"
-    class="absolute left-0 top-0 bottom-0 w-full
-    h-full group-hover:scale-110 transition-scale duration-1000
-    ease-in-out opacity-90 bg-blend-luminosity bg-blue-200 bg-center bg-no-repeat -z-10 bg-cover
-    "
-    style="background-image:url('/tomando.jpg');"
-/>
-<p slot="conten" class="max-w-xl text-sm sm:text-base box-decoration-slice text-gray-100 px-2 drop-shadow-md">Organizamos torneos durante todo el año, proporcionando a nuestros jugadores la oportunidad de competir, evaluar su progreso y experimentar la emoción del juego competitivo.
-    <a href="#" class="block mt-4 w-full sm:w-40 py-3 sm:py-4 px-4 sm:px-6 text-center rounded-xl sm:rounded-2xl text-white font-semibold bg-gradient-to-r from-arena-blue to-arena-dark hover:shadow-lg hover:shadow-arena-blue/30 transform hover:scale-105 active:scale-95 transition-all duration-300 touch-manipulation">
-        Ver más
-       </a>
-</p>
-
-</BentoItem>
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {programas.map((programa) => (
+        <a href={programa.href} class="group flex flex-col" data-animate>
+          <div class="aspect-[4/5] overflow-hidden rounded-xl bg-sand-100">
+            <img
+              src={programa.imagen}
+              alt=""
+              loading="lazy"
+              class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            />
+          </div>
+          <h3 class="mt-5 text-lg font-bold">{programa.titulo}</h3>
+          <p class="mt-2 flex-1 text-sm leading-relaxed text-ink-500">{programa.texto}</p>
+          <span class="link-arrow mt-4">
+            {programa.cta} <Icon name="arrow-right" class="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
 </section>

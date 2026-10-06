@@ -1,127 +1,75 @@
 ---
-const plans = {
-  monthly: [
-    {
-      name: "Basico",
-      price: "S/. 130",
-      icon: "🌊",
-      color: "rgba(27,158,170,0.15)",
-      accent: "#1B9EAA",
-      features: [
-        "1 vez por semana",
-        "4 clases",
-        "2 horas de entrenamiento",
-        "30 min fisico, 1 hora de tecnico tactico y 30 de juego"
-      ]
-    },
-    {
-      name: "Intermedio",
-      price: "S/. 170",
-      icon: "🏐",
-      color: "rgba(255,185,25,0.12)",
-      accent: "#FFB923",
-      features: [
-        "2 veces por semana",
-        "8 clases",
-        "2 horas de entrenamiento",
-        "30 min fisico, 1 hora de tecnico tactico y 30 de juego",
-       
-      ]
-    },
-    {
-      name: "Avanzado",
-      price: "S/. 200",
-      icon: "🏆",
-      color: "rgba(10,91,138,0.12)",
-      accent: "#0a5b8a",
-      features: [
-        "3 veces por semana",
-        "12 clases",
-        "2 horas de entrenamiento",
-        "30 min fisico, 1 hora de tecnico tactico y 30 de juego"
-      ]
-    },
-    {
-      name: "Premium",
-      price: "S/. 250",
-      icon: "⭐",
-      color: "rgba(255,185,25,0.18)",
-      accent: "#FFB923",
-      features: [
-        "4 veces por semana",
-        "30 min fisico, 1 hora de tecnico tactico y 30 de juego",
-        "Acesoramiento fisico",
-        "Acesoramiento de fuerza",
-        "Videos de corrección de técnica"
-      ]
-    }
-  ]
-};
+import Icon from './Icon.astro';
+
+const sesion = '30 min de físico, 1 h de técnica-táctica y 30 min de juego';
+
+const planes = [
+  {
+    nombre: 'Básico',
+    precio: 130,
+    frecuencia: '1 vez por semana',
+    features: ['4 clases al mes', 'Sesiones de 2 horas', sesion],
+  },
+  {
+    nombre: 'Intermedio',
+    precio: 170,
+    frecuencia: '2 veces por semana',
+    features: ['8 clases al mes', 'Sesiones de 2 horas', sesion],
+  },
+  {
+    nombre: 'Avanzado',
+    precio: 200,
+    frecuencia: '3 veces por semana',
+    features: ['12 clases al mes', 'Sesiones de 2 horas', sesion],
+  },
+  {
+    nombre: 'Premium',
+    precio: 250,
+    frecuencia: '4 veces por semana',
+    features: [sesion, 'Asesoramiento físico', 'Asesoramiento de fuerza', 'Videos de corrección de técnica'],
+  },
+];
+
+const whatsappPlan = (nombre: string) =>
+  `https://wa.me/51929418895?text=${encodeURIComponent(`Hola, me interesa el plan ${nombre}`)}`;
 ---
 
-<section class="relative z-10 overflow-hidden py-16 sm:py-24 px-3 sm:px-4" style="background: #ffffff;">
-  
-  <div class="w-full max-w-6xl mx-auto">
-
-    <!-- Section header -->
-    <div class="text-center mb-12">
-      <div class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-4 border" style="background: rgba(10,91,138,0.07); border-color: rgba(10,91,138,0.15);">
-        <span class="text-xs font-bold tracking-widest uppercase" style="color: #0a5b8a;">Nuestras tarifas</span>
-      </div>
-      <h2 class="text-4xl sm:text-5xl font-black text-gray-900 mb-3">
-        Elige tu <span class="text-transparent bg-clip-text" style="background-image: linear-gradient(135deg, #1B9EAA, #0a5b8a);">Plan</span>
-      </h2>
-      <p class="text-gray-500 font-medium">los precios reflejados son mensuales</p>
-
-      <div class="flex justify-center mt-6">
-        <button
-          id="monthlyBtn"
-          class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-white text-sm shadow-lg"
-          style="background: linear-gradient(135deg, #1B9EAA, #0a5b8a);"
-        >
-          <span>📍</span> Playa Agua Dulce — Chorrillos
-        </button>
+<section id="planes" class="section bg-sand-50">
+  <div class="container-site">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <div class="max-w-2xl">
+        <p class="eyebrow">Planes</p>
+        <h2 class="title-section">Elige cuántas veces quieres entrenar</h2>
+        <p class="lead">Precios mensuales en soles. Sede Playa Agua Dulce, Chorrillos.</p>
       </div>
     </div>
 
-    <!-- Plan cards -->
-    <div id="monthlyPlans" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-      {plans.monthly.map((plan, i) => (
-        <div class="bg-white rounded-3xl shadow-[0_8px_40px_0_rgba(10,91,138,0.12)] hover:shadow-[0_16px_48px_0_rgba(10,91,138,0.22)] transform hover:scale-105 hover:-translate-y-2 transition-all duration-500 flex flex-col overflow-hidden border border-gray-100 group">
-          <!-- Top accent bar -->
-          <div class="h-1.5 w-full" style={`background: linear-gradient(90deg, ${plan.accent}, ${i % 2 === 0 ? '#1B9EAA' : '#0a5b8a'});`}></div>
-          <!-- Header -->
-          <div class="text-center p-6 sm:p-8 border-b border-gray-100">
-            <div class="w-14 h-14 mx-auto mb-4 rounded-2xl flex items-center justify-center text-2xl" style={`background: ${plan.color};`}>
-              {plan.icon}
-            </div>
-            <h3 class="text-xl font-extrabold text-gray-900">{plan.name}</h3>
-            <div class="mt-2 text-4xl font-black text-transparent bg-clip-text" style={`background-image: linear-gradient(135deg, ${plan.accent}, #0a3d52);`}>{plan.price}</div>
-            <p class="text-xs text-gray-400 mt-1 font-medium">por mes</p>
-          </div>
-          <!-- Features -->
-          <div class="p-6 sm:p-8 flex flex-col flex-grow">
-            <ul class="space-y-3 mb-8 flex-grow">
-              {plan.features.map(feature => (
-                <li class="flex items-start gap-3">
-                  <div class="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5" style={`background: ${plan.color};`}>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor" style={`color: ${plan.accent};`}>
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                    </svg>
-                  </div>
-                  <span class="text-sm leading-tight text-gray-700 font-medium">{feature}</span>
-                </li>
-              ))}
-            </ul>
-            <a href="https://wa.me/51929418895" target="_blank"
-              class="w-full mt-auto text-white py-3 sm:py-4 rounded-2xl transform active:scale-95 transition-all text-center font-bold text-sm block hover:shadow-xl"
-              style={`background: linear-gradient(135deg, ${plan.accent}, #0a3d52);`}>
-              Seleccionar Plan →
-            </a>
-          </div>
-        </div>
+    <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {planes.map((plan) => (
+        <article class="card flex flex-col p-6" data-animate>
+          <h3 class="text-base font-bold">{plan.nombre}</h3>
+          <p class="mt-1 text-sm text-ink-500">{plan.frecuencia}</p>
+
+          <p class="mt-6 flex items-baseline gap-1">
+            <span class="text-sm font-semibold text-ink-500">S/</span>
+            <span class="font-display text-4xl font-extrabold tracking-tight text-ink-900">{plan.precio}</span>
+            <span class="text-sm text-ink-400">/ mes</span>
+          </p>
+
+          <ul class="mt-6 flex-1 space-y-3 border-t border-ink-100 pt-6">
+            {plan.features.map((feature) => (
+              <li class="flex gap-2.5 text-sm leading-snug text-ink-600">
+                <Icon name="check" class="mt-0.5 h-4 w-4 flex-none text-brand-600" />
+                {feature}
+              </li>
+            ))}
+          </ul>
+
+          <a href={whatsappPlan(plan.nombre)} target="_blank" rel="noopener noreferrer" class="btn-secondary mt-8 w-full">
+            Elegir {plan.nombre}
+          </a>
+        </article>
       ))}
     </div>
-
   </div>
 </section>

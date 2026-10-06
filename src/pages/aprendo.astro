@@ -1,124 +1,94 @@
 ---
 import Layout from '../layouts/Layout.astro';
-// 1. Define los beneficios aquí. 
-// Para añadir, quitar o cambiar uno, solo edita esta lista.
-// Puedes encontrar más íconos gratis en https://heroicons.com/
+import PageHeader from '../components/PageHeader.astro';
+import Icon from '../components/Icon.astro';
+
 const beneficios = [
   {
-    nombre: 'Salud Cardiovascular',
+    nombre: 'Salud cardiovascular',
     descripcion: 'Un ejercicio completo que fortalece tu corazón, mejora la circulación y aumenta tu resistencia.',
-    // Icono: Corazón
-    icono: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" /></svg>`
+    icono: 'heart',
   },
   {
-    nombre: 'Fortaleza y Tonicidad',
-    descripcion: 'La arena proporciona una resistencia natural que fortalece piernas, glúteos y abdomen de forma segura y eficaz.',
-    // Icono: Músculo
-    icono: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M12.75 19.5v-.75a7.5 7.5 0 00-7.5-7.5H4.5m0-6.75h.75c7.87 0 14.25 6.38 14.25 14.25v.75M6 18.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" /></svg>`
+    nombre: 'Fuerza y tonicidad',
+    descripcion: 'La arena ofrece una resistencia natural que fortalece piernas, glúteos y abdomen de forma segura.',
+    icono: 'bolt',
   },
   {
-    nombre: 'Quema de Calorías',
-    descripcion: 'Muévete en la arena y quema hasta 600 calorías por hora. Una forma divertida y efectiva de controlar tu peso.',
-    // Icono: Fuego
-    icono: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.362-3.797zM12 12.75a2.25 2.25 0 002.25-2.25a2.25 2.25 0 00-2.25-2.25a2.25 2.25 0 00-2.25 2.25a2.25 2.25 0 002.25 2.25z" /></svg>`
+    nombre: 'Quema de calorías',
+    descripcion: 'Moverte en la arena puede quemar hasta 600 calorías por hora. Una forma divertida de cuidar tu peso.',
+    icono: 'fire',
   },
   {
-    nombre: 'Coordinación y Agilidad',
-    descripcion: 'Los movimientos explosivos y los cambios de dirección mejoran tus reflejos, balance y control corporal.',
-    // Icono: Rayo
-    icono: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>`
+    nombre: 'Coordinación y agilidad',
+    descripcion: 'Los movimientos explosivos y cambios de dirección mejoran tus reflejos, equilibrio y control corporal.',
+    icono: 'target',
   },
   {
-    nombre: 'Bienestar Mental',
-    descripcion: 'Jugar al aire libre, bajo el sol y en la naturaleza reduce el estrés, la ansiedad y mejora tu estado de ánimo general.',
-    // Icono: Sonrisa
-    icono: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M15.182 8.418a3.375 3.375 0 00-4.773 0l-4.5 4.5a3.375 3.375 0 004.773 4.774l.73-1.46a.375.375 0 01.529-.158l.128.054a.375.375 0 01.158.53l-1.46.73a4.875 4.875 0 01-6.895-6.895l4.5-4.5a4.875 4.875 0 016.895 0l.73 1.46a.375.375 0 01-.158.529l-.054.128a.375.375 0 01-.53.158l-1.46-.73z" /></svg>`
+    nombre: 'Bienestar mental',
+    descripcion: 'Jugar al aire libre y bajo el sol reduce el estrés y la ansiedad, y mejora tu estado de ánimo.',
+    icono: 'sun',
   },
   {
-    nombre: 'Impacto Articular Mínimo',
-    descripcion: 'La arena absorbe el impacto, protegiendo tus rodillas y tobillos. Es ideal para entrenar de forma intensa y segura.',
-    // Icono: Escudo
-    icono: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm0 13.036h.008v.008h-.008v-.008z" /></svg>`
-  }
-];
+    nombre: 'Bajo impacto articular',
+    descripcion: 'La arena absorbe el impacto y protege rodillas y tobillos: puedes entrenar intenso y seguro.',
+    icono: 'shield',
+  },
+] as const;
 ---
 
+<Layout title="Aprende jugando · Arena Voleibol Club" description="Descubre los beneficios físicos y mentales del voleibol de playa y empieza a entrenar en Lima.">
+  <PageHeader
+    eyebrow="Aprende jugando"
+    title="Más que un deporte, un estilo de vida"
+    description="Jugar vóley playa no solo mejora tu técnica: transforma tu salud física y mental."
+    image="/antebrazo.jpg"
+  />
 
+  <main>
+    <section class="section bg-white">
+      <div class="container-site">
+        <div class="max-w-2xl">
+          <p class="eyebrow">Beneficios</p>
+          <h2 class="title-section">Lo que la arena hace por ti</h2>
+        </div>
 
-
-
-
-
-
-
-<Layout title="Arena Voleibol club - Aprende y crece jugando voleibol de playa junto a nosotros" description="Descubre y aprende voleibol de playa en Lima Perú">
- 
-<div class="relative z-10 w-full overflow-hidden pb-12">
-  <div class="relative isolate overflow-hidden">
-    <div class="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-white/30 to-transparent"></div>
-    <div class="absolute inset-0 -z-10 h-full w-full">
-      <img src="/antebrazo.jpg" alt="Jugadora de voley playa rematando el balón con el atardecer de fondo." class="h-full w-full object-cover">
-      <div class="absolute inset-0 bg-white/40 backdrop-blur-sm mix-blend-overlay"></div>
-    </div>
-    <div class="mx-auto max-w-7xl px-6 lg:px-8 py-24 sm:py-32 text-center relative z-10">
-      <h1 class="text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-arena-blue to-arena-dark sm:text-7xl drop-shadow-md">Aprende Jugando</h1>
-      <p class="mt-8 text-xl text-gray-900 font-bold bg-white/80 inline-block px-6 py-2 rounded-full backdrop-blur-md border border-white/60 shadow-lg">Descubre los increíbles beneficios del Voleibol de Playa.</p>
-    </div>
-  </div>
-
-  <div class="relative z-10 py-24 sm:py-32 mt-12 bg-white/40 backdrop-blur-2xl border-y border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.05)]">
-    <div class="mx-auto max-w-7xl px-6 lg:px-8">
-      <div class="mx-auto max-w-2xl lg:text-center">
-        <h2 class="text-lg font-bold leading-7 text-arena-cyan tracking-widest uppercase">BENEFICIOS INTEGRALES</h2>
-        <p class="mt-2 text-4xl font-extrabold tracking-tight text-arena-dark sm:text-5xl">
-          Más que un Deporte, un Estilo de Vida
-        </p>
-        <p class="mt-6 text-xl leading-8 text-gray-800 font-medium">
-          Jugar vóley playa no solo mejora tu técnica, sino que transforma tu salud física y mental de formas que no imaginas.
-        </p>
-      </div>
-      <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-5xl">
-        <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-12">
-          {beneficios.map((beneficio) => (
-            <div class="relative pl-20 bg-white/80 backdrop-blur-xl p-8 rounded-3xl border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] hover:shadow-[0_8px_32px_0_rgba(78,178,229,0.3)] hover:-translate-y-2 transition-all duration-500 group">
-              <dt class="text-xl font-bold leading-7 text-arena-dark mb-3">
-                <div class="absolute left-6 top-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-arena-cyan to-arena-blue text-white shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300" set:html={beneficio.icono} />
-                {beneficio.nombre}
-              </dt>
-              <dd class="mt-2 text-base leading-7 text-gray-700 font-medium">{beneficio.descripcion}</dd>
+        <dl class="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+          {beneficios.map((b) => (
+            <div class="flex gap-4" data-animate>
+              <span class="icon-tile"><Icon name={b.icono} /></span>
+              <div>
+                <dt class="font-display text-base font-bold text-ink-900">{b.nombre}</dt>
+                <dd class="mt-1.5 text-sm leading-relaxed text-ink-500">{b.descripcion}</dd>
+              </div>
             </div>
           ))}
         </dl>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <div class="relative py-24 sm:py-32">
-    <div class="mx-auto max-w-7xl px-6 lg:px-8">
-        <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none bg-white/60 backdrop-blur-xl p-8 sm:p-12 rounded-[3.5rem] border border-white/60 shadow-2xl">
-            <h2 class="text-4xl font-extrabold tracking-tight text-arena-blue sm:text-5xl mb-8">¿Por Qué Elegir la Arena?</h2>
-            <div class="mt-6 flex flex-col gap-x-12 gap-y-20 lg:flex-row items-center">
-                <div class="lg:w-full lg:max-w-2xl lg:flex-auto">
-                    <p class="text-2xl leading-9 text-arena-dark font-bold mb-8">
-                        El vóley playa es un desafío que te engancha. Jugar sobre la arena no solo pone a prueba tu físico, sino que te conecta con un entorno natural, el aire libre y el sol.
-                    </p>
-                    <div class="mt-10 max-w-xl text-lg leading-8 text-gray-800 font-medium space-y-6">
-                        <p>
-                          Además, es un deporte que fomenta la comunicación constante y el trabajo en equipo. Aquí no solo encontrarás un lugar para entrenar, sino una comunidad que comparte tu misma pasión.
-                        </p>
-                        <p class="p-6 bg-white/80 rounded-3xl border border-arena-cyan/30 shadow-inner">
-                          En <span class="text-arena-blue font-bold">Arena Voleibol Club</span>, te damos la bienvenida sin importar tu nivel de habilidad. Siempre hay un lugar para ti en la cancha, listo para que disfrutes de un estilo de vida más saludable y activo.
-                        </p>
-                    </div>
-                </div>
-                <div class="lg:flex lg:flex-auto lg:justify-center relative group">
-                    <div class="absolute -inset-4 bg-gradient-to-r from-arena-cyan to-arena-blue rounded-[3rem] blur opacity-30 group-hover:opacity-50 transition duration-1000"></div>
-                    <img src="/lidia.png" alt="El equipo de Arena Voleibol Club sonriendo juntos en la playa después de un entrenamiento." class="w-full max-w-lg flex-none rounded-[2.5rem] bg-white/50 object-cover shadow-2xl border-4 border-white relative z-10 group-hover:scale-[1.02] transition-transform duration-500"/>
-                </div>
-            </div>
+    <section class="section bg-sand-50">
+      <div class="container-site grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
+        <div>
+          <p class="eyebrow">¿Por qué la arena?</p>
+          <h2 class="title-section">Un desafío que engancha</h2>
+          <div class="mt-5 space-y-4 text-base leading-relaxed text-ink-600">
+            <p>
+              Jugar sobre la arena pone a prueba tu físico y te conecta con el aire libre, el mar y el sol. Es un deporte de comunicación constante y trabajo en equipo.
+            </p>
+            <p>
+              En Arena Voleibol Club te damos la bienvenida sin importar tu nivel. Siempre hay un lugar para ti en la cancha.
+            </p>
+          </div>
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a href="/#reservas" class="btn-primary">Reservar clase <Icon name="arrow-right" class="h-4 w-4" /></a>
+            <a href="/niveles" class="btn-secondary">Conocer mi nivel</a>
+          </div>
         </div>
-    </div>
-  </div>
-</div>
-      
+        <div class="aspect-[4/3] overflow-hidden rounded-xl bg-sand-100 lg:aspect-[5/6]">
+          <img src="/lidia.png" alt="Equipo de Arena Voleibol Club en la playa después de un entrenamiento." loading="lazy" class="h-full w-full object-cover" />
+        </div>
+      </div>
+    </section>
+  </main>
 </Layout>

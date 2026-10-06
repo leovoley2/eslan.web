@@ -1,26 +1,25 @@
 ---
+import Icon from './Icon.astro';
+
 const reservasUrl = 'https://gesntion-de-academia.vercel.app';
 
 const pasos = [
   {
-    numero: '01',
-    icono: '📝',
+    icono: 'pencil',
     titulo: 'Regístrate',
-    texto: 'Crea tu cuenta en nuestra plataforma con tus datos básicos. Solo te toma un par de minutos.',
+    texto: 'Crea tu cuenta en nuestra plataforma con tus datos básicos. Solo toma un par de minutos.',
   },
   {
-    numero: '02',
-    icono: '📅',
+    icono: 'calendar',
     titulo: 'Elige tu clase',
     texto: 'Revisa el calendario, los horarios disponibles y los cupos de cada entrenamiento.',
   },
   {
-    numero: '03',
-    icono: '🏐',
+    icono: 'check',
     titulo: 'Reserva y entrena',
     texto: 'Confirma tu lugar con un clic y llega a la arena. Tu cupo queda asegurado.',
   },
-];
+] as const;
 
 const beneficios = [
   'Reserva 24/7 desde tu celular',
@@ -29,63 +28,50 @@ const beneficios = [
 ];
 ---
 
-<!-- SECTION: Registro y reserva de clases en línea — cream palette -->
-<section id="reservas" class="scroll-mt-14 sm:scroll-mt-16 lg:scroll-mt-20 relative z-10 overflow-hidden" style="background: linear-gradient(180deg, #fdf8e5 0%, #fff8e1 100%);">
+<!-- Registro y reserva de clases en línea -->
+<section id="reservas" class="section bg-sand-100">
+  <div class="container-site">
+    <div class="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:items-center lg:gap-16">
 
-  <!-- Amber glow orb -->
-  <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full pointer-events-none opacity-40"
-    style="background: radial-gradient(circle, rgba(255,185,25,0.45) 0%, transparent 70%); filter: blur(60px);">
-  </div>
+      <div>
+        <p class="eyebrow">Reservas en línea</p>
+        <h2 class="title-section">Regístrate y reserva tus clases</h2>
+        <p class="lead">
+          Asegura tu lugar en la arena sin esperar respuesta por mensaje. Crea tu cuenta en nuestra plataforma y reserva tus entrenamientos cuando quieras.
+        </p>
 
-  <div class="relative z-10 container mx-auto px-6 lg:px-8 py-20 sm:py-28">
-    <!-- Section header -->
-    <div class="text-center mb-14">
-      <div class="inline-flex items-center gap-2 bg-[#0a3d52]/5 border border-[#0a3d52]/15 rounded-full px-4 py-1.5 mb-4">
-        <span class="text-amber-500 text-xs">⚡</span>
-        <span class="text-[#0a3d52]/80 text-xs font-semibold tracking-widest uppercase">Reservas en línea</span>
+        <ul class="mt-6 space-y-2.5">
+          {beneficios.map((beneficio) => (
+            <li class="flex items-center gap-2.5 text-sm text-ink-700">
+              <Icon name="check" class="h-4 w-4 flex-none text-brand-600" />
+              {beneficio}
+            </li>
+          ))}
+        </ul>
+
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a href={reservasUrl} target="_blank" rel="noopener noreferrer" class="btn-primary">
+            Registrarme y reservar <Icon name="arrow-up-right" class="h-4 w-4" />
+          </a>
+          <a href={reservasUrl} target="_blank" rel="noopener noreferrer" class="btn-secondary">
+            Ya tengo cuenta
+          </a>
+        </div>
       </div>
-      <h2 class="text-4xl sm:text-5xl font-black text-[#0a3d52] leading-tight">
-        Regístrate y <span class="text-transparent bg-clip-text" style="background-image: linear-gradient(90deg, #FFB923, #0a5b8a);">reserva tus clases</span>
-      </h2>
-      <p class="mt-4 text-gray-600 max-w-2xl mx-auto text-lg">
-        Ahora puedes asegurar tu lugar en la arena sin esperar respuesta por mensaje. Crea tu cuenta en nuestra plataforma y reserva tus entrenamientos cuando quieras.
-      </p>
-    </div>
 
-    <!-- Steps -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-      {pasos.map(paso => (
-        <article class="relative bg-white rounded-2xl p-6 border border-gray-100 shadow-[0_8px_30px_0_rgba(10,61,82,0.08)] hover:shadow-[0_12px_40px_0_rgba(255,185,25,0.25)] hover:-translate-y-1 transition-all duration-300">
-          <span class="absolute top-4 right-5 text-4xl font-black text-[#0a3d52]/10">{paso.numero}</span>
-          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: rgba(255,185,25,0.15);">
-            <span class="text-2xl">{paso.icono}</span>
-          </div>
-          <h3 class="text-lg font-bold text-gray-900 mb-2">{paso.titulo}</h3>
-          <p class="text-gray-600 text-sm leading-relaxed">{paso.texto}</p>
-        </article>
-      ))}
-    </div>
-
-    <!-- Benefits + CTA -->
-    <div class="mt-12 flex flex-col items-center gap-8">
-      <ul class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-gray-700">
-        {beneficios.map(beneficio => (
-          <li class="flex items-center gap-2"><span class="text-amber-500 font-bold">✓</span> {beneficio}</li>
+      <ol class="grid gap-4 sm:grid-cols-3 lg:grid-cols-1" data-animate>
+        {pasos.map((paso, i) => (
+          <li class="card flex gap-5 p-6">
+            <span class="icon-tile"><Icon name={paso.icono} /></span>
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-eyebrow text-ink-400">Paso {i + 1}</p>
+              <h3 class="mt-1 text-base font-bold">{paso.titulo}</h3>
+              <p class="mt-1.5 text-sm leading-relaxed text-ink-500">{paso.texto}</p>
+            </div>
+          </li>
         ))}
-      </ul>
+      </ol>
 
-      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-        <a href={reservasUrl} target="_blank" rel="noopener noreferrer"
-          class="inline-flex items-center gap-3 font-black py-4 px-10 text-lg rounded-full text-white shadow-[0_8px_30px_0_rgba(10,91,138,0.35)] hover:shadow-[0_12px_40px_0_rgba(10,91,138,0.5)] hover:scale-105 transform transition-all duration-300 active:scale-95"
-          style="background: linear-gradient(135deg, #0a5b8a, #0a3d52);">
-          <span>REGISTRARME Y RESERVAR</span>
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-        </a>
-        <a href={reservasUrl} target="_blank" rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 border-2 border-[#0a3d52]/30 text-[#0a3d52] font-bold py-4 px-8 rounded-full hover:border-[#0a3d52] hover:bg-[#0a3d52]/5 transition-all duration-300">
-          Ya tengo cuenta
-        </a>
-      </div>
     </div>
   </div>
 </section>

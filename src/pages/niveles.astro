@@ -1,419 +1,214 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Icon from '../components/Icon.astro';
+
+const niveles = [
+  {
+    id: 'beginner0',
+    numero: 0,
+    nombre: 'Iniciación 0',
+    etiqueta: 'Principiante absoluto',
+    progreso: 10,
+    descripcion: ['No tengo experiencia en voleibol indoor ni de playa; juego eventualmente. Me he inscrito en alguna academia pero no duré mucho, y no logro hacer tres toques seguidos de dedos o antebrazo.'],
+    objetivos: ['Aprender fundamentos básicos', 'Desarrollar coordinación', 'Familiarizarse con las reglas'],
+    resumen: ['Sin experiencia', 'Aprendiendo reglas', 'Coordinación básica'],
+  },
+  {
+    id: 'beginner1',
+    numero: 1,
+    nombre: 'Iniciación 1',
+    etiqueta: 'Fundamentos básicos',
+    progreso: 30,
+    descripcion: ['Entreno voleibol desde hace meses y juego eventualmente con amigos. Conozco las reglas básicas, tengo dominio técnico de los fundamentos y puedo completar una jugada de 3 toques.'],
+    objetivos: ['Perfeccionar la técnica básica', 'Desarrollar jugadas de 3 toques', 'Mejorar la coordinación en equipo'],
+    resumen: ['Fundamentos básicos', '3 toques seguidos', 'Reglas conocidas'],
+  },
+  {
+    id: 'intermediate',
+    numero: 2,
+    nombre: 'Intermedio',
+    etiqueta: 'Técnica desarrollada',
+    progreso: 60,
+    descripcion: ['Domino el servicio y controlo la recepción del saque dirigiéndola al centro de la cancha. Domino el ataque y coloco la bola en el campo contrario. Sé acercarme a mi compañero cuando recibe para que el juego fluya.'],
+    objetivos: ['Dominar servicios variados', 'Mejorar la colocación estratégica', 'Desarrollar juego táctico'],
+    resumen: ['Servicio controlado', 'Ataques básicos', 'Táctica inicial'],
+  },
+  {
+    id: 'intermediate1',
+    numero: 3,
+    nombre: 'Intermedio 1',
+    etiqueta: 'Técnica avanzada',
+    progreso: 80,
+    descripcion: [
+      'Domino distintos tipos de ataque: fuerte, pokey, palmeo, cut (toque corto) y over (por encima del bloqueo).',
+      'Juego con bloqueo y sé salir del bloqueo; conozco sus señas.',
+      'Uso el viento y el sol a mi favor y defiendo balones a una mano.',
+    ],
+    objetivos: ['Dominar múltiples tipos de ataque', 'Perfeccionar el bloqueo', 'Adaptarse a las condiciones ambientales'],
+    resumen: ['Múltiples ataques', 'Bloqueo avanzado', 'Adaptación ambiental'],
+  },
+  {
+    id: 'advanced',
+    numero: 4,
+    nombre: 'Avanzado',
+    etiqueta: 'Nivel competitivo',
+    progreso: 95,
+    descripcion: ['Domino el servicio en salto o de potencia y tengo una correcta aproximación al ataque. Conozco las fases del juego (K1 y K2), me ubico en defensa según la señal del bloqueo y sé qué golpe hacer con un bloqueo delante.'],
+    objetivos: ['Dominar servicios de potencia', 'Perfeccionar las fases de juego', 'Preparación competitiva'],
+    resumen: ['Servicio de potencia', 'Fases de juego', 'Nivel competitivo'],
+  },
+];
 ---
 
-<Layout title="Arena Voleibol club - Niveles" description="Descubre y aprende voleibol de playa en Lima Perú">
-	
-	<main>
-        <section class="relative z-10 py-16 pb-0">
-            <div class="max-w-5xl px-6 py-16 mx-auto">
-                <div class="items-center md:flex md:space-x-8">
-                    <div class="md:w-1/2">
-                        <h2 class="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-arena-blue to-arena-dark drop-shadow-sm leading-tight">Conoce tu nivel de juego <br> Es tu momento</h2>
-                        <p class="max-w-md text-xl mt-6 text-gray-800 font-medium leading-relaxed">Nuestros entrenadores son los encargados de analizar y evaluar el nivel de juego que tiene cada participante. con esto podemos brindarte una mejor asesoría y ver como mejorar esas deficiencias por medio de un entrenamiento planificado</p>
-                        
-                        <!-- Interactive Level Finder -->
-                        <div class="mt-8 p-6 bg-white/80 backdrop-blur-xl rounded-3xl border border-white/60 shadow-lg relative overflow-hidden group">
-                            <div class="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent pointer-events-none"></div>
-                            <h3 class="text-xl font-bold text-arena-dark mb-4 relative z-10">🎯 Encuentra tu nivel ideal</h3>
-                            <button id="startQuiz" class="w-full py-3 px-6 bg-gradient-to-r from-arena-cyan to-arena-blue text-white font-bold rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative z-10">
-                                Comenzar Evaluación Rápida
-                            </button>
-                        </div>
-                        
-                        <a href="https://wa.me/51929418895" class="block mt-6 w-56 py-4 px-6 text-center rounded-xl text-white font-bold bg-gradient-to-r from-arena-cyan to-arena-blue shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300" target="_blank">
-                            Agenda un entrenamiento</a>
-                    </div>
-        
-                    <div class="mt-8 md:mt-0 md:w-1/2">
-                        <div class="flex items-center justify-center">
-                            <div class="max-w-md">
-                                <img class="object-cover object-center w-full rounded-md shadow" style="height: 500px;"
-                                    src="/arena10.png">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<Layout title="Niveles · Arena Voleibol Club" description="Descubre tu nivel de juego en voleibol de playa con nuestra evaluación rápida y conoce qué trabajarás en cada etapa.">
+  <PageHeader
+    eyebrow="Niveles de juego"
+    title="Conoce tu nivel. Es tu momento."
+    description="Nuestros entrenadores evalúan el nivel de cada participante para darte una mejor asesoría y corregir tus puntos débiles con un entrenamiento planificado."
+  >
+    <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+      <button id="startQuiz" type="button" class="btn-primary">
+        Hacer evaluación rápida <Icon name="arrow-right" class="h-4 w-4" />
+      </button>
+      <a href="/#reservas" class="btn-secondary">Reservar clase</a>
+    </div>
+    <p class="mt-3 text-sm text-ink-400">5 preguntas · menos de 1 minuto</p>
+  </PageHeader>
+
+  <!-- Evaluación rápida -->
+  <div id="quizModal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-ink-900/70 p-4" role="dialog" aria-modal="true" aria-labelledby="quizTitle">
+    <div class="max-h-[90vh] w-full max-w-xl overflow-y-auto rounded-xl bg-white shadow-xl">
+      <div class="flex items-center justify-between border-b border-ink-100 px-6 py-4">
+        <h2 id="quizTitle" class="text-lg font-bold">Evaluación rápida de nivel</h2>
+        <button id="closeQuiz" type="button" class="-mr-2 flex h-10 w-10 items-center justify-center rounded-full text-ink-400 hover:bg-ink-50 hover:text-ink-800" aria-label="Cerrar evaluación">
+          <Icon name="close" class="h-5 w-5" />
+        </button>
+      </div>
+
+      <div class="p-6">
+        <div id="quizContent">
+          <div class="mb-6">
+            <div class="h-1.5 w-full overflow-hidden rounded-full bg-ink-100">
+              <div id="progressBar" class="h-full rounded-full bg-brand-600 transition-all duration-300" style="width: 0%"></div>
             </div>
-        </section>
-        
-        <!-- Quick Quiz Modal -->
-        <div id="quizModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden items-center justify-center p-4 transition-opacity">
-            <div class="bg-white/95 backdrop-blur-2xl rounded-3xl border border-white/20 shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-                <div class="p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-2xl font-bold text-gray-800">Evaluación Rápida de Nivel</h3>
-                        <button id="closeQuiz" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
-                    </div>
-                    
-                    <div id="quizContent">
-                        <div class="progress-bar mb-6">
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div id="progressBar" class="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
-                            </div>
-                            <p class="text-sm text-gray-600 mt-2">Pregunta <span id="currentQuestion">1</span> de <span id="totalQuestions">5</span></p>
-                        </div>
-                        
-                        <div id="questionContainer" class="mb-6">
-                            <!-- Questions will be inserted here -->
-                        </div>
-                        
-                        <div class="flex justify-between">
-                            <button id="prevQuestion" class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 disabled:opacity-50" disabled>Anterior</button>
-                            <button id="nextQuestion" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50">Siguiente</button>
-                        </div>
-                    </div>
-                    
-                    <div id="quizResult" class="hidden">
-                        <div class="text-center">
-                            <div class="mb-4">
-                                <div id="resultIcon" class="text-6xl mb-2"></div>
-                                <h4 id="resultTitle" class="text-2xl font-bold text-gray-800 mb-2"></h4>
-                                <p id="resultDescription" class="text-gray-600 mb-4"></p>
-                            </div>
-                            <button id="viewLevels" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg hover:from-blue-600 hover:to-purple-600">
-                                Ver Detalles del Nivel
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <p class="mt-2 text-sm text-ink-500">Pregunta <span id="currentQuestion">1</span> de <span id="totalQuestions">5</span></p>
+          </div>
+
+          <div id="questionContainer" class="mb-6"></div>
+          <p id="quizError" class="mb-4 hidden text-sm text-danger-600" role="alert">Selecciona una respuesta para continuar.</p>
+
+          <div class="flex justify-between gap-3">
+            <button id="prevQuestion" type="button" class="btn-secondary" disabled>Anterior</button>
+            <button id="nextQuestion" type="button" class="btn-primary">Siguiente</button>
+          </div>
         </div>
-        <!--- <section class="bg-white">
-            <div class="max-w-5xl px-6 py-16 mx-auto">
-                <div class="items-center md:flex md:space-x-6">
-                    <div class="md:w-1/2">
-                        <div class="flex items-center justify-center">
-                            <div class="max-w-md">
-                                <img class="object-cover object-center w-full rounded-md shadow" style="height: 500px;"
-                                    src="https://images.unsplash.com/photo-1616874535244-73aea5daadb9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">
-                            </div>
-                        </div>
-                    </div>
-        
-                    <div class="mt-8 md:mt-0 md:w-1/2">
-                        <h3 class="text-2xl font-semibold text-gray-800">Lorem ipsum dolor sit <br> amet, consectetur</h3>
-                        <p class="max-w-md mt-4 text-gray-600">Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                            culpa qui officia deserunt mollit anim id est laborum.</p>
-                        <a href="#" class="block mt-8 text-indigo-700 underline">Experienced team</a>
-                    </div>
-                </div>
-            </div>
-        </section>-->
-	</main>
-   <section class="relative z-10 py-24 bg-white/40 backdrop-blur-2xl border-y border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.05)] mt-12">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-arena-blue to-arena-dark drop-shadow-sm mb-6">Niveles de Entrenamiento</h2>
-                <p class="text-xl text-gray-800 font-medium max-w-3xl mx-auto leading-relaxed">Descubre en qué nivel te encuentras y qué habilidades puedes desarrollar en cada etapa</p>
-                
-                <!-- Level Comparison Toggle -->
-                <div class="mt-10 flex justify-center">
-                    <button id="toggleComparison" class="px-8 py-4 bg-gradient-to-r from-arena-cyan to-arena-blue text-white font-bold rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                        📊 Comparar Niveles
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Levels Container -->
-            <div id="levelsContainer" class="space-y-4">
-                <!-- Nivel Iniciación 0 -->
-                <div class="level-card bg-white/80 backdrop-blur-xl rounded-3xl border border-white/60 overflow-hidden transition-all duration-500 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] hover:-translate-y-2 hover:shadow-[0_8px_32px_0_rgba(78,178,229,0.3)]" data-level="beginner0">
-                    <div class="level-header cursor-pointer p-6 flex items-center justify-between" onclick="toggleLevel(this)">
-                        <div class="flex items-center space-x-4">
-                            <div class="level-icon bg-red-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg">0</div>
-                            <div>
-                                <h3 class="text-xl font-extrabold text-arena-dark">Nivel de Iniciación 0</h3>
-                                <div class="skill-bar mt-2">
-                                    <div class="bg-gray-600 h-2 rounded-full">
-                                        <div class="bg-red-500 h-2 rounded-full transition-all duration-1000" style="width: 10%"></div>
-                                    </div>
-                                    <p class="text-sm text-gray-600 font-medium mt-1">Principiante absoluto</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-2">
-                            <span class="level-indicator hidden md:block text-white bg-red-500 px-3 py-1 rounded-full text-sm">Principiante</span>
-                            <svg class="chevron w-6 h-6 text-arena-dark transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="level-content max-h-0 overflow-hidden transition-all duration-500">
-                        <div class="p-6 pt-0">
-                            <div class="bg-white/50 border border-white/50 shadow-inner rounded-xl p-5 mb-4">
-                                <p class="text-gray-800 font-medium leading-relaxed">
-                                    No poseo ninguna experiencia en voleibol indoor ni de playa, juego eventualmente al voleibol. Me he inscrito en alguna academia pero no he durado mucho tiempo, no logro hacer tres toques seguidos de toques de dedos o antebrazo.
-                                </p>
-                            </div>
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <div class="skills-section">
-                                    <h4 class="text-arena-blue font-bold mb-2">🎯 Objetivos de este nivel:</h4>
-                                    <ul class="text-gray-700 font-medium text-sm space-y-1">
-                                        <li>• Aprender fundamentos básicos</li>
-                                        <li>• Desarrollar coordinación</li>
-                                        <li>• Familiarizarse con las reglas</li>
-                                    </ul>
-                                </div>
-                                <div class="cta-section">
-                                    <button class="w-full py-2 px-4 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors duration-300">
-                                        Comenzar desde cero
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Nivel Iniciación 1 -->
-                <div class="level-card bg-white/80 backdrop-blur-xl rounded-3xl border border-white/60 overflow-hidden transition-all duration-500 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] hover:-translate-y-2 hover:shadow-[0_8px_32px_0_rgba(78,178,229,0.3)]" data-level="beginner1">
-                    <div class="level-header cursor-pointer p-6 flex items-center justify-between" onclick="toggleLevel(this)">
-                        <div class="flex items-center space-x-4">
-                            <div class="level-icon bg-orange-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg">1</div>
-                            <div>
-                                <h3 class="text-xl font-extrabold text-arena-dark">Nivel de Iniciación 1</h3>
-                                <div class="skill-bar mt-2">
-                                    <div class="bg-gray-600 h-2 rounded-full">
-                                        <div class="bg-orange-500 h-2 rounded-full transition-all duration-1000" style="width: 30%"></div>
-                                    </div>
-                                    <p class="text-sm text-gray-600 font-medium mt-1">Fundamentos básicos</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-2">
-                            <span class="level-indicator hidden md:block text-white bg-orange-500 px-3 py-1 rounded-full text-sm">Básico</span>
-                            <svg class="chevron w-6 h-6 text-arena-dark transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="level-content max-h-0 overflow-hidden transition-all duration-500">
-                        <div class="p-6 pt-0">
-                            <div class="bg-white/50 border border-white/50 shadow-inner rounded-xl p-5 mb-4">
-                                <p class="text-gray-800 font-medium leading-relaxed">
-                                    Tengo experiencia en entrenamiento en el voleibol por meses, juego eventualmente con amigos, tengo conocimiento de las reglas básicas del voleibol, tengo dominio técnico de los fundamentos, puedo completar una jugada de 3 toques.
-                                </p>
-                            </div>
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <div class="skills-section">
-                                    <h4 class="text-arena-blue font-bold mb-2">🎯 Objetivos de este nivel:</h4>
-                                    <ul class="text-gray-700 font-medium text-sm space-y-1">
-                                        <li>• Perfeccionar técnica básica</li>
-                                        <li>• Desarrollar jugadas de 3 toques</li>
-                                        <li>• Mejorar coordinación en equipo</li>
-                                    </ul>
-                                </div>
-                                <div class="cta-section">
-                                    <button class="w-full py-2 px-4 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition-colors duration-300">
-                                        Perfeccionar técnica
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Nivel Intermedio -->
-                <div class="level-card bg-white/80 backdrop-blur-xl rounded-3xl border border-white/60 overflow-hidden transition-all duration-500 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] hover:-translate-y-2 hover:shadow-[0_8px_32px_0_rgba(78,178,229,0.3)]" data-level="intermediate">
-                    <div class="level-header cursor-pointer p-6 flex items-center justify-between" onclick="toggleLevel(this)">
-                        <div class="flex items-center space-x-4">
-                            <div class="level-icon bg-yellow-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg">2</div>
-                            <div>
-                                <h3 class="text-xl font-extrabold text-arena-dark">Nivel Intermedio</h3>
-                                <div class="skill-bar mt-2">
-                                    <div class="bg-gray-600 h-2 rounded-full">
-                                        <div class="bg-yellow-500 h-2 rounded-full transition-all duration-1000" style="width: 60%"></div>
-                                    </div>
-                                    <p class="text-sm text-gray-600 font-medium mt-1">Técnica desarrollada</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-2">
-                            <span class="level-indicator hidden md:block text-white bg-yellow-500 px-3 py-1 rounded-full text-sm">Intermedio</span>
-                            <svg class="chevron w-6 h-6 text-arena-dark transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="level-content max-h-0 overflow-hidden transition-all duration-500">
-                        <div class="p-6 pt-0">
-                            <div class="bg-white/50 border border-white/50 shadow-inner rounded-xl p-5 mb-4">
-                                <p class="text-gray-800 font-medium leading-relaxed">
-                                    Soy capaz de tener dominio del servicio. Tengo control en la recepción del saque, puedo dirigirlo al centro de la cancha, tengo dominio del fundamento del ataque. Tengo control a la hora de colocar la bola en el campo contrario. Conozco perfectamente los conceptos básicos como aproximarme a mi compañero cuando recibe, estar cerca de él en cualquier momento del punto para continuar con el juego de manera más fluida.
-                                </p>
-                            </div>
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <div class="skills-section">
-                                    <h4 class="text-arena-blue font-bold mb-2">🎯 Objetivos de este nivel:</h4>
-                                    <ul class="text-gray-700 font-medium text-sm space-y-1">
-                                        <li>• Dominar servicios variados</li>
-                                        <li>• Mejorar colocación estratégica</li>
-                                        <li>• Desarrollar juego táctico</li>
-                                    </ul>
-                                </div>
-                                <div class="cta-section">
-                                    <button class="w-full py-2 px-4 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg transition-colors duration-300">
-                                        Mejorar estrategia
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Nivel Intermedio 1 -->
-                <div class="level-card bg-white/80 backdrop-blur-xl rounded-3xl border border-white/60 overflow-hidden transition-all duration-500 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] hover:-translate-y-2 hover:shadow-[0_8px_32px_0_rgba(78,178,229,0.3)]" data-level="intermediate1">
-                    <div class="level-header cursor-pointer p-6 flex items-center justify-between" onclick="toggleLevel(this)">
-                        <div class="flex items-center space-x-4">
-                            <div class="level-icon bg-green-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg">3</div>
-                            <div>
-                                <h3 class="text-xl font-extrabold text-arena-dark">Nivel Intermedio 1</h3>
-                                <div class="skill-bar mt-2">
-                                    <div class="bg-gray-600 h-2 rounded-full">
-                                        <div class="bg-green-500 h-2 rounded-full transition-all duration-1000" style="width: 80%"></div>
-                                    </div>
-                                    <p class="text-sm text-gray-600 font-medium mt-1">Técnica avanzada</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-2">
-                            <span class="level-indicator hidden md:block text-white bg-green-500 px-3 py-1 rounded-full text-sm">Avanzado</span>
-                            <svg class="chevron w-6 h-6 text-arena-dark transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="level-content max-h-0 overflow-hidden transition-all duration-500">
-                        <div class="p-6 pt-0">
-                            <div class="bg-white/50 border border-white/50 shadow-inner rounded-xl p-5 mb-4">
-                                <ul class="text-gray-800 font-medium leading-relaxed space-y-2">
-                                    <li>• Tengo dominio de los diferentes tipos de ataques (ataque fuerte, pokey, palmeó, «cut» toque corto, «over» toque por encima del bloqueo).</li>
-                                    <li>• Suelo jugar con bloqueo y me sé salir del bloqueo perfectamente</li>
-                                    <li>• Conozco las señas del bloqueo.</li>
-                                    <li>• Sé cómo usar variables ambientales como el viento y el sol a mi favor.</li>
-                                    <li>• Sé hacer defensas de balones a una mano.</li>
-                                </ul>
-                            </div>
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <div class="skills-section">
-                                    <h4 class="text-arena-blue font-bold mb-2">🎯 Objetivos de este nivel:</h4>
-                                    <ul class="text-gray-700 font-medium text-sm space-y-1">
-                                        <li>• Dominar múltiples tipos de ataque</li>
-                                        <li>• Perfeccionar técnicas de bloqueo</li>
-                                        <li>• Adaptarse a condiciones ambientales</li>
-                                    </ul>
-                                </div>
-                                <div class="cta-section">
-                                    <button class="w-full py-2 px-4 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors duration-300">
-                                        Pulir técnica avanzada
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Nivel Avanzado -->
-                <div class="level-card bg-white/80 backdrop-blur-xl rounded-3xl border border-white/60 overflow-hidden transition-all duration-500 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] hover:-translate-y-2 hover:shadow-[0_8px_32px_0_rgba(78,178,229,0.3)]" data-level="advanced">
-                    <div class="level-header cursor-pointer p-6 flex items-center justify-between" onclick="toggleLevel(this)">
-                        <div class="flex items-center space-x-4">
-                            <div class="level-icon bg-purple-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg">4</div>
-                            <div>
-                                <h3 class="text-xl font-extrabold text-arena-dark">Nivel Avanzado</h3>
-                                <div class="skill-bar mt-2">
-                                    <div class="bg-gray-600 h-2 rounded-full">
-                                        <div class="bg-purple-500 h-2 rounded-full transition-all duration-1000" style="width: 95%"></div>
-                                    </div>
-                                    <p class="text-sm text-gray-600 font-medium mt-1">Nivel competitivo</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-2">
-                            <span class="level-indicator hidden md:block text-white bg-purple-500 px-3 py-1 rounded-full text-sm">Experto</span>
-                            <svg class="chevron w-6 h-6 text-arena-dark transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="level-content max-h-0 overflow-hidden transition-all duration-500">
-                        <div class="p-6 pt-0">
-                            <div class="bg-white/50 border border-white/50 shadow-inner rounded-xl p-5 mb-4">
-                                <p class="text-gray-800 font-medium leading-relaxed">
-                                    Tengo dominio del servicio en salto o de potencia. Tengo una correcta aproximación al ataque. Conozco las fases del juego (K1 Y K2). Sé ubicarme en defensa en dependencia de la señal del bloqueo, sé qué golpe realizar cuando tengo un bloque delante.
-                                </p>
-                            </div>
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <div class="skills-section">
-                                    <h4 class="text-arena-blue font-bold mb-2">🎯 Objetivos de este nivel:</h4>
-                                    <ul class="text-gray-700 font-medium text-sm space-y-1">
-                                        <li>• Dominar servicios de potencia</li>
-                                        <li>• Perfeccionar fases de juego</li>
-                                        <li>• Preparación competitiva</li>
-                                    </ul>
-                                </div>
-                                <div class="cta-section">
-                                    <button class="w-full py-2 px-4 bg-purple-500 hover:bg-purple-600 text-white rounded-lg transition-colors duration-300">
-                                        Entrenamiento competitivo
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Comparison View (Hidden by default) -->
-            <div id="comparisonView" class="hidden mt-8">
-                <div class="bg-white/80 backdrop-blur-xl rounded-3xl border border-white/60 shadow-lg p-6">
-                    <h3 class="text-2xl font-bold text-arena-dark mb-6 text-center">Comparación de Niveles</h3>
-                    <div class="grid md:grid-cols-5 gap-4 text-center">
-                        <div class="comparison-column">
-                            <h4 class="font-semibold text-arena-blue mb-4">Iniciación 0</h4>
-                            <div class="space-y-2 text-sm text-gray-700">
-                                <div class="bg-red-500 bg-opacity-20 p-2 rounded">Sin experiencia</div>
-                                <div class="bg-red-500 bg-opacity-20 p-2 rounded">Aprendiendo reglas</div>
-                                <div class="bg-red-500 bg-opacity-20 p-2 rounded">Coordinación básica</div>
-                            </div>
-                        </div>
-                        <div class="comparison-column">
-                            <h4 class="font-semibold text-arena-blue mb-4">Iniciación 1</h4>
-                            <div class="space-y-2 text-sm text-gray-700">
-                                <div class="bg-orange-500 bg-opacity-20 p-2 rounded">Fundamentos básicos</div>
-                                <div class="bg-orange-500 bg-opacity-20 p-2 rounded">3 toques seguidos</div>
-                                <div class="bg-orange-500 bg-opacity-20 p-2 rounded">Reglas conocidas</div>
-                            </div>
-                        </div>
-                        <div class="comparison-column">
-                            <h4 class="font-semibold text-arena-blue mb-4">Intermedio</h4>
-                            <div class="space-y-2 text-sm text-gray-700">
-                                <div class="bg-yellow-500 bg-opacity-20 p-2 rounded">Servicio controlado</div>
-                                <div class="bg-yellow-500 bg-opacity-20 p-2 rounded">Ataques básicos</div>
-                                <div class="bg-yellow-500 bg-opacity-20 p-2 rounded">Táctica inicial</div>
-                            </div>
-                        </div>
-                        <div class="comparison-column">
-                            <h4 class="font-semibold text-arena-blue mb-4">Intermedio 1</h4>
-                            <div class="space-y-2 text-sm text-gray-700">
-                                <div class="bg-green-500 bg-opacity-20 p-2 rounded">Múltiples ataques</div>
-                                <div class="bg-green-500 bg-opacity-20 p-2 rounded">Bloqueo avanzado</div>
-                                <div class="bg-green-500 bg-opacity-20 p-2 rounded">Adaptación ambiental</div>
-                            </div>
-                        </div>
-                        <div class="comparison-column">
-                            <h4 class="font-semibold text-arena-blue mb-4">Avanzado</h4>
-                            <div class="space-y-2 text-sm text-gray-700">
-                                <div class="bg-purple-500 bg-opacity-20 p-2 rounded">Servicio potencia</div>
-                                <div class="bg-purple-500 bg-opacity-20 p-2 rounded">Fases de juego</div>
-                                <div class="bg-purple-500 bg-opacity-20 p-2 rounded">Nivel competitivo</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+        <div id="quizResult" class="hidden text-center" role="status">
+          <div id="resultIcon" class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-50 font-display text-2xl font-extrabold text-brand-700"></div>
+          <p class="mt-5 text-sm text-ink-500">Tu nivel recomendado</p>
+          <h3 id="resultTitle" class="mt-1 text-2xl font-extrabold"></h3>
+          <p id="resultDescription" class="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-ink-500"></p>
+          <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <button id="viewLevels" type="button" class="btn-secondary">Ver detalles del nivel</button>
+            <a href="/#reservas" class="btn-primary">Reservar clase</a>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section class="section bg-white">
+      <div class="container-site">
+        <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <div class="max-w-2xl">
+            <p class="eyebrow">Niveles de entrenamiento</p>
+            <h2 class="title-section">¿En qué etapa estás?</h2>
+            <p class="lead">Descubre qué habilidades desarrollarás en cada nivel.</p>
+          </div>
+          <button id="toggleComparison" type="button" class="btn-secondary flex-none" aria-controls="comparisonView" aria-expanded="false">
+            <Icon name="chart" class="h-4 w-4" /> <span>Comparar niveles</span>
+          </button>
+        </div>
+
+        <!-- Comparación -->
+        <div id="comparisonView" class="mt-10 hidden">
+          <div class="overflow-x-auto rounded-xl border border-ink-100">
+            <table class="w-full min-w-[640px] text-left text-sm">
+              <thead class="bg-sand-50">
+                <tr>
+                  {niveles.map((n) => (
+                    <th scope="col" class="px-4 py-3 font-semibold text-ink-900">
+                      <span class="text-ink-400">{n.numero} ·</span> {n.nombre}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-ink-100">
+                {[0, 1, 2].map((fila) => (
+                  <tr>
+                    {niveles.map((n) => <td class="px-4 py-3 text-ink-600">{n.resumen[fila]}</td>)}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Lista de niveles -->
+        <div id="levelsContainer" class="mt-10 divide-y divide-ink-100 overflow-hidden rounded-xl border border-ink-100">
+          {niveles.map((n) => (
+            <div class="level-card bg-white transition-colors duration-500" data-level={n.id}>
+              <button
+                type="button"
+                class="level-header flex w-full items-center gap-4 px-5 py-5 text-left transition-colors hover:bg-sand-50 sm:px-6"
+                aria-expanded="false"
+                aria-controls={`nivel-${n.id}`}
+                onclick="toggleLevel(this)"
+              >
+                <span class="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-brand-50 font-display text-base font-extrabold text-brand-700">{n.numero}</span>
+                <span class="min-w-0 flex-1">
+                  <span class="block font-display text-base font-bold text-ink-900 sm:text-lg">Nivel {n.nombre}</span>
+                  <span class="mt-2 flex items-center gap-3">
+                    <span class="h-1.5 w-full max-w-[220px] overflow-hidden rounded-full bg-ink-100">
+                      <span class="block h-full rounded-full bg-brand-600" style={`width: ${n.progreso}%`}></span>
+                    </span>
+                    <span class="hidden whitespace-nowrap text-sm text-ink-500 sm:inline">{n.etiqueta}</span>
+                  </span>
+                </span>
+                <span class="chevron flex-none text-ink-400 transition-transform duration-300"><Icon name="chevron-down" class="h-5 w-5" /></span>
+              </button>
+
+              <div id={`nivel-${n.id}`} class="level-content max-h-0 overflow-hidden transition-[max-height] duration-500">
+                <div class="grid gap-6 px-5 pb-6 sm:px-6 md:grid-cols-[1.4fr_1fr] md:pl-[4.75rem]">
+                  <div class="space-y-2 text-sm leading-relaxed text-ink-600">
+                    <p class="text-xs font-semibold uppercase tracking-eyebrow text-ink-400">Así juegas</p>
+                    {n.descripcion.map((d) => <p>{d}</p>)}
+                  </div>
+                  <div>
+                    <p class="text-xs font-semibold uppercase tracking-eyebrow text-ink-400">Objetivos del nivel</p>
+                    <ul class="mt-2 space-y-2">
+                      {n.objetivos.map((o) => (
+                        <li class="flex gap-2 text-sm text-ink-700">
+                          <Icon name="check" class="mt-0.5 h-4 w-4 flex-none text-brand-600" /> {o}
+                        </li>
+                      ))}
+                    </ul>
+                    <a href="/#reservas" class="link-arrow mt-5">Reservar clase de este nivel <Icon name="arrow-right" class="h-4 w-4" /></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
-	
+  </main>
 </Layout>
 
 <script>
-    // Quiz questions and answers
+    // Preguntas de la evaluación y puntaje por nivel
     const quizQuestions = [
         {
             question: "¿Cuál es tu experiencia previa con el voleibol?",
@@ -468,312 +263,184 @@ import Layout from '../layouts/Layout.astro';
     ];
 
     const levelDescriptions = {
-        beginner0: {
-            title: "Nivel de Iniciación 0",
-            icon: "🏐",
-            description: "Perfecto para comenzar desde cero. Te ayudaremos a desarrollar los fundamentos básicos."
-        },
-        beginner1: {
-            title: "Nivel de Iniciación 1", 
-            icon: "⭐",
-            description: "Ya tienes una base. Vamos a perfeccionar tu técnica y consistencia."
-        },
-        intermediate: {
-            title: "Nivel Intermedio",
-            icon: "🔥",
-            description: "Tienes buen control. Es hora de desarrollar estrategia y técnicas avanzadas."
-        },
-        intermediate1: {
-            title: "Nivel Intermedio 1",
-            icon: "💪",
-            description: "Excelente nivel técnico. Perfeccionemos tu juego táctico y competitivo."
-        },
-        advanced: {
-            title: "Nivel Avanzado",
-            icon: "🏆",
-            description: "Eres un jugador experimentado. Preparémonos para la competición."
-        }
+        beginner0: { title: "Nivel de Iniciación 0", icon: "0", description: "Perfecto para comenzar desde cero. Te ayudaremos a desarrollar los fundamentos básicos." },
+        beginner1: { title: "Nivel de Iniciación 1", icon: "1", description: "Ya tienes una base. Vamos a perfeccionar tu técnica y consistencia." },
+        intermediate: { title: "Nivel Intermedio", icon: "2", description: "Tienes buen control. Es hora de desarrollar estrategia y técnicas avanzadas." },
+        intermediate1: { title: "Nivel Intermedio 1", icon: "3", description: "Excelente nivel técnico. Perfeccionemos tu juego táctico y competitivo." },
+        advanced: { title: "Nivel Avanzado", icon: "4", description: "Eres un jugador experimentado. Preparémonos para la competición." }
     };
 
     let currentQuestionIndex = 0;
-    let userAnswers = [];
+    let userAnswers: number[] = [];
+    let recommendedLevel = '';
 
-    // Modal functionality
-    document.addEventListener('DOMContentLoaded', function() {
-        const startQuizBtn = document.getElementById('startQuiz');
-        const closeQuizBtn = document.getElementById('closeQuiz');
-        const quizModal = document.getElementById('quizModal');
+    const quizModal = document.getElementById('quizModal');
+    const startQuizBtn = document.getElementById('startQuiz');
 
-        if (startQuizBtn) {
-            startQuizBtn.addEventListener('click', function() {
-                if (quizModal) {
-                    quizModal.classList.remove('hidden');
-                    quizModal.classList.add('flex');
-                    showQuestion(0);
-                }
-            });
-        }
+    function openQuiz() {
+        if (!quizModal) return;
+        quizModal.classList.remove('hidden');
+        quizModal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+        showQuestion(0);
+    }
 
-        if (closeQuizBtn) {
-            closeQuizBtn.addEventListener('click', function() {
-                if (quizModal) {
-                    quizModal.classList.add('hidden');
-                    quizModal.classList.remove('flex');
-                    resetQuiz();
-                }
-            });
-        }
+    function closeQuiz() {
+        if (!quizModal) return;
+        quizModal.classList.add('hidden');
+        quizModal.classList.remove('flex');
+        document.body.style.overflow = '';
+        resetQuiz();
+        startQuizBtn?.focus();
+    }
 
-        // Quiz navigation
-        const nextBtn = document.getElementById('nextQuestion');
-        const prevBtn = document.getElementById('prevQuestion');
-
-        if (nextBtn) {
-            nextBtn.addEventListener('click', function() {
-                const selectedAnswer = document.querySelector('input[name="answer"]:checked');
-                if (!selectedAnswer) {
-                    alert('Por favor selecciona una respuesta');
-                    return;
-                }
-
-                userAnswers[currentQuestionIndex] = parseInt((selectedAnswer as HTMLInputElement).value);
-
-                if (currentQuestionIndex < quizQuestions.length - 1) {
-                    showQuestion(currentQuestionIndex + 1);
-                } else {
-                    showResult();
-                }
-            });
-        }
-
-        if (prevBtn) {
-            prevBtn.addEventListener('click', function() {
-                if (currentQuestionIndex > 0) {
-                    showQuestion(currentQuestionIndex - 1);
-                }
-            });
-        }
-
-        // Level comparison
-        const toggleComparisonBtn = document.getElementById('toggleComparison');
-        if (toggleComparisonBtn) {
-            toggleComparisonBtn.addEventListener('click', function() {
-                const comparisonView = document.getElementById('comparisonView');
-                if (comparisonView) {
-                    const isVisible = !comparisonView.classList.contains('hidden');
-                    
-                    if (isVisible) {
-                        comparisonView.classList.add('hidden');
-                        this.textContent = '📊 Comparar Niveles';
-                    } else {
-                        comparisonView.classList.remove('hidden');
-                        this.textContent = '📋 Ver Lista Detallada';
-                        comparisonView.scrollIntoView({ behavior: 'smooth' });
-                    }
-                }
-            });
-        }
-
-        // Animate cards on load
-        const levelCards = document.querySelectorAll('.level-card');
-        levelCards.forEach((card, index) => {
-            const htmlCard = card as HTMLElement;
-            htmlCard.style.opacity = '0';
-            htmlCard.style.transform = 'translateY(20px)';
-            setTimeout(() => {
-                htmlCard.style.transition = 'all 0.6s ease';
-                htmlCard.style.opacity = '1';
-                htmlCard.style.transform = 'translateY(0)';
-            }, index * 100);
-        });
+    startQuizBtn?.addEventListener('click', openQuiz);
+    document.getElementById('closeQuiz')?.addEventListener('click', closeQuiz);
+    quizModal?.addEventListener('click', (e) => { if (e.target === quizModal) closeQuiz(); });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && quizModal && !quizModal.classList.contains('hidden')) closeQuiz();
     });
 
-    // Quiz functionality
-    function showQuestion(index) {
+    document.getElementById('nextQuestion')?.addEventListener('click', () => {
+        const selected = document.querySelector<HTMLInputElement>('input[name="answer"]:checked');
+        const error = document.getElementById('quizError');
+        if (!selected) {
+            error?.classList.remove('hidden');
+            return;
+        }
+        error?.classList.add('hidden');
+        userAnswers[currentQuestionIndex] = parseInt(selected.value);
+
+        if (currentQuestionIndex < quizQuestions.length - 1) {
+            showQuestion(currentQuestionIndex + 1);
+        } else {
+            showResult();
+        }
+    });
+
+    document.getElementById('questionContainer')?.addEventListener('change', () => {
+        document.getElementById('quizError')?.classList.add('hidden');
+    });
+
+    document.getElementById('prevQuestion')?.addEventListener('click', () => {
+        if (currentQuestionIndex > 0) showQuestion(currentQuestionIndex - 1);
+    });
+
+    document.getElementById('viewLevels')?.addEventListener('click', () => {
+        const level = recommendedLevel;
+        closeQuiz();
+
+        // Abre y resalta el nivel recomendado
+        const levelCard = document.querySelector<HTMLElement>(`[data-level="${level}"]`);
+        if (!levelCard) return;
+        const header = levelCard.querySelector<HTMLElement>('.level-header');
+        if (header && header.getAttribute('aria-expanded') !== 'true') toggleLevel(header);
+        levelCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        levelCard.classList.add('!bg-accent-50');
+        setTimeout(() => levelCard.classList.remove('!bg-accent-50'), 2000);
+    });
+
+    const toggleComparisonBtn = document.getElementById('toggleComparison');
+    toggleComparisonBtn?.addEventListener('click', () => {
+        const comparisonView = document.getElementById('comparisonView');
+        const label = toggleComparisonBtn.querySelector('span');
+        if (!comparisonView) return;
+        const willShow = comparisonView.classList.contains('hidden');
+        comparisonView.classList.toggle('hidden', !willShow);
+        toggleComparisonBtn.setAttribute('aria-expanded', String(willShow));
+        if (label) label.textContent = willShow ? 'Ocultar comparación' : 'Comparar niveles';
+    });
+
+    function showQuestion(index: number) {
         currentQuestionIndex = index;
         const question = quizQuestions[index];
         const container = document.getElementById('questionContainer');
-        
+
         if (container) {
             container.innerHTML = `
-                <h4 class="text-lg font-semibold text-gray-800 mb-4">${question.question}</h4>
-                <div class="space-y-3">
-                    ${question.answers.map((answer, i) => `
-                        <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
-                            <input type="radio" name="answer" value="${i}" class="mr-3">
-                            <span>${answer.text}</span>
-                        </label>
-                    `).join('')}
-                </div>
+                <fieldset>
+                    <legend class="mb-4 font-display text-lg font-bold text-ink-900">${question.question}</legend>
+                    <div class="space-y-2">
+                        ${question.answers.map((answer, i) => `
+                            <label class="flex cursor-pointer items-center gap-3 rounded-lg border border-ink-200 px-4 py-3 text-sm text-ink-700 transition-colors hover:border-ink-300 has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50">
+                                <input type="radio" name="answer" value="${i}" class="h-4 w-4 accent-[#01577A]" ${userAnswers[index] === i ? 'checked' : ''}>
+                                <span>${answer.text}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </fieldset>
             `;
         }
 
-        // Update progress
         const progressBar = document.getElementById('progressBar');
-        if (progressBar) {
-            const progress = ((index + 1) / quizQuestions.length) * 100;
-            (progressBar as HTMLElement).style.width = progress + '%';
-        }
+        if (progressBar) progressBar.style.width = ((index + 1) / quizQuestions.length) * 100 + '%';
 
         const currentQuestionEl = document.getElementById('currentQuestion');
-        if (currentQuestionEl) {
-            currentQuestionEl.textContent = (index + 1).toString();
-        }
+        if (currentQuestionEl) currentQuestionEl.textContent = (index + 1).toString();
 
         const totalQuestionsEl = document.getElementById('totalQuestions');
-        if (totalQuestionsEl) {
-            totalQuestionsEl.textContent = quizQuestions.length.toString();
-        }
+        if (totalQuestionsEl) totalQuestionsEl.textContent = quizQuestions.length.toString();
 
-        // Update navigation buttons
-        const prevBtn = document.getElementById('prevQuestion') as HTMLButtonElement;
-        if (prevBtn) {
-            prevBtn.disabled = index === 0;
-        }
+        const prevBtn = document.getElementById('prevQuestion') as HTMLButtonElement | null;
+        if (prevBtn) prevBtn.disabled = index === 0;
 
         const nextBtn = document.getElementById('nextQuestion');
-        if (nextBtn) {
-            nextBtn.textContent = index === quizQuestions.length - 1 ? 'Finalizar' : 'Siguiente';
-        }
+        if (nextBtn) nextBtn.textContent = index === quizQuestions.length - 1 ? 'Ver resultado' : 'Siguiente';
+
+        document.getElementById('quizError')?.classList.add('hidden');
     }
 
     function showResult() {
-        // Calculate scores
-        const scores = { beginner0: 0, beginner1: 0, intermediate: 0, intermediate1: 0, advanced: 0 };
-        
+        const scores: Record<string, number> = { beginner0: 0, beginner1: 0, intermediate: 0, intermediate1: 0, advanced: 0 };
+
         userAnswers.forEach((answerIndex, questionIndex) => {
             const answer = quizQuestions[questionIndex].answers[answerIndex];
-            Object.keys(answer.points).forEach(level => {
-                scores[level] += answer.points[level];
-            });
+            Object.entries(answer.points).forEach(([level, points]) => { scores[level] += points; });
         });
 
-        // Find highest score
-        const recommendedLevel = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-        const levelInfo = levelDescriptions[recommendedLevel];
+        recommendedLevel = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+        const levelInfo = levelDescriptions[recommendedLevel as keyof typeof levelDescriptions];
 
-        // Show result
-        const quizContent = document.getElementById('quizContent');
-        const quizResult = document.getElementById('quizResult');
-        
-        if (quizContent) quizContent.classList.add('hidden');
-        if (quizResult) quizResult.classList.remove('hidden');
-        
+        document.getElementById('quizContent')?.classList.add('hidden');
+        document.getElementById('quizResult')?.classList.remove('hidden');
+
         const resultIcon = document.getElementById('resultIcon');
         const resultTitle = document.getElementById('resultTitle');
         const resultDescription = document.getElementById('resultDescription');
-        
         if (resultIcon) resultIcon.textContent = levelInfo.icon;
         if (resultTitle) resultTitle.textContent = levelInfo.title;
         if (resultDescription) resultDescription.textContent = levelInfo.description;
-
-        const viewLevelsBtn = document.getElementById('viewLevels');
-        if (viewLevelsBtn) {
-            viewLevelsBtn.addEventListener('click', function() {
-                const quizModal = document.getElementById('quizModal');
-                if (quizModal) {
-                    quizModal.classList.add('hidden');
-                    quizModal.classList.remove('flex');
-                }
-                
-                // Highlight recommended level
-                const levelCard = document.querySelector(`[data-level="${recommendedLevel}"]`) as HTMLElement;
-                if (levelCard) {
-                    levelCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    levelCard.style.transform = 'scale(1.02)';
-                    levelCard.style.boxShadow = '0 0 20px rgba(59, 130, 246, 0.5)';
-                    setTimeout(() => {
-                        levelCard.style.transform = '';
-                        levelCard.style.boxShadow = '';
-                    }, 2000);
-                }
-                
-                resetQuiz();
-            });
-        }
     }
 
     function resetQuiz() {
         currentQuestionIndex = 0;
         userAnswers = [];
-        const quizContent = document.getElementById('quizContent');
-        const quizResult = document.getElementById('quizResult');
-        
-        if (quizContent) quizContent.classList.remove('hidden');
-        if (quizResult) quizResult.classList.add('hidden');
+        document.getElementById('quizContent')?.classList.remove('hidden');
+        document.getElementById('quizResult')?.classList.add('hidden');
     }
 
-    // Level accordion functionality
-    function toggleLevel(header) {
+    // Acordeón de niveles
+    function toggleLevel(header: HTMLElement) {
         const card = header.closest('.level-card');
-        const content = card.querySelector('.level-content') as HTMLElement;
-        const chevron = header.querySelector('.chevron') as HTMLElement;
-        const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+        if (!card) return;
+        const content = card.querySelector<HTMLElement>('.level-content');
+        const chevron = header.querySelector<HTMLElement>('.chevron');
+        const isOpen = header.getAttribute('aria-expanded') === 'true';
 
-        // Close all other cards
         document.querySelectorAll('.level-card').forEach(otherCard => {
-            if (otherCard !== card) {
-                const otherContent = otherCard.querySelector('.level-content') as HTMLElement;
-                const otherChevron = otherCard.querySelector('.chevron') as HTMLElement;
-                if (otherContent) otherContent.style.maxHeight = '0px';
-                if (otherChevron) otherChevron.style.transform = 'rotate(0deg)';
-            }
+            if (otherCard === card) return;
+            const otherContent = otherCard.querySelector<HTMLElement>('.level-content');
+            const otherChevron = otherCard.querySelector<HTMLElement>('.chevron');
+            otherCard.querySelector('.level-header')?.setAttribute('aria-expanded', 'false');
+            if (otherContent) otherContent.style.maxHeight = '0px';
+            if (otherChevron) otherChevron.style.transform = 'rotate(0deg)';
         });
 
-        // Toggle current card
-        if (isOpen) {
-            content.style.maxHeight = '0px';
-            chevron.style.transform = 'rotate(0deg)';
-        } else {
-            content.style.maxHeight = content.scrollHeight + 'px';
-            chevron.style.transform = 'rotate(180deg)';
-        }
+        if (!content || !chevron) return;
+        header.setAttribute('aria-expanded', String(!isOpen));
+        content.style.maxHeight = isOpen ? '0px' : content.scrollHeight + 'px';
+        chevron.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
     }
 
-    // Make function globally available
     (window as any).toggleLevel = toggleLevel;
 </script>
-
-<style>
-    .hero2 {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    }
-    
-    .level-card {
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-    }
-    
-    .level-content {
-        transition: max-height 0.5s ease-in-out;
-    }
-    
-    .skill-bar .bg-red-500,
-    .skill-bar .bg-orange-500,
-    .skill-bar .bg-yellow-500,
-    .skill-bar .bg-green-500,
-    .skill-bar .bg-purple-500 {
-        transition: width 1s ease-in-out;
-    }
-    
-    .level-card:hover {
-        transform: translateY(-2px);
-    }
-    
-    #quizModal {
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-    }
-    
-    .comparison-column > div {
-        transition: all 0.3s ease;
-    }
-    
-    .comparison-column > div:hover {
-        transform: scale(1.05);
-    }
-    
-    .max-h-90vh {
-        max-height: 90vh;
-    }
-</style>

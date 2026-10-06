@@ -1,73 +1,50 @@
-<div class="w-full relative overflow-hidden">
-   
-    <video 
-    class="w-full h-screen object-cover object-top"
-    src="/arena.mp4" 
+---
+import Icon from './Icon.astro';
+---
+
+<section class="relative isolate overflow-hidden bg-brand-950">
+  <video
+    class="absolute inset-0 -z-10 h-full w-full object-cover object-center"
+    src="/arena.mp4"
+    poster="/atardecer.jpg"
     autoplay
     loop
-    muted 
+    muted
     playsinline
-    data-parallax
-    style="clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 50% 100%, 0 85%);"
-    ></video>
-    
-    <!-- Hero text overlay with mobile-optimized animations -->
-    <div class="absolute inset-0 flex items-center justify-center px-4 sm:px-6 lg:px-8">
-        <div class="text-center text-white max-w-4xl">
-            <h1 data-animate="fade-up" data-delay="500" class="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 drop-shadow-lg leading-tight">
-                Arena Voleibol Club
-            </h1>
-            <p data-animate="fade-up" data-delay="700" class="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 drop-shadow-md max-w-2xl mx-auto">
-                Descubre tu pasión por el voleibol de playa
-            </p>
-            <a href="#main" data-animate="scale" data-delay="900" 
-               class="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#ffb919] to-[#01577a] text-white text-base sm:text-lg font-semibold rounded-full hover:shadow-lg transform hover:scale-105 active:scale-95 transition-all duration-300 touch-manipulation">
-                Conoce más
-            </a>
-        </div>
+    aria-hidden="true"
+  ></video>
+  <div class="absolute inset-0 -z-10 bg-gradient-to-r from-brand-950/85 via-brand-950/55 to-brand-950/20" aria-hidden="true"></div>
+
+  <div class="container-site flex min-h-[78vh] flex-col justify-end pb-14 pt-24 sm:min-h-[82vh] sm:pb-20 lg:justify-center lg:pb-24">
+    <div class="max-w-2xl">
+      <p class="eyebrow-light">Escuela de vóley playa · Lima</p>
+      <h1 class="mt-4 text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl">
+        Aprende y compite en la arena con coaches FIVB
+      </h1>
+      <p class="mt-5 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
+        Entrenamientos grupales y personalizados en Chorrillos y Surco, para todos los niveles. Tu primera clase es gratis.
+      </p>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <a href="#reservas" class="btn-accent">
+          Reservar clase <Icon name="arrow-right" class="h-4 w-4" />
+        </a>
+        <a href="#planes" class="btn-outline-light">Ver planes y precios</a>
+      </div>
     </div>
-    
-</div>
 
-<style>
-/* Mobile-specific video optimizations */
-@media screen and (max-width: 768px) {
-    video {
-        /* Better mobile video performance */
-        transform: translateZ(0);
-        -webkit-transform: translateZ(0);
-        /* Optimize for mobile rendering */
-        will-change: transform;
-    }
-    
-    /* Adjust hero text for mobile */
-    .absolute.inset-0 {
-        padding-top: 4rem; /* Account for mobile header */
-    }
-}
-
-@media screen and (max-width: 480px) {
-    video {
-        /* More aggressive clipping for small screens */
-        clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 50% 100%, 0 90%) !important;
-    }
-}
-
-/* Landscape mobile optimization */
-@media screen and (max-height: 500px) and (orientation: landscape) {
-    .absolute.inset-0 h1 {
-        font-size: 1.75rem;
-        margin-bottom: 0.5rem;
-    }
-    
-    .absolute.inset-0 p {
-        font-size: 1rem;
-        margin-bottom: 1rem;
-    }
-    
-    .absolute.inset-0 a {
-        padding: 0.5rem 1.5rem;
-        font-size: 0.875rem;
-    }
-}
-</style>
+    <dl class="mt-14 grid max-w-2xl grid-cols-3 gap-6 border-t border-white/15 pt-6">
+      <div>
+        <dt class="text-xs text-white/60 sm:text-sm">Atletas activos</dt>
+        <dd class="mt-1 font-display text-2xl font-extrabold text-white sm:text-3xl">500+</dd>
+      </div>
+      <div>
+        <dt class="text-xs text-white/60 sm:text-sm">Años de experiencia</dt>
+        <dd class="mt-1 font-display text-2xl font-extrabold text-white sm:text-3xl">5+</dd>
+      </div>
+      <div>
+        <dt class="text-xs text-white/60 sm:text-sm">Sedes en Lima</dt>
+        <dd class="mt-1 font-display text-2xl font-extrabold text-white sm:text-3xl">2</dd>
+      </div>
+    </dl>
+  </div>
+</section>

@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import '../styles/global.css';
 
 interface Props {
 	description: string;
@@ -8,626 +9,66 @@ interface Props {
 	hideFooterForm?: boolean;
 }
 
-const {description, title, hideFooterForm = false } = Astro.props;
+const { description, title, hideFooterForm = false } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
-		<meta content="Somos un centro de entrenamiento de alto rendimiento dedicado a la enseñanza del voleibol de playa en todos los niveles y con entrenadores capacitados, que están dispuestos a impartir toda su experiencia para desarrollar su juego." name="description">
-  		<meta content="Voleibol de playa" name="keywords">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+		<meta name="keywords" content="Voleibol de playa, vóley playa Lima, clases de voleibol, Arena Voleibol Club" />
+		<meta name="theme-color" content="#0A3D52" />
+		<link rel="icon" href="/favicon.ico" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
 		<title>{title}</title>
 		<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 	</head>
-	<body class="mobile-optimized relative min-h-screen selection:bg-amber-400 selection:text-gray-900" style="background-color: #0a3d52;">
-        <!-- Ambient Glowing Background Elements -->
-        <div class="fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
-            <div class="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full blur-[120px] animate-blob opacity-30" style="background-color: rgba(255,185,25,0.4);"></div>
-            <div class="absolute top-[20%] right-[-5%] w-[35vw] h-[35vw] rounded-full blur-[140px] animate-blob animation-delay-2000 opacity-20" style="background-color: rgba(27,158,170,0.5);"></div>
-            <div class="absolute bottom-[-10%] left-[20%] w-[50vw] h-[50vw] rounded-full blur-[160px] animate-blob animation-delay-4000 opacity-20" style="background-color: rgba(10,91,138,0.6);"></div>
-        </div>
+	<body class="min-h-screen">
+		<a href="#contenido" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:shadow">
+			Saltar al contenido
+		</a>
 
 		<Header />
-		<div class="whatsapp animate-bounce">
-			<a class="animate-ping"  href="https://wa.me/51929418895" target="_blank" ><img src='/whatsapp.png' alt='contactanos'/></a>
-		  </div>
-		<slot />
+
+		<div id="contenido">
+			<slot />
+		</div>
+
 		<Footer hideForm={hideFooterForm} />
-		
-		<!-- Scroll Animation Script -->
+
+		<!-- WhatsApp flotante -->
+		<a
+			href="https://wa.me/51929418895"
+			target="_blank"
+			rel="noopener noreferrer"
+			aria-label="Escríbenos por WhatsApp"
+			class="fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-black/15 transition-transform duration-200 hover:scale-105"
+			style="bottom: max(1.25rem, env(safe-area-inset-bottom)); right: max(1.25rem, env(safe-area-inset-right));"
+		>
+			<svg class="h-7 w-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.549 4.122 1.514 5.857L.042 23.25A.75.75 0 00.75 24h.033l5.519-1.444A11.936 11.936 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.716 9.716 0 01-4.946-1.352l-.354-.211-3.67.961.978-3.572-.23-.368A9.713 9.713 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+		</a>
+
 		<script>
-			// Scroll Animation System
-			document.addEventListener('DOMContentLoaded', function() {
-				// Create intersection observer for scroll animations
-				const observerOptions = {
-					threshold: 0.1,
-					rootMargin: '0px 0px -50px 0px'
-				};
+			// Muestra suavemente los bloques marcados con data-animate al entrar en pantalla
+			const animated = document.querySelectorAll<HTMLElement>('[data-animate]');
 
+			if ('IntersectionObserver' in window) {
 				const observer = new IntersectionObserver((entries) => {
-					entries.forEach(entry => {
-						if (entry.isIntersecting) {
-							const element = entry.target;
-							const animationType = element.getAttribute('data-animate');
-							const delay = element.getAttribute('data-delay') || '0';
-							
-							setTimeout(() => {
-								element.classList.add('animate-in');
-								
-								// Add specific animation classes
-								switch (animationType) {
-									case 'fade-up':
-										element.classList.add('fade-up-in');
-										break;
-									case 'fade-left':
-										element.classList.add('fade-left-in');
-										break;
-									case 'fade-right':
-										element.classList.add('fade-right-in');
-										break;
-									case 'scale':
-										element.classList.add('scale-in');
-										break;
-									case 'slide-up':
-										element.classList.add('slide-up-in');
-										break;
-									default:
-										element.classList.add('fade-in');
-								}
-							}, parseInt(delay));
-							
-							// Stop observing this element
-							observer.unobserve(element);
-						}
+					entries.forEach((entry) => {
+						if (!entry.isIntersecting) return;
+						entry.target.classList.add('is-visible');
+						observer.unobserve(entry.target);
 					});
-				}, observerOptions);
+				}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-				// Observe all elements with data-animate attribute
-				const animatedElements = document.querySelectorAll('[data-animate]');
-				animatedElements.forEach(el => {
-					observer.observe(el);
-				});
-
-				// Staggered animations for children
-				const staggeredContainers = document.querySelectorAll('[data-stagger]');
-				staggeredContainers.forEach(container => {
-					const children = container.children;
-					const staggerDelay = parseInt(container.getAttribute('data-stagger-delay')) || 100;
-					
-					Array.from(children).forEach((child, index) => {
-						child.setAttribute('data-animate', container.getAttribute('data-stagger'));
-						child.setAttribute('data-delay', (index * staggerDelay).toString());
-						observer.observe(child);
-					});
-				});
-
-				// Parallax effect for hero sections
-				const parallaxElements = document.querySelectorAll('[data-parallax]');
-				
-				function updateParallax() {
-					const scrolled = window.pageYOffset;
-					
-					parallaxElements.forEach(element => {
-						const rate = scrolled * -0.5;
-						(element as HTMLElement).style.transform = `translateY(${rate}px)`;
-					});
-				}
-
-				if (parallaxElements.length > 0) {
-					window.addEventListener('scroll', updateParallax);
-				}
-
-				// Counter animations
-				const counters = document.querySelectorAll('[data-counter]');
-				const counterObserver = new IntersectionObserver((entries) => {
-					entries.forEach(entry => {
-						if (entry.isIntersecting) {
-							const counter = entry.target;
-							const target = parseInt(counter.getAttribute('data-counter'));
-							const duration = parseInt(counter.getAttribute('data-duration')) || 2000;
-							
-							animateCounter(counter, target, duration);
-							counterObserver.unobserve(counter);
-						}
-					});
-				}, { threshold: 0.5 });
-
-				counters.forEach(counter => {
-					counterObserver.observe(counter);
-				});
-
-				function animateCounter(element, target, duration) {
-					let start = 0;
-					const increment = target / (duration / 16);
-					
-					function updateCounter() {
-						start += increment;
-						if (start < target) {
-							element.textContent = Math.floor(start);
-							requestAnimationFrame(updateCounter);
-						} else {
-							element.textContent = target;
-						}
-					}
-					
-					updateCounter();
-				}
-			});
+				animated.forEach((el) => observer.observe(el));
+			} else {
+				animated.forEach((el) => el.classList.add('is-visible'));
+			}
 		</script>
 	</body>
 </html>
-<style is:global>
-	:root {
-		color-scheme: light;
-		/* Mobile viewport variables */
-		--vh: 1vh;
-		--mobile-padding: 1rem;
-		--mobile-padding-sm: 0.75rem;
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background-color: #FAF4E1;
-
-		/* Better scroll behavior for mobile */
-		scroll-behavior: smooth;
-		-webkit-text-size-adjust: 100%;
-		text-size-adjust: 100%;
-	}
-
-	/* Mobile-first body optimization */
-	body.mobile-optimized {
-		/* Prevent horizontal scroll */
-		overflow-x: hidden;
-		/* Improve touch scrolling */
-		-webkit-overflow-scrolling: touch;
-		/* Better font rendering on mobile */
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-		/* Add safe area padding for notched devices */
-		padding-top: env(safe-area-inset-top);
-		padding-bottom: env(safe-area-inset-bottom);
-		padding-left: env(safe-area-inset-left);
-		padding-right: env(safe-area-inset-right);
-	}
-
-	p{
-		color: #374151; /* dark gray, readable on light background */
-		line-height: 1.6; /* Better readability on mobile */
-		margin-bottom: 1em;
-		font-weight: 400;
-		font-size: 1em;
-		letter-spacing: .3px;
-		/* Better text rendering on small screens */
-		-webkit-font-smoothing: antialiased;
-	}
-
-	p strong{
-		color: #111827;
-		font-weight: 700;
-		
-	}
-	.intro{
-		background-color: #4eb2e5;
-	}
-	.hero{
-		background-color: #dcb55d;
-	}
-	.hero2{
-		background-color: #835b0a ;
-	}
-	.arena{
-		background-color: #01577a;
-	}
-	.whatsapp{
-  background-color: #2e6329;
-  border: 1px solid #fff;
-  position: fixed;
-  z-index: 999;
-  border-radius: 50%;
-  bottom: 20px;
-  right: 20px;
-  padding: 12px;
-  transition: ease 0.3s;
-  animation: efecto 1.2s infinite;
-  /* Mobile optimization */
-  touch-action: manipulation;
-  -webkit-user-select: none;
-  user-select: none;
-  /* Better positioning for mobile */
-  bottom: max(20px, env(safe-area-inset-bottom, 20px));
-  right: max(20px, env(safe-area-inset-right, 20px));
-  }
-
-  .whatsapp:hover{
-    transform: scale(1.1);
-    transition: 0.3s;
-  }
-
-  .whatsapp:active{
-    transform: scale(0.95);
-    transition: 0.1s;
-  }
-
-  .whatsapp>a>img{
-    width: 50px;
-    height: 50px;
-    transition: ease 1s;
-    display: block;
-  }
-
-  /* Enhanced mobile responsiveness */
-  @media screen and (max-width: 768px){
-    .whatsapp{
-      padding: 10px;
-      bottom: max(15px, env(safe-area-inset-bottom, 15px));
-      right: max(15px, env(safe-area-inset-right, 15px));
-    }
-    .whatsapp>a>img{
-      width: 40px;
-      height: 40px;
-    }
-  }
-
-  @media screen and (max-width: 480px){
-    .whatsapp{
-      padding: 8px;
-      bottom: max(12px, env(safe-area-inset-bottom, 12px));
-      right: max(12px, env(safe-area-inset-right, 12px));
-    }
-    .whatsapp>a>img{
-      width: 35px;
-      height: 35px;
-    }
-  }
-
-  /* High DPI screens */
-  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .whatsapp>a>img{
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: crisp-edges;
-    }
-  }
-
-	/* Scroll Animation Styles */
-	[data-animate] {
-		opacity: 0;
-		transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-	}
-
-	/* Fade animations */
-	[data-animate="fade"] {
-		opacity: 0;
-	}
-
-	[data-animate="fade"].animate-in,
-	.fade-in {
-		opacity: 1;
-	}
-
-	/* Fade up animation */
-	[data-animate="fade-up"] {
-		opacity: 0;
-		transform: translateY(50px);
-	}
-
-	[data-animate="fade-up"].animate-in,
-	.fade-up-in {
-		opacity: 1;
-		transform: translateY(0);
-	}
-
-	/* Fade left animation */
-	[data-animate="fade-left"] {
-		opacity: 0;
-		transform: translateX(-50px);
-	}
-
-	[data-animate="fade-left"].animate-in,
-	.fade-left-in {
-		opacity: 1;
-		transform: translateX(0);
-	}
-
-	/* Fade right animation */
-	[data-animate="fade-right"] {
-		opacity: 0;
-		transform: translateX(50px);
-	}
-
-	[data-animate="fade-right"].animate-in,
-	.fade-right-in {
-		opacity: 1;
-		transform: translateX(0);
-	}
-
-	/* Scale animation */
-	[data-animate="scale"] {
-		opacity: 0;
-		transform: scale(0.8);
-	}
-
-	[data-animate="scale"].animate-in,
-	.scale-in {
-		opacity: 1;
-		transform: scale(1);
-	}
-
-	/* Slide up animation */
-	[data-animate="slide-up"] {
-		opacity: 0;
-		transform: translateY(100px);
-	}
-
-	[data-animate="slide-up"].animate-in,
-	.slide-up-in {
-		opacity: 1;
-		transform: translateY(0);
-	}
-
-	/* Enhanced animations with spring effect */
-	.animate-in {
-		animation-fill-mode: both;
-	}
-
-	/* Stagger delay utilities */
-	[data-stagger] > * {
-		transition-delay: 0.1s;
-	}
-
-	/* Parallax elements */
-	[data-parallax] {
-		will-change: transform;
-	}
-
-	/* Counter animation */
-	[data-counter] {
-		font-variant-numeric: tabular-nums;
-	}
-
-	/* Smooth scroll behavior */
-	html {
-		scroll-behavior: smooth;
-	}
-
-	/* Performance optimizations */
-	[data-animate] {
-		will-change: opacity, transform;
-		backface-visibility: hidden;
-		-webkit-backface-visibility: hidden;
-	}
-
-	/* Animation entrance variants */
-	@keyframes bounceIn {
-		0% {
-			opacity: 0;
-			transform: scale(0.3);
-		}
-		50% {
-			opacity: 1;
-			transform: scale(1.05);
-		}
-		70% {
-			transform: scale(0.9);
-		}
-		100% {
-			opacity: 1;
-			transform: scale(1);
-		}
-	}
-
-	@keyframes slideInUp {
-		0% {
-			opacity: 0;
-			transform: translateY(100px);
-		}
-		100% {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-
-	@keyframes fadeInLeft {
-		0% {
-			opacity: 0;
-			transform: translateX(-100px);
-		}
-		100% {
-			opacity: 1;
-			transform: translateX(0);
-		}
-	}
-
-	@keyframes fadeInRight {
-		0% {
-			opacity: 0;
-			transform: translateX(100px);
-		}
-		100% {
-			opacity: 1;
-			transform: translateX(0);
-		}
-	}
-
-	/* Special animation classes */
-	.bounce-in {
-		animation: bounceIn 0.8s ease-out;
-	}
-
-	.slide-in-up {
-		animation: slideInUp 0.8s ease-out;
-	}
-
-	.fade-in-left {
-		animation: fadeInLeft 0.8s ease-out;
-	}
-
-	.fade-in-right {
-		animation: fadeInRight 0.8s ease-out;
-	}
-
-	/* Hover enhance animations */
-	[data-animate]:hover {
-		transform: translateY(-2px);
-		transition: transform 0.3s ease;
-	}
-
-	/* Reduce motion for accessibility */
-	@media (prefers-reduced-motion: reduce) {
-		[data-animate] {
-			transition: none !important;
-			animation: none !important;
-		}
-		
-		html {
-			scroll-behavior: auto;
-		}
-
-		.whatsapp {
-			animation: none !important;
-		}
-	}
-
-	/* Mobile-specific optimizations */
-	@media screen and (max-width: 768px) {
-		/* Better touch targets */
-		button, a, input, textarea, select {
-			min-height: 44px;
-			touch-action: manipulation;
-		}
-
-		/* Improved typography for mobile */
-		h1 { font-size: 2rem; line-height: 1.2; }
-		h2 { font-size: 1.75rem; line-height: 1.3; }
-		h3 { font-size: 1.5rem; line-height: 1.4; }
-		h4 { font-size: 1.25rem; line-height: 1.4; }
-		
-		/* Better spacing for mobile */
-		.container {
-			padding-left: var(--mobile-padding);
-			padding-right: var(--mobile-padding);
-		}
-
-		/* Optimize grid layouts for mobile */
-		.grid {
-			gap: 1rem;
-		}
-
-		/* Better form inputs on mobile */
-		input, textarea, select {
-			font-size: 16px; /* Prevents zoom on iOS */
-			border-radius: 8px;
-			padding: 12px;
-		}
-
-		/* Improve readability */
-		p, li {
-			font-size: 1rem;
-			line-height: 1.6;
-		}
-	}
-
-	/* Small mobile devices */
-	@media screen and (max-width: 480px) {
-		:root {
-			--mobile-padding: var(--mobile-padding-sm);
-		}
-
-		/* Tighter spacing on small screens */
-		.container {
-			padding-left: var(--mobile-padding-sm);
-			padding-right: var(--mobile-padding-sm);
-		}
-
-		/* Smaller typography */
-		h1 { font-size: 1.75rem; }
-		h2 { font-size: 1.5rem; }
-		h3 { font-size: 1.25rem; }
-
-		/* Tighter grid gaps */
-		.grid {
-			gap: 0.75rem;
-		}
-	}
-
-	/* Landscape mobile optimization */
-	@media screen and (max-height: 500px) and (orientation: landscape) {
-		/* Reduce vertical spacing in landscape */
-		.py-24 { padding-top: 3rem; padding-bottom: 3rem; }
-		.py-16 { padding-top: 2rem; padding-bottom: 2rem; }
-		.py-12 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
-	}
-
-	/* iOS specific optimizations */
-	@supports (-webkit-touch-callout: none) {
-		/* iOS Safari optimizations */
-		body {
-			-webkit-touch-callout: none;
-			-webkit-user-select: none;
-		}
-
-		/* Allow text selection where needed */
-		p, h1, h2, h3, h4, h5, h6 {
-			-webkit-user-select: text;
-			user-select: text;
-		}
-
-		/* Fix iOS viewport issues */
-		body {
-			min-height: -webkit-fill-available;
-		}
-	}
-
-	/* Android specific optimizations */
-	@media screen and (-webkit-min-device-pixel-ratio: 1.5) and (max-width: 768px) {
-		/* Better rendering on Android */
-		* {
-			-webkit-tap-highlight-color: rgba(255, 185, 25, 0.2);
-		}
-	}
-
-	/* Performance optimizations for mobile */
-	@media screen and (max-width: 768px) {
-		/* Reduce animations on mobile for better performance */
-		[data-animate] {
-			transition-duration: 0.3s;
-		}
-
-		/* Optimize transforms for mobile */
-		.transform {
-			will-change: transform;
-			-webkit-backface-visibility: hidden;
-			backface-visibility: hidden;
-		}
-	}
-
-	/* High contrast mode support */
-	@media (prefers-contrast: high) {
-		/* Improve contrast for accessibility */
-		.bg-white\/90 {
-			background-color: white;
-		}
-		
-		.text-gray-700 {
-			color: black;
-		}
-	}
-
-	/* Focus improvements for mobile keyboard navigation */
-	@media screen and (max-width: 768px) {
-		:focus {
-			outline: 2px solid #ffb919;
-			outline-offset: 2px;
-		}
-
-		/* Better focus indicators for touch */
-		button:focus, a:focus {
-			background-color: rgba(255, 185, 25, 0.1);
-		}
-	}
-
-	
-</style>

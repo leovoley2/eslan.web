@@ -2,54 +2,27 @@
 import Layout from '../layouts/Layout.astro';
 import Video from '../components/Video.astro';
 import Intro from '../components/Intro.astro';
+import Reservas from '../components/Reservas.astro';
 import Bento from '../components/Bento.astro';
-import PreFooter from '../components/PreFooter.astro';
-import Footer from '../components/Footer.astro';
+import Action from '../components/Callaction.astro';
 import Precios from '../components/Precios.astro';
 import Equipo from '../components/equipo.astro';
+import PreFooter from '../components/PreFooter.astro';
 import Testimonio from '../components/testimonio.astro';
 import Cliente from '../components/Cliente.astro';
-import Action from '../components/Callaction.astro';
-import Reservas from '../components/Reservas.astro';
-
-
-
 ---
 
-<Layout title="Arena Voleibol club - Inicio" description="Descubre y aprende voleibol de playa en Lima Perú">
+<Layout title="Arena Voleibol Club · Escuela de vóley playa en Lima" description="Clases de voleibol de playa en Lima para todos los niveles. Entrenadores certificados FIVB en Chorrillos y Surco. Reserva tu clase en línea.">
 	<Video />
 	<main id="main">
-	<div data-animate="fade-up" data-delay="200">
-		<Cliente />
-	</div>
-	<div data-animate="fade-up" data-delay="300">
 		<Intro />
-	</div>
-	<div data-animate="fade-up" data-delay="200">
 		<Reservas />
-	</div>
-	<div data-animate="scale" data-delay="400">
 		<Bento />
-	</div>
-	<div data-animate="fade-left" data-delay="200">
 		<Action />
-	</div>
-	<div data-animate="fade-up" data-delay="300">
 		<Precios />
-	</div>
-	<div data-animate="fade-right" data-delay="200">
 		<Equipo />
-	</div>
-	<div data-animate="fade-up" data-delay="300">
 		<PreFooter />
-	</div>
-	<div data-animate="slide-up" data-delay="400">
 		<Testimonio />
-	</div>
+		<Cliente />
 	</main>
 </Layout>
-
-
-<style>
-	
-</style>

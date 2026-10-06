@@ -1,0 +1,30 @@
+---
+// Encabezado común de las páginas internas
+interface Props {
+  eyebrow: string;
+  title: string;
+  description?: string;
+  image?: string;
+}
+
+const { eyebrow, title, description, image } = Astro.props;
+---
+
+<section class:list={['relative isolate overflow-hidden', image ? 'bg-brand-950' : 'border-b border-ink-100 bg-sand-50']}>
+  {image && (
+    <>
+      <img src={image} alt="" aria-hidden="true" class="absolute inset-0 -z-10 h-full w-full object-cover" />
+      <div class="absolute inset-0 -z-10 bg-gradient-to-r from-brand-950/90 via-brand-950/70 to-brand-950/30" aria-hidden="true"></div>
+    </>
+  )}
+  <div class="container-site py-16 sm:py-24">
+    <div class="max-w-2xl">
+      <p class={image ? 'eyebrow-light' : 'eyebrow'}>{eyebrow}</p>
+      <h1 class:list={['mt-3 text-4xl font-extrabold leading-[1.1] sm:text-5xl', image && 'text-white']}>{title}</h1>
+      {description && (
+        <p class:list={['mt-5 text-base leading-relaxed sm:text-lg', image ? 'text-white/75' : 'text-ink-500']}>{description}</p>
+      )}
+      <slot />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-white font-sans text-ink-800 antialiased;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-white;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display text-ink-900;
+    letter-spacing: -0.02em;
+  }
+
+  /* Deja espacio para el menú fijo al saltar a una sección */
+  [id] {
+    scroll-margin-top: 5rem;
+  }
+
+  ::selection {
+    @apply bg-accent-300 text-ink-900;
+  }
+
+  :focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-brand-500;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* ── Layout ── */
+  .container-site {
+    @apply mx-auto w-full max-w-site px-4 sm:px-6 lg:px-8;
+  }
+
+  .section {
+    @apply py-16 sm:py-24;
+  }
+
+  /* ── Encabezados de sección ── */
+  .eyebrow {
+    @apply inline-block text-xs font-semibold uppercase tracking-eyebrow text-brand-600;
+  }
+
+  .eyebrow-light {
+    @apply inline-block text-xs font-semibold uppercase tracking-eyebrow text-accent-400;
+  }
+
+  .title-section {
+    @apply mt-3 text-3xl font-extrabold leading-tight sm:text-4xl;
+  }
+
+  .lead {
+    @apply mt-4 text-base leading-relaxed text-ink-500 sm:text-lg;
+  }
+
+  /* ── Botones ── */
+  .btn {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-colors duration-200 focus-visible:outline-offset-4 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .btn-primary {
+    @apply btn bg-brand-700 text-white hover:bg-brand-800;
+  }
+
+  .btn-accent {
+    @apply btn bg-accent-400 text-ink-900 hover:bg-accent-300;
+  }
+
+  .btn-secondary {
+    @apply btn border border-ink-200 bg-white text-ink-800 hover:border-ink-300 hover:bg-ink-50;
+  }
+
+  .btn-outline-light {
+    @apply btn border border-white/30 text-white hover:border-white/60 hover:bg-white/10;
+  }
+
+  .link-arrow {
+    @apply inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 transition-colors hover:text-brand-800;
+  }
+
+  /* ── Tarjetas ── */
+  .card {
+    @apply rounded-xl border border-ink-100 bg-white;
+  }
+
+  .card-hover {
+    @apply card transition-colors duration-200 hover:border-ink-200;
+  }
+
+  .icon-tile {
+    @apply flex h-10 w-10 flex-none items-center justify-center rounded-lg bg-brand-50 text-brand-600;
+  }
+
+  /* ── Formularios ── */
+  .field-label {
+    @apply mb-1.5 block text-sm font-medium text-ink-700;
+  }
+
+  .field-input {
+    @apply block w-full rounded-lg border border-ink-200 bg-white px-3.5 py-2.5 text-base text-ink-900 placeholder:text-ink-400 transition-colors focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-100 sm:text-sm;
+  }
+}
+
+/* ── Animación de entrada al hacer scroll ── */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-animate].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-animate] {
+    opacity: 1;
+    transform: none;
+  }
+}

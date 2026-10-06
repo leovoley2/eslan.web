@@ -1,20 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Icon from '../components/Icon.astro';
 
 const locations = [
   {
     id: 'sede1',
     name: 'Sede Chorrillos',
     subtitle: 'Playa Agua Dulce',
-    address: 'Playa Agua dulce, Chorrillos',
+    address: 'Playa Agua Dulce, Chorrillos',
     phone: '929 418 895',
-    schedule: 'Lun · Mié · Vie  Sab: 6:30 - 8:30 AM',
+    schedule: 'Lun · Mié · Vie · Sáb, 6:30 – 8:30 a. m.',
     email: 'arenavoleibolclub@gmail.com',
     mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.7!2d-77.0227!3d-12.1764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105b7e14f5e8a4d%3A0x0!2sPlaya+Agua+Dulce!5e0!3m2!1ses!2spe!4v1700000000000',
     mapDir: 'https://www.google.com/maps/dir/?api=1&destination=Playa+Agua+dulce+Chorrillos',
     whatsapp: 'https://wa.me/51929418895?text=Hola!%20Estoy%20interesado%20en%20la%20Sede%20Chorrillos',
     images: [
-      { url: '/IMG_2639.jpg', label: 'Cancha Principal' },
+      { url: '/IMG_2639.jpg', label: 'Cancha principal' },
       { url: '/IMG_2640.jpg', label: 'Área de entrenamiento' },
       { url: '/IMG_20240214_091235_Original.JPG', label: 'Amanecer en la playa' },
     ]
@@ -25,7 +27,7 @@ const locations = [
     subtitle: 'Jr. Progreso 576',
     address: 'Jr. Progreso 576, Surco',
     phone: '929 418 895',
-    schedule: 'Mar · Jue: 6:00 - 8:00 PM',
+    schedule: 'Mar · Jue, 6:00 – 8:00 p. m.',
     email: 'arenavoleibolclub@gmail.com',
     mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.2!2d-76.9913!3d-12.1495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c77e0bea2a43%3A0x3fc94a78b6f0756b!2sJr.+Progreso+576+Surco!5e0!3m2!1ses!2spe!4v1700000000001',
     mapDir: 'https://www.google.com/maps/dir/?api=1&destination=Jr.+Progreso+576+Surco',
@@ -39,231 +41,181 @@ const locations = [
 ];
 ---
 
-<Layout title="Arena Voleibol Club - Contacto" description="Contáctanos y comienza la diversión con el voleibol de playa. Sedes en Chorrillos y Surco." hideFooterForm={true}>
+<Layout title="Contacto · Arena Voleibol Club" description="Contáctanos y comienza a jugar voleibol de playa. Sedes en Chorrillos y Surco, Lima." hideFooterForm={true}>
+  <PageHeader
+    eyebrow="Contacto"
+    title="Hablemos de voleibol"
+    description="Dos sedes listas para recibirte. Elige la más cercana y únete a la comunidad Arena."
+  />
 
-  <!-- ===== HERO ===== -->
-  <section class="contact-hero">
-    <div class="hero-bg-shapes">
-      <div class="shape shape-1"></div>
-      <div class="shape shape-2"></div>
-      <div class="shape shape-3"></div>
-    </div>
-    <div class="hero-content">
-      <span class="hero-badge">📍 Encuéntranos</span>
-      <h1 class="hero-title">Hablemos de <span class="hero-accent">Voleibol</span></h1>
-      <p class="hero-desc">Dos sedes listas para recibírtе. Elige la más cercana y únete a la comunidad Arena.</p>
-    </div>
-    <div class="hero-wave">
-      <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-        <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#f8f9fa"/>
-      </svg>
-    </div>
-  </section>
+  <main>
+    <!-- Sedes -->
+    <section class="section bg-white">
+      <div class="container-site">
+        <div class="inline-flex rounded-full border border-ink-200 bg-sand-50 p-1" role="tablist" aria-label="Sedes">
+          {locations.map((loc, i) => (
+            <button
+              type="button"
+              class={`sede-tab ${i === 0 ? 'active' : ''}`}
+              data-tab={loc.id}
+              id={`tab-${loc.id}`}
+              role="tab"
+              aria-selected={i === 0 ? 'true' : 'false'}
+              aria-controls={`panel-${loc.id}`}
+              tabindex={i === 0 ? 0 : -1}
+            >
+              {loc.name}
+            </button>
+          ))}
+        </div>
 
-  <!-- ===== SEDES TABS ===== -->
-  <section class="sedes-section">
-    <div class="container">
-
-      <!-- Tab buttons -->
-      <div class="sede-tabs" role="tablist">
         {locations.map((loc, i) => (
-          <button
-            class={`sede-tab ${i === 0 ? 'active' : ''}`}
-            data-tab={loc.id}
-            role="tab"
-            aria-selected={i === 0 ? 'true' : 'false'}
-          >
-            <span class="tab-icon">🏐</span>
-            <div>
-              <span class="tab-name">{loc.name}</span>
-              <span class="tab-sub">{loc.subtitle}</span>
-            </div>
-          </button>
-        ))}
-      </div>
+          <div id={`panel-${loc.id}`} class={`sede-panel mt-8 ${i !== 0 ? 'hidden' : ''}`} role="tabpanel" aria-labelledby={`tab-${loc.id}`}>
+            <div class="grid gap-6 lg:grid-cols-[1fr_1.2fr]">
 
-      <!-- Tab panels -->
-      {locations.map((loc, i) => (
-        <div id={`panel-${loc.id}`} class={`sede-panel ${i !== 0 ? 'hidden' : ''}`} role="tabpanel">
-          <div class="sede-grid">
+              <div class="card flex flex-col p-6 sm:p-8">
+                <h2 class="text-2xl font-extrabold">{loc.name}</h2>
+                <p class="mt-1 text-sm text-ink-500">{loc.subtitle}</p>
 
-            <!-- LEFT: Info + Map -->
-            <div class="info-col">
-              <div class="info-card">
-                <div class="info-header">
-                  <h2 class="info-name">{loc.name}</h2>
-                  <span class="info-badge">{loc.subtitle}</span>
-                </div>
-
-                <ul class="info-list">
-                  <li class="info-item">
-                    <span class="info-icon">📍</span>
+                <dl class="mt-6 flex-1 space-y-5">
+                  <div class="flex gap-4">
+                    <span class="icon-tile"><Icon name="map-pin" /></span>
                     <div>
-                      <span class="info-label">Dirección</span>
-                      <span class="info-value">{loc.address}</span>
-                    </div>
-                  </li>
-                  <li class="info-item">
-                    <span class="info-icon">📞</span>
-                    <div>
-                      <span class="info-label">Teléfono</span>
-                      <a href={`tel:+51${loc.phone.replace(/\s/g,'')}`} class="info-link">{loc.phone}</a>
-                    </div>
-                  </li>
-                  <li class="info-item">
-                    <span class="info-icon">🕐</span>
-                    <div>
-                      <span class="info-label">Horario</span>
-                      <span class="info-value">{loc.schedule}</span>
-                    </div>
-                  </li>
-                  <li class="info-item">
-                    <span class="info-icon">✉️</span>
-                    <div>
-                      <span class="info-label">Email</span>
-                      <a href={`mailto:${loc.email}`} class="info-link">{loc.email}</a>
-                    </div>
-                  </li>
-                </ul>
-
-                <div class="info-actions">
-                  <a href={loc.mapDir} target="_blank" rel="noopener noreferrer" class="btn-primary">
-                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-                    Cómo llegar
-                  </a>
-                  <a href={loc.whatsapp} target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
-                    <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.549 4.122 1.514 5.857L.042 23.25A.75.75 0 00.75 24h.033l5.519-1.444A11.936 11.936 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.716 9.716 0 01-4.946-1.352l-.354-.211-3.67.961.978-3.572-.23-.368A9.713 9.713 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z" fill-rule="evenodd" clip-rule="evenodd"/></svg>
-                    WhatsApp
-                  </a>
-                </div>
-              </div>
-
-              <!-- Map -->
-              <div class="map-card">
-                <iframe
-                  src={loc.mapEmbed}
-                  class="map-iframe"
-                  allowfullscreen=""
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
-                  title={`Mapa ${loc.name}`}
-                ></iframe>
-              </div>
-            </div>
-
-            <!-- RIGHT: Gallery + Form -->
-            <div class="right-col">
-              <!-- Gallery -->
-              <div class="gallery-grid">
-                {loc.images.map((img, idx) => (
-                  <div class={`gallery-item ${idx === 0 ? 'gallery-featured' : ''}`}>
-                    <img src={img.url} alt={img.label} loading="lazy" />
-                    <div class="gallery-overlay">
-                      <span>{img.label}</span>
+                      <dt class="text-sm text-ink-500">Dirección</dt>
+                      <dd class="font-medium text-ink-900">{loc.address}</dd>
                     </div>
                   </div>
-                ))}
+                  <div class="flex gap-4">
+                    <span class="icon-tile"><Icon name="clock" /></span>
+                    <div>
+                      <dt class="text-sm text-ink-500">Horario</dt>
+                      <dd class="font-medium text-ink-900">{loc.schedule}</dd>
+                    </div>
+                  </div>
+                  <div class="flex gap-4">
+                    <span class="icon-tile"><Icon name="phone" /></span>
+                    <div>
+                      <dt class="text-sm text-ink-500">Teléfono</dt>
+                      <dd><a href={`tel:+51${loc.phone.replace(/\s/g,'')}`} class="font-medium text-ink-900 hover:text-brand-600">{loc.phone}</a></dd>
+                    </div>
+                  </div>
+                  <div class="flex gap-4">
+                    <span class="icon-tile"><Icon name="mail" /></span>
+                    <div class="min-w-0">
+                      <dt class="text-sm text-ink-500">Correo</dt>
+                      <dd><a href={`mailto:${loc.email}`} class="break-all font-medium text-ink-900 hover:text-brand-600">{loc.email}</a></dd>
+                    </div>
+                  </div>
+                </dl>
+
+                <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <a href={loc.mapDir} target="_blank" rel="noopener noreferrer" class="btn-primary">
+                    <Icon name="map-pin" class="h-4 w-4" /> Cómo llegar
+                  </a>
+                  <a href={loc.whatsapp} target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                    Escribir por WhatsApp
+                  </a>
+                </div>
               </div>
+
+              <div class="grid gap-4">
+                <div class="overflow-hidden rounded-xl border border-ink-100 bg-sand-100">
+                  <iframe
+                    src={loc.mapEmbed}
+                    class="block h-64 w-full sm:h-72"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title={`Mapa de ${loc.name}`}
+                  ></iframe>
+                </div>
+                <div class="grid grid-cols-3 gap-4">
+                  {loc.images.map((img) => (
+                    <figure class="aspect-[4/3] overflow-hidden rounded-lg bg-sand-100">
+                      <img src={img.url} alt={img.label} loading="lazy" class="h-full w-full object-cover" />
+                    </figure>
+                  ))}
+                </div>
+              </div>
+
             </div>
-
           </div>
-        </div>
-      ))}
-    </div>
-  </section>
+        ))}
+      </div>
+    </section>
 
-  <!-- ===== CONTACT FORM ===== -->
-  <section class="form-section">
-    <div class="container">
-      <div class="form-wrapper">
-        <div class="form-left">
-          <span class="section-badge">💬 Escríbenos</span>
-          <h2 class="form-title">¿Tienes alguna<br/><span class="accent">pregunta?</span></h2>
-          <p class="form-desc">Completa el formulario y te respondemos a la brevedad.</p>
+    <!-- Formulario -->
+    <section class="section bg-sand-50">
+      <div class="container-site grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
+        <div>
+          <p class="eyebrow">Escríbenos</p>
+          <h2 class="title-section">¿Tienes alguna pregunta?</h2>
+          <p class="lead">Completa el formulario y te respondemos a la brevedad.</p>
 
-          <ul class="contact-quick">
-            <li>
-              <span class="q-icon">⚡</span>
-              <span>Respuesta en menos de 24 horas</span>
-            </li>
-            <li>
-              <span class="q-icon">🏐</span>
-              <span>Clases para todos los niveles</span>
-            </li>
-            <li>
-              <span class="q-icon">🌊</span>
-              <span>Voleibol de playa en Lima</span>
-            </li>
+          <ul class="mt-8 space-y-3">
+            <li class="flex items-center gap-3 text-sm text-ink-700"><Icon name="clock" class="h-5 w-5 text-brand-600" /> Respuesta en menos de 24 horas</li>
+            <li class="flex items-center gap-3 text-sm text-ink-700"><Icon name="users" class="h-5 w-5 text-brand-600" /> Clases para todos los niveles</li>
+            <li class="flex items-center gap-3 text-sm text-ink-700"><Icon name="sun" class="h-5 w-5 text-brand-600" /> Voleibol de playa en Lima</li>
           </ul>
+
+          <div class="mt-10 border-t border-ink-200 pt-6">
+            <p class="text-sm font-semibold text-ink-900">Síguenos en redes</p>
+            <div class="mt-3 flex gap-3">
+              <a href="https://www.instagram.com/arena_voleibolclub" target="_blank" rel="noopener noreferrer" class="btn-secondary !min-h-[40px] !px-4 !py-2">Instagram</a>
+              <a href="https://www.facebook.com/p/Arena-voleibol-club-100092486123346/" target="_blank" rel="noopener noreferrer" class="btn-secondary !min-h-[40px] !px-4 !py-2">Facebook</a>
+            </div>
+          </div>
         </div>
 
-        <div class="form-right">
-          <form id="contactFormPage" class="contact-form" novalidate>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="cf-name">Nombre completo</label>
-                <input type="text" id="cf-name" name="name" placeholder="Tu nombre" required autocomplete="name"/>
+        <div class="card p-6 sm:p-8">
+          <form id="contactFormPage" class="grid gap-5" novalidate>
+            <div class="grid gap-5 sm:grid-cols-2">
+              <div>
+                <label for="cf-name" class="field-label">Nombre completo</label>
+                <input type="text" id="cf-name" name="name" placeholder="Tu nombre" required autocomplete="name" class="field-input" />
               </div>
-              <div class="form-group">
-                <label for="cf-email">Correo electrónico</label>
-                <input type="email" id="cf-email" name="email" placeholder="tu@email.com" required autocomplete="email"/>
+              <div>
+                <label for="cf-email" class="field-label">Correo electrónico</label>
+                <input type="email" id="cf-email" name="email" placeholder="tu@email.com" required autocomplete="email" class="field-input" />
               </div>
             </div>
-            <div class="form-group">
-              <label for="cf-phone">Teléfono (opcional)</label>
-              <input type="tel" id="cf-phone" name="phone" placeholder="+51 999 000 000" autocomplete="tel"/>
+            <div class="grid gap-5 sm:grid-cols-2">
+              <div>
+                <label for="cf-phone" class="field-label">Teléfono <span class="font-normal text-ink-400">(opcional)</span></label>
+                <input type="tel" id="cf-phone" name="phone" placeholder="+51 999 000 000" autocomplete="tel" class="field-input" />
+              </div>
+              <div>
+                <label for="cf-interest" class="field-label">¿Qué te interesa?</label>
+                <select id="cf-interest" name="interest" class="field-input">
+                  <option value="">Selecciona una opción</option>
+                  <option value="clases">Clases de voleibol</option>
+                  <option value="clinicas">Clínicas y talleres</option>
+                  <option value="torneos">Torneos</option>
+                  <option value="otro">Otro</option>
+                </select>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="cf-interest">¿En qué estás interesado?</label>
-              <select id="cf-interest" name="interest">
-                <option value="">Selecciona una opción</option>
-                <option value="clases">Clases de voleibol</option>
-                <option value="clinicas">Clínicas y talleres</option>
-                <option value="torneos">Torneos</option>
-                <option value="otro">Otro</option>
-              </select>
+            <div>
+              <label for="cf-message" class="field-label">Mensaje</label>
+              <textarea id="cf-message" name="message" rows="5" placeholder="Cuéntanos qué necesitas…" required class="field-input resize-y"></textarea>
             </div>
-            <div class="form-group">
-              <label for="cf-message">Mensaje</label>
-              <textarea id="cf-message" name="message" rows="4" placeholder="Cuéntanos más sobre lo que necesitas..." required></textarea>
+            <div>
+              <button type="submit" class="btn-primary w-full sm:w-auto" id="form-submit-btn">
+                <span class="btn-text">Enviar mensaje</span>
+                <Icon name="send" class="h-4 w-4" />
+              </button>
             </div>
-            <button type="submit" class="form-submit" id="form-submit-btn">
-              <span class="btn-text">Enviar mensaje</span>
-              <svg class="btn-arrow" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
-            </button>
           </form>
-          <div id="form-success" class="form-success hidden">
-            <span class="success-icon">✅</span>
-            <h3>¡Mensaje enviado!</h3>
-            <p>Gracias por escribirnos. Te contactaremos pronto.</p>
+
+          <div id="form-success" class="hidden py-8 text-center" role="status">
+            <span class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-success-50 text-success-600"><Icon name="check" class="h-6 w-6" /></span>
+            <h3 class="mt-4 text-xl font-bold">¡Mensaje enviado!</h3>
+            <p class="mt-2 text-sm text-ink-500">Gracias por escribirnos. Te contactaremos pronto.</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ===== SOCIAL CTA ===== -->
-  <section class="social-section">
-    <div class="container">
-      <div class="social-card">
-        <div class="social-text">
-          <h3>Síguenos en redes</h3>
-          <p>Mira nuestros entrenamientos, torneos y mucho más</p>
-        </div>
-        <div class="social-links">
-          <a href="https://www.instagram.com/arena_voleibolclub" target="_blank" rel="noopener noreferrer" class="social-btn instagram">
-            <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            Instagram
-          </a>
-          <a href="https://www.facebook.com/p/Arena-voleibol-club-100092486123346/" target="_blank" rel="noopener noreferrer" class="social-btn facebook">
-            <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            Facebook
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
+    </section>
+  </main>
 </Layout>
 
 <script>
@@ -275,10 +227,11 @@ const locations = [
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
         const targetId = tab.dataset.tab;
-        tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+        tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); t.tabIndex = -1; });
         panels.forEach(p => p.classList.add('hidden'));
         tab.classList.add('active');
         tab.setAttribute('aria-selected', 'true');
+        tab.tabIndex = 0;
         document.getElementById(`panel-${targetId}`)?.classList.remove('hidden');
       });
     });
@@ -390,563 +343,27 @@ const locations = [
     });
   });
 </script>
-
 <style>
-/* =======================================
-   VARIABLES & BASE
-======================================= */
-:root {
-  --navy: #01577a;
-  --navy-dark: #023d55;
-  --amber: #ffb919;
-  --amber-light: #ffd166;
-  --white: #ffffff;
-  --gray-50: #f8f9fa;
-  --gray-100: #f1f3f5;
-  --gray-400: #adb5bd;
-  --gray-600: #6c757d;
-  --gray-800: #343a40;
-  --radius-lg: 1.5rem;
-  --radius-xl: 2rem;
-  --shadow-md: 0 4px 24px rgba(1,87,122,0.10);
-  --shadow-lg: 0 8px 40px rgba(1,87,122,0.15);
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-/* =======================================
-   HERO
-======================================= */
-.contact-hero {
-  position: relative;
-  background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, #025f88 100%);
-  padding: 8rem 1.5rem 5rem;
-  overflow: hidden;
-  text-align: center;
-}
-
-.hero-bg-shapes { position: absolute; inset: 0; pointer-events: none; }
-.shape {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255,185,25,0.08);
-}
-.shape-1 { width: 500px; height: 500px; top: -200px; right: -150px; }
-.shape-2 { width: 300px; height: 300px; bottom: -100px; left: -80px; background: rgba(255,255,255,0.04); }
-.shape-3 { width: 200px; height: 200px; top: 50%; right: 25%; transform: translateY(-50%); }
-
-.hero-content { position: relative; z-index: 2; }
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  background: rgba(255,185,25,0.15);
-  border: 1px solid rgba(255,185,25,0.3);
-  color: var(--amber);
-  padding: 0.4rem 1rem;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  margin-bottom: 1.5rem;
-}
-
-.hero-title {
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
-  font-weight: 900;
-  color: var(--white);
-  line-height: 1.1;
-  margin-bottom: 1rem;
-  letter-spacing: -0.02em;
-}
-.hero-accent { color: var(--amber); }
-
-.hero-desc {
-  font-size: 1.1rem;
-  color: rgba(255,255,255,0.75);
-  max-width: 520px;
-  margin: 0 auto;
-  line-height: 1.7;
-}
-
-.hero-wave {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  line-height: 0;
-}
-.hero-wave svg { width: 100%; height: 70px; display: block; }
-
-/* =======================================
-   SEDES SECTION
-======================================= */
-.sedes-section {
-  background: var(--gray-50);
-  padding: 4rem 0 5rem;
-}
-
-/* Tabs */
-.sede-tabs {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 2.5rem;
-  flex-wrap: wrap;
-}
-
-.sede-tab {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  padding: 0.8rem 1.5rem;
-  border-radius: var(--radius-lg);
-  border: 2px solid transparent;
-  background: var(--white);
-  cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: var(--shadow-md);
-  text-align: left;
-}
-.sede-tab:hover {
-  border-color: var(--navy);
-  transform: translateY(-2px);
-}
-.sede-tab.active {
-  background: var(--navy);
-  border-color: var(--navy);
-  box-shadow: 0 8px 24px rgba(1,87,122,0.3);
-}
-.tab-icon { font-size: 1.4rem; }
-.tab-name {
-  display: block;
-  font-weight: 700;
-  font-size: 1rem;
-  color: var(--gray-800);
-}
-.sede-tab.active .tab-name { color: var(--white); }
-.tab-sub {
-  display: block;
-  font-size: 0.8rem;
-  color: var(--gray-600);
-}
-.sede-tab.active .tab-sub { color: rgba(255,255,255,0.7); }
-
-/* Panel */
-.sede-panel.hidden { display: none; }
-
-.sede-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  align-items: start;
-}
-
-/* Info Card */
-.info-col { display: flex; flex-direction: column; gap: 1.5rem; }
-
-.info-card {
-  background: var(--white);
-  border-radius: var(--radius-xl);
-  padding: 2rem;
-  box-shadow: var(--shadow-lg);
-  border: 1px solid rgba(1,87,122,0.08);
-}
-
-.info-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.75rem;
-  flex-wrap: wrap;
-}
-.info-name {
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: var(--navy);
-  margin: 0;
-}
-.info-badge {
-  background: rgba(255,185,25,0.15);
-  color: #a87000;
-  border: 1px solid rgba(255,185,25,0.4);
-  padding: 0.25rem 0.75rem;
-  border-radius: 999px;
-  font-size: 0.78rem;
-  font-weight: 600;
-}
-
-.info-list { list-style: none; padding: 0; margin: 0 0 1.75rem; display: flex; flex-direction: column; gap: 1rem; }
-.info-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.9rem;
-  padding: 0.75rem 1rem;
-  background: var(--gray-50);
-  border-radius: 0.75rem;
-  border-left: 3px solid var(--amber);
-}
-.info-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.05rem; }
-.info-label {
-  display: block;
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--gray-600);
-  font-weight: 600;
-  margin-bottom: 0.15rem;
-}
-.info-value { display: block; font-size: 0.95rem; color: var(--gray-800); font-weight: 500; }
-.info-link {
-  display: block;
-  font-size: 0.95rem;
-  color: var(--navy);
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.info-link:hover { color: var(--amber); }
-
-.info-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-
-.btn-primary {
-  flex: 1;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.8rem 1.2rem;
-  background: var(--navy);
-  color: var(--white);
-  border-radius: 0.875rem;
-  font-weight: 700;
-  font-size: 0.9rem;
-  text-decoration: none;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 14px rgba(1,87,122,0.3);
-}
-.btn-primary:hover {
-  background: var(--navy-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(1,87,122,0.35);
-}
-
-.btn-whatsapp {
-  flex: 1;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.8rem 1.2rem;
-  background: #25d366;
-  color: var(--white);
-  border-radius: 0.875rem;
-  font-weight: 700;
-  font-size: 0.9rem;
-  text-decoration: none;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 14px rgba(37,211,102,0.3);
-}
-.btn-whatsapp:hover {
-  background: #1da851;
-  transform: translateY(-2px);
-}
-
-/* Map */
-.map-card {
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
-  border: 3px solid var(--white);
-  height: 260px;
-}
-.map-iframe { width: 100%; height: 100%; border: none; display: block; }
-
-/* Gallery */
-.right-col { display: flex; flex-direction: column; gap: 1.5rem; }
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 220px 150px;
-  gap: 0.75rem;
-}
-.gallery-item {
-  position: relative;
-  overflow: hidden;
-  border-radius: 1rem;
-  cursor: pointer;
-  box-shadow: var(--shadow-md);
-}
-.gallery-item.gallery-featured {
-  grid-column: 1 / -1;
-  border-radius: 1.25rem;
-}
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-.gallery-item:hover img { transform: scale(1.07); }
-.gallery-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(1,87,122,0.75) 0%, transparent 60%);
-  display: flex;
-  align-items: flex-end;
-  padding: 1rem;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-.gallery-item:hover .gallery-overlay { opacity: 1; }
-.gallery-overlay span {
-  color: var(--white);
-  font-weight: 700;
-  font-size: 0.9rem;
-}
-
-/* =======================================
-   FORM SECTION
-======================================= */
-.form-section {
-  background: var(--navy-dark);
-  padding: 5rem 0;
-  position: relative;
-  overflow: hidden;
-}
-.form-section::before {
-  content: '';
-  position: absolute;
-  top: -150px; right: -150px;
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(255,185,25,0.12) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.form-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 4rem;
-  align-items: start;
-}
-
-.section-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  background: rgba(255,185,25,0.15);
-  border: 1px solid rgba(255,185,25,0.3);
-  color: var(--amber);
-  padding: 0.4rem 1rem;
-  border-radius: 999px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  margin-bottom: 1.25rem;
-}
-
-.form-title {
-  font-size: clamp(1.8rem, 3vw, 2.8rem);
-  font-weight: 900;
-  color: var(--white);
-  line-height: 1.15;
-  margin-bottom: 1rem;
-}
-.form-title .accent { color: var(--amber); }
-
-.form-desc {
-  font-size: 1rem;
-  color: rgba(255,255,255,0.65);
-  line-height: 1.7;
-  margin-bottom: 2rem;
-}
-
-.contact-quick { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.85rem; }
-.contact-quick li {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  color: rgba(255,255,255,0.8);
-  font-size: 0.95rem;
-}
-.q-icon { font-size: 1.1rem; flex-shrink: 0; }
-
-/* Form */
-.form-right {
-  background: var(--white);
-  border-radius: var(--radius-xl);
-  padding: 2.5rem;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-}
-
-.contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
-
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-
-.form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-.form-group label {
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--gray-800);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-.form-group input,
-.form-group select,
-.form-group textarea {
-  padding: 0.8rem 1rem;
-  border: 2px solid var(--gray-100);
-  border-radius: 0.75rem;
-  font-size: 0.95rem;
-  color: var(--gray-800);
-  background: var(--gray-50);
-  transition: all 0.2s ease;
-  outline: none;
-  width: 100%;
-  box-sizing: border-box;
-  font-family: inherit;
-}
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  border-color: var(--navy);
-  background: var(--white);
-  box-shadow: 0 0 0 4px rgba(1,87,122,0.1);
-}
-.form-group textarea { resize: none; }
-
-.form-submit {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  padding: 1rem 2rem;
-  background: linear-gradient(135deg, var(--amber) 0%, #f5a800 100%);
-  color: var(--navy-dark);
-  border: none;
-  border-radius: 0.875rem;
-  font-size: 1rem;
-  font-weight: 800;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 20px rgba(255,185,25,0.4);
-  margin-top: 0.5rem;
-}
-.form-submit:hover:not(:disabled) {
-  background: linear-gradient(135deg, #ffc233 0%, var(--amber) 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(255,185,25,0.5);
-}
-.form-submit:disabled { opacity: 0.65; cursor: not-allowed; }
-.btn-arrow { flex-shrink: 0; }
-
-.form-success {
-  text-align: center;
-  padding: 2rem 1rem;
-}
-.form-success.hidden { display: none; }
-.success-icon { font-size: 3rem; display: block; margin-bottom: 1rem; }
-.form-success h3 {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--navy);
-  margin-bottom: 0.5rem;
-}
-.form-success p { color: var(--gray-600); }
-
-/* Inline validation */
-.field-error {
-  display: block;
-  color: #dc2626;
-  font-size: 0.8rem;
-  font-weight: 600;
-  margin-top: 0.35rem;
-  padding-left: 0.25rem;
-}
-.field-invalid {
-  border-color: #dc2626 !important;
-  box-shadow: 0 0 0 3px rgba(220,38,38,0.12) !important;
-}
-
-
-/* =======================================
-   SOCIAL SECTION
-======================================= */
-.social-section {
-  background: var(--gray-50);
-  padding: 3rem 0;
-}
-
-.social-card {
-  background: var(--white);
-  border-radius: var(--radius-xl);
-  padding: 2rem 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  box-shadow: var(--shadow-md);
-  border: 1px solid rgba(1,87,122,0.07);
-  flex-wrap: wrap;
-}
-.social-text h3 {
-  font-size: 1.3rem;
-  font-weight: 800;
-  color: var(--navy);
-  margin-bottom: 0.25rem;
-}
-.social-text p { color: var(--gray-600); font-size: 0.95rem; }
-
-.social-links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-.social-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.7rem 1.4rem;
-  border-radius: 0.875rem;
-  font-weight: 700;
-  font-size: 0.9rem;
-  text-decoration: none;
-  transition: all 0.25s ease;
-}
-.social-btn.instagram {
-  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-  color: var(--white);
-  box-shadow: 0 4px 14px rgba(220,39,67,0.3);
-}
-.social-btn.facebook {
-  background: #1877f2;
-  color: var(--white);
-  box-shadow: 0 4px 14px rgba(24,119,242,0.3);
-}
-.social-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
-
-/* =======================================
-   RESPONSIVE
-======================================= */
-@media (max-width: 900px) {
-  .sede-grid { grid-template-columns: 1fr; }
-  .form-wrapper { grid-template-columns: 1fr; gap: 3rem; }
-  .form-left { text-align: center; }
-  .contact-quick { align-items: center; }
-}
-
-@media (max-width: 640px) {
-  .form-row { grid-template-columns: 1fr; }
-  .gallery-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
+  .sede-tab {
+    min-height: 40px;
+    border-radius: 9999px;
+    padding: 0.5rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #4B555D;
+    transition: background-color 0.2s, color 0.2s;
   }
-  .gallery-item.gallery-featured { grid-column: auto; }
-  .info-actions { flex-direction: column; }
-  .btn-primary, .btn-whatsapp { flex: none; width: 100%; }
-  .social-card { flex-direction: column; text-align: center; }
-  .sede-tabs { flex-direction: column; }
-  .sede-tab { width: 100%; }
-}
+  .sede-tab:hover { color: #141A1F; }
+  .sede-tab[aria-selected='true'] {
+    background: #fff;
+    color: #074863;
+    box-shadow: 0 1px 2px rgb(20 26 31 / 0.08);
+  }
+  :global(.field-invalid) { border-color: #B42318 !important; }
+  :global(.field-error) {
+    display: block;
+    margin-top: 0.35rem;
+    font-size: 0.8rem;
+    color: #B42318;
+  }
 </style>

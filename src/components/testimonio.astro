@@ -1,81 +1,62 @@
-<!-- component -->
-<section class="relative z-10 overflow-hidden py-16 sm:py-24 px-6" style="background: linear-gradient(180deg, #0a3d52 0%, #0d4a6b 100%);">
-  
-  <!-- Grid overlay -->
-  <div class="absolute inset-0 pointer-events-none opacity-5"
-    style="background-image: repeating-linear-gradient(0deg, transparent, transparent 40px, #fff 40px, #fff 41px), repeating-linear-gradient(90deg, transparent, transparent 40px, #fff 40px, #fff 41px);">
-  </div>
+---
+const destacado = {
+  nombre: 'Jesus Villafañe',
+  rol: 'Jugador olímpico',
+  foto: '/jesus.jpg',
+  texto: 'El voleibol de playa es un deporte muy bonito que te da muchas oportunidades. Si quieres aprender un poco más, en Arena Voleibol Club puedes lograr ser un buen jugador, con un equipo de profesionales preparados para enseñarte.',
+};
 
-  <!-- Amber glow -->
-  <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-96 h-56 rounded-full opacity-20 pointer-events-none"
-    style="background: radial-gradient(circle, rgba(255,185,25,0.6) 0%, transparent 70%); filter: blur(50px);"></div>
+const otros = [
+  {
+    nombre: 'Lucelia Almeida',
+    rol: 'Entrenadora · Chile',
+    foto: '/lucelia.jpg',
+    texto: 'Arena Voleibol Club es la escuela más indicada para aprender y perfeccionarse en el voleibol de playa en Perú: cuenta con grandes profesionales y mucha experiencia.',
+  },
+  {
+    nombre: 'Mauro Hernandez',
+    rol: 'Instructor FIVB · Venezuela',
+    foto: '/mauro.jpg',
+    texto: 'Es de gran importancia el desarrollo de academias donde se pueda practicar el voleibol de playa. Como entrenador e instructor me llena de alegría ver el trabajo de Arena Voleibol Club en Perú.',
+  },
+];
+---
 
-  <div class="relative z-10 container mx-auto">
-    
-    <!-- Header -->
-    <div class="text-center mb-14">
-      <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-4">
-        <span class="text-white/80 text-xs font-semibold tracking-widest uppercase">Lo que dicen de nosotros</span>
-      </div>
-      <h2 class="text-4xl sm:text-5xl font-black text-white">Testimonios</h2>
-      <div class="mt-4 flex justify-center gap-2">
-        <span class="inline-block h-1 w-20 rounded-full" style="background: #FFB923;"></span>
-        <span class="inline-block h-1 w-4 rounded-full bg-white/30;"></span>
-      </div>
+<section class="section bg-white">
+  <div class="container-site">
+    <div class="max-w-2xl">
+      <p class="eyebrow">Testimonios</p>
+      <h2 class="title-section">Lo que dicen de nosotros</h2>
     </div>
 
-    <div class="grid gap-8 md:grid-rows-2 lg:grid-cols-2">
-      
-      <!-- Main testimonial (large) -->
-      <div class="row-span-2 bg-white rounded-3xl shadow-[0_8px_40px_0_rgba(0,0,0,0.3)] border-t-4 text-center relative overflow-hidden group hover:-translate-y-2 transition-all duration-500" style="border-top-color: #FFB923;">
-        <div class="h-full flex flex-col justify-center p-8 sm:p-10 space-y-6">
-          <div class="relative w-24 h-24 mx-auto">
-            <img class="w-full h-full rounded-full object-cover ring-4 ring-amber-400 shadow-lg" src="/jesus.jpg" alt="Jesus Villafañe" loading="lazy">
-          </div>
-          <div class="text-5xl text-amber-400 font-serif leading-none opacity-60 -mb-4">"</div>
-          <p class="text-gray-800 md:text-xl font-medium leading-relaxed">
-            El voleibol de playa es un deporte muy bonito te da muchas oportunidades, si quieres aprender un poco más en Arena Voleibol Club puedes lograr ser un buen jugador, además con un equipo de profesionales preparados para enseñarte.
-          </p>
-          <div class="pt-4 border-t border-gray-100">
-            <h6 class="text-xl font-black text-gray-900 mb-1">Jesus Villafañe</h6>
-            <span class="text-sm font-bold" style="color: #1B9EAA;">Jugador Olímpico</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Secondary testimonials -->
-      <div class="bg-white rounded-3xl shadow-[0_8px_40px_0_rgba(0,0,0,0.3)] border-l-4 sm:flex sm:space-x-6 relative group hover:-translate-x-2 transition-all duration-500 p-6 sm:p-8" style="border-left-color: #1B9EAA;">
-        <div class="relative w-20 h-20 mx-auto sm:flex-shrink-0">
-          <img class="w-full h-full rounded-full object-cover ring-4 ring-white shadow-md" src="/lucelia.jpg" alt="Lucelia Almeida" loading="lazy">
-        </div>
-        <div class="space-y-3 mt-4 sm:mt-0">
-          <p class="text-gray-700 font-medium text-sm leading-relaxed">
-            <span class="text-2xl text-amber-400 font-serif mr-1 leading-none">"</span>
-            Arena voleibol club es la escuela más indicada para aprender y perfeccionar en el voleibol de playa en Perú, ya que cuenta con los mejores profesionales del país y con gran experiencia.
-          </p>
+    <div class="mt-12 grid gap-6 lg:grid-cols-[1.25fr_1fr]">
+      <figure class="card flex flex-col justify-between bg-brand-800 p-8 sm:p-10" data-animate>
+        <blockquote class="font-display text-xl font-semibold leading-relaxed text-white sm:text-2xl">
+          “{destacado.texto}”
+        </blockquote>
+        <figcaption class="mt-10 flex items-center gap-4">
+          <img src={destacado.foto} alt="" loading="lazy" class="h-14 w-14 rounded-full object-cover" />
           <div>
-            <h6 class="text-base font-black text-gray-900">Lucelia Almeida</h6>
-            <span class="text-xs font-bold" style="color: #1B9EAA;">Entrenadora de Chile</span>
+            <p class="font-semibold text-white">{destacado.nombre}</p>
+            <p class="text-sm text-accent-400">{destacado.rol}</p>
           </div>
-        </div>
-      </div>
+        </figcaption>
+      </figure>
 
-      <div class="bg-white rounded-3xl shadow-[0_8px_40px_0_rgba(0,0,0,0.3)] border-l-4 sm:flex sm:space-x-6 relative group hover:-translate-x-2 transition-all duration-500 p-6 sm:p-8" style="border-left-color: #FFB923;">
-        <div class="relative w-20 h-20 mx-auto sm:flex-shrink-0">
-          <img class="w-full h-full rounded-full object-cover ring-4 ring-white shadow-md" src="/mauro.jpg" alt="Mauro Hernandez" loading="lazy">
-        </div>
-        <div class="space-y-3 mt-4 sm:mt-0">
-          <p class="text-gray-700 font-medium text-sm leading-relaxed">
-            <span class="text-2xl text-amber-400 font-serif mr-1 leading-none">"</span>
-            Es de gran importancia el desarrollo de academias donde se pueda practicar el voleibol de playa. Como entrenador e instructor me llena de alegría ver el trabajo que viene realizando Arena voleibol club en Perú.
-          </p>
-          <div>
-            <h6 class="text-base font-black text-gray-900">Mauro Hernandez</h6>
-            <span class="text-xs font-bold" style="color: #FFB923;">Instructor FIVB — Venezuela</span>
-          </div>
-        </div>
+      <div class="grid gap-6">
+        {otros.map((t) => (
+          <figure class="card flex flex-col justify-between p-6 sm:p-8" data-animate>
+            <blockquote class="text-base leading-relaxed text-ink-700">“{t.texto}”</blockquote>
+            <figcaption class="mt-6 flex items-center gap-3">
+              <img src={t.foto} alt="" loading="lazy" class="h-11 w-11 rounded-full object-cover" />
+              <div>
+                <p class="text-sm font-semibold text-ink-900">{t.nombre}</p>
+                <p class="text-sm text-ink-500">{t.rol}</p>
+              </div>
+            </figcaption>
+          </figure>
+        ))}
       </div>
-
     </div>
   </div>
 </section>

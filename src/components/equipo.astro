@@ -1,105 +1,63 @@
-<section class="relative z-10 overflow-hidden py-16 sm:py-24 px-6" style="background: #ffffff;">
+---
+const coaches = [
+  {
+    nombre: 'Leobardo Sanabria',
+    rol: 'Entrenador jefe',
+    credencial: 'Entrenador FIVB internacional nivel 2',
+    foto: '/leo.JPG',
+    instagram: 'https://www.instagram.com/leobardo2/',
+    facebook: 'https://www.facebook.com/Leovoley2/',
+  },
+  {
+    nombre: 'Maryuris Cabeza',
+    rol: 'Entrenadora Arena Kids',
+    credencial: 'Formación infantil y juvenil',
+    foto: '/maryu.jpg',
+    instagram: 'https://www.instagram.com/maryuris1/',
+    facebook: 'https://www.facebook.com/ruiz.ruiz.737',
+  },
+  {
+    nombre: 'Adrian Azocar',
+    rol: 'Entrenador',
+    credencial: 'Entrenador FIVB internacional nivel 1',
+    foto: '/2.jpg',
+    instagram: 'https://www.instagram.com/adrianazocar94/',
+    facebook: 'https://www.facebook.com/adrianjose.azocarblanco',
+  },
+];
+---
 
-  <div class="container mx-auto">
-
-    <!-- Section header -->
-    <div class="text-center mb-14">
-      <div class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-4 border" style="background: rgba(10,91,138,0.07); border-color: rgba(10,91,138,0.15);">
-        <span class="text-xs font-bold tracking-widest uppercase" style="color: #0a5b8a;">Conoce a nuestros coaches</span>
-      </div>
-      <h2 class="text-4xl sm:text-5xl font-black text-gray-900 mb-3">Nuestro <span class="text-transparent bg-clip-text" style="background-image: linear-gradient(135deg, #1B9EAA, #0a5b8a);">Equipo</span></h2>
-      <div class="mx-auto mt-3 flex justify-center gap-2">
-        <span class="inline-block h-1 w-20 rounded-full" style="background: linear-gradient(90deg, #FFB923, #1B9EAA);"></span>
-      </div>
-      <p class="mx-auto mt-4 max-w-2xl text-center text-gray-500 text-lg font-medium">Entrenadores certificados FIVB internacionalmente.</p>
+<section class="section bg-white">
+  <div class="container-site">
+    <div class="max-w-2xl">
+      <p class="eyebrow">Equipo</p>
+      <h2 class="title-section">Entrenadores certificados FIVB</h2>
+      <p class="lead">Coaches con formación internacional que te acompañan desde tu primer toque hasta la competencia.</p>
     </div>
 
-    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
-
-      <!-- Coach 1 -->
-      <div class="group relative bg-white rounded-3xl overflow-hidden shadow-[0_8px_40px_0_rgba(10,91,138,0.12)] hover:shadow-[0_16px_48px_0_rgba(10,91,138,0.22)] hover:-translate-y-2 transition-all duration-500 border border-gray-100">
-        <!-- Top accent -->
-        <div class="h-1.5 w-full" style="background: linear-gradient(90deg, #FFB923, #1B9EAA);"></div>
-        <!-- Photo area -->
-        <div class="relative overflow-hidden" style="height: 280px;">
-          <img class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" src="/leo.JPG" alt="Leobardo Sanabria" />
-          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(10,61,82,0.8) 0%, transparent 60%);"></div>
-          <!-- Name overlay -->
-          <div class="absolute bottom-4 left-4 right-4">
-            <p class="text-amber-400 text-xs font-bold uppercase tracking-wider mb-1">Entrenador Jefe</p>
-            <h3 class="text-xl font-black text-white">Leobardo Sanabria</h3>
+    <ul class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {coaches.map((coach) => (
+        <li data-animate>
+          <div class="aspect-[4/5] overflow-hidden rounded-xl bg-sand-100">
+            <img src={coach.foto} alt={coach.nombre} loading="lazy" class="h-full w-full object-cover object-top" />
           </div>
-        </div>
-        <!-- Info -->
-        <div class="p-6">
-          <div class="flex items-center gap-2 mb-3">
-            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold text-white" style="background: linear-gradient(135deg, #1B9EAA, #0a5b8a);">FIVB Nivel 2</span>
+          <div class="mt-5 flex items-start justify-between gap-4">
+            <div>
+              <h3 class="text-lg font-bold">{coach.nombre}</h3>
+              <p class="mt-0.5 text-sm font-medium text-brand-600">{coach.rol}</p>
+              <p class="mt-1 text-sm text-ink-500">{coach.credencial}</p>
+            </div>
+            <div class="flex flex-none gap-1">
+              <a href={coach.instagram} target="_blank" rel="noopener noreferrer" aria-label={`Instagram de ${coach.nombre}`} class="flex h-9 w-9 items-center justify-center rounded-full text-ink-400 transition-colors hover:bg-ink-50 hover:text-ink-800">
+                <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              </a>
+              <a href={coach.facebook} target="_blank" rel="noopener noreferrer" aria-label={`Facebook de ${coach.nombre}`} class="flex h-9 w-9 items-center justify-center rounded-full text-ink-400 transition-colors hover:bg-ink-50 hover:text-ink-800">
+                <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </a>
+            </div>
           </div>
-          <p class="text-gray-500 text-sm mb-4">Entrenador FIVB internacional nivel 2</p>
-          <div class="flex gap-3">
-            <a href="https://www.instagram.com/leobardo2/" class="w-8 h-8 rounded-full flex items-center justify-center transition-all hover:scale-110" style="background: linear-gradient(135deg, #1B9EAA, #0a5b8a);" aria-label="Instagram">
-              <svg class="h-4 w-4 fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M 16 3 C 8.8545455 3 3 8.8545455 3 16 L 3 34 C 3 41.145455 8.8545455 47 16 47 L 34 47 C 41.145455 47 47 41.145455 47 34 L 47 16 C 47 8.8545455 41.145455 3 34 3 L 16 3 z M 16 5 L 34 5 C 40.054545 5 45 9.9454545 45 16 L 45 34 C 45 40.054545 40.054545 45 34 45 L 16 45 C 9.9454545 45 5 40.054545 5 34 L 5 16 C 5 9.9454545 9.9454545 5 16 5 z M 37 11 C 35.9 11 35 11.9 35 13 C 35 14.1 35.9 15 37 15 C 38.1 15 39 14.1 39 13 C 39 11.9 38.1 11 37 11 z M 25 14 C 18.954545 14 14 18.954545 14 25 C 14 31.045455 18.954545 36 25 36 C 31.045455 36 36 31.045455 36 25 C 36 18.954545 31.045455 14 25 14 z M 25 16 C 29.954545 16 34 20.045455 34 25 C 34 29.954545 29.954545 34 25 34 C 20.045455 34 16 29.954545 16 25 C 16 20.045455 20.045455 16 25 16 z"></path></svg>
-            </a>
-            <a href="https://www.facebook.com/Leovoley2/" class="w-8 h-8 rounded-full flex items-center justify-center transition-all hover:scale-110" style="background: linear-gradient(135deg, #0a3d52, #0a5b8a);" aria-label="Facebook">
-              <svg class="h-4 w-4 fill-white" viewBox="0 0 24 24"><path d="M2.00195 12.002C2.00312 16.9214 5.58036 21.1101 10.439 21.881V14.892H7.90195V12.002H10.442V9.80204C10.3284 8.75958 10.6845 7.72064 11.4136 6.96698C12.1427 6.21332 13.1693 5.82306 14.215 5.90204C14.9655 5.91417 15.7141 5.98101 16.455 6.10205V8.56104H15.191C14.7558 8.50405 14.3183 8.64777 14.0017 8.95171C13.6851 9.25566 13.5237 9.68693 13.563 10.124V12.002H16.334L15.891 14.893H13.563V21.881C18.8174 21.0506 22.502 16.2518 21.9475 10.9611C21.3929 5.67041 16.7932 1.73997 11.4808 2.01722C6.16831 2.29447 2.0028 6.68235 2.00195 12.002Z"></path></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Coach 2 -->
-      <div class="group relative bg-white rounded-3xl overflow-hidden shadow-[0_8px_40px_0_rgba(10,91,138,0.12)] hover:shadow-[0_16px_48px_0_rgba(255,185,25,0.22)] hover:-translate-y-2 transition-all duration-500 border border-gray-100">
-        <div class="h-1.5 w-full" style="background: linear-gradient(90deg, #FFB923, #ffd97a);"></div>
-        <div class="relative overflow-hidden" style="height: 280px;">
-          <img class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" src="/maryu.jpg" alt="Maryuris Cabeza" />
-          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(10,61,82,0.8) 0%, transparent 60%);"></div>
-          <div class="absolute bottom-4 left-4 right-4">
-            <p class="text-amber-400 text-xs font-bold uppercase tracking-wider mb-1">Arena Kids</p>
-            <h3 class="text-xl font-black text-white">Maryuris Cabeza</h3>
-          </div>
-        </div>
-        <div class="p-6">
-          <div class="flex items-center gap-2 mb-3">
-            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold text-gray-900" style="background: #FFB923;">Arena Kids</span>
-          </div>
-          <p class="text-gray-500 text-sm mb-4">Entrenadora de Arena Kids</p>
-          <div class="flex gap-3">
-            <a href="https://www.instagram.com/maryuris1/" class="w-8 h-8 rounded-full flex items-center justify-center transition-all hover:scale-110" style="background: linear-gradient(135deg, #FFB923, #f59e0b);" aria-label="Instagram">
-              <svg class="h-4 w-4 fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M 16 3 C 8.8545455 3 3 8.8545455 3 16 L 3 34 C 3 41.145455 8.8545455 47 16 47 L 34 47 C 41.145455 47 47 41.145455 47 34 L 47 16 C 47 8.8545455 41.145455 3 34 3 L 16 3 z M 16 5 L 34 5 C 40.054545 5 45 9.9454545 45 16 L 45 34 C 45 40.054545 40.054545 45 34 45 L 16 45 C 9.9454545 45 5 40.054545 5 34 L 5 16 C 5 9.9454545 9.9454545 5 16 5 z M 37 11 C 35.9 11 35 11.9 35 13 C 35 14.1 35.9 15 37 15 C 38.1 15 39 14.1 39 13 C 39 11.9 38.1 11 37 11 z M 25 14 C 18.954545 14 14 18.954545 14 25 C 14 31.045455 18.954545 36 25 36 C 31.045455 36 36 31.045455 36 25 C 36 18.954545 31.045455 14 25 14 z M 25 16 C 29.954545 16 34 20.045455 34 25 C 34 29.954545 29.954545 34 25 34 C 20.045455 34 16 29.954545 16 25 C 16 20.045455 20.045455 16 25 16 z"></path></svg>
-            </a>
-            <a href="https://www.facebook.com/ruiz.ruiz.737" class="w-8 h-8 rounded-full flex items-center justify-center transition-all hover:scale-110" style="background: linear-gradient(135deg, #0a3d52, #0a5b8a);" aria-label="Facebook">
-              <svg class="h-4 w-4 fill-white" viewBox="0 0 24 24"><path d="M2.00195 12.002C2.00312 16.9214 5.58036 21.1101 10.439 21.881V14.892H7.90195V12.002H10.442V9.80204C10.3284 8.75958 10.6845 7.72064 11.4136 6.96698C12.1427 6.21332 13.1693 5.82306 14.215 5.90204C14.9655 5.91417 15.7141 5.98101 16.455 6.10205V8.56104H15.191C14.7558 8.50405 14.3183 8.64777 14.0017 8.95171C13.6851 9.25566 13.5237 9.68693 13.563 10.124V12.002H16.334L15.891 14.893H13.563V21.881C18.8174 21.0506 22.502 16.2518 21.9475 10.9611C21.3929 5.67041 16.7932 1.73997 11.4808 2.01722C6.16831 2.29447 2.0028 6.68235 2.00195 12.002Z"></path></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Coach 3 -->
-      <div class="group relative bg-white rounded-3xl overflow-hidden shadow-[0_8px_40px_0_rgba(10,91,138,0.12)] hover:shadow-[0_16px_48px_0_rgba(10,91,138,0.22)] hover:-translate-y-2 transition-all duration-500 border border-gray-100">
-        <div class="h-1.5 w-full" style="background: linear-gradient(90deg, #1B9EAA, #FFB923);"></div>
-        <div class="relative overflow-hidden" style="height: 280px;">
-          <img class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" src="/2.jpg" alt="Adrian Azocar" />
-          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(10,61,82,0.8) 0%, transparent 60%);"></div>
-          <div class="absolute bottom-4 left-4 right-4">
-            <p class="text-amber-400 text-xs font-bold uppercase tracking-wider mb-1">Entrenador</p>
-            <h3 class="text-xl font-black text-white">Adrian Azocar</h3>
-          </div>
-        </div>
-        <div class="p-6">
-          <div class="flex items-center gap-2 mb-3">
-            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold text-white" style="background: linear-gradient(135deg, #1B9EAA, #FFB923);">FIVB Nivel 1</span>
-          </div>
-          <p class="text-gray-500 text-sm mb-4">Entrenador FIVB internacional nivel 1</p>
-          <div class="flex gap-3">
-            <a href="https://www.instagram.com/adrianazocar94/" class="w-8 h-8 rounded-full flex items-center justify-center transition-all hover:scale-110" style="background: linear-gradient(135deg, #1B9EAA, #0a5b8a);" aria-label="Instagram">
-              <svg class="h-4 w-4 fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M 16 3 C 8.8545455 3 3 8.8545455 3 16 L 3 34 C 3 41.145455 8.8545455 47 16 47 L 34 47 C 41.145455 47 47 41.145455 47 34 L 47 16 C 47 8.8545455 41.145455 3 34 3 L 16 3 z M 16 5 L 34 5 C 40.054545 5 45 9.9454545 45 16 L 45 34 C 45 40.054545 40.054545 45 34 45 L 16 45 C 9.9454545 45 5 40.054545 5 34 L 5 16 C 5 9.9454545 9.9454545 5 16 5 z M 37 11 C 35.9 11 35 11.9 35 13 C 35 14.1 35.9 15 37 15 C 38.1 15 39 14.1 39 13 C 39 11.9 38.1 11 37 11 z M 25 14 C 18.954545 14 14 18.954545 14 25 C 14 31.045455 18.954545 36 25 36 C 31.045455 36 36 31.045455 36 25 C 36 18.954545 31.045455 14 25 14 z M 25 16 C 29.954545 16 34 20.045455 34 25 C 34 29.954545 29.954545 34 25 34 C 20.045455 34 16 29.954545 16 25 C 16 20.045455 20.045455 16 25 16 z"></path></svg>
-            </a>
-            <a href="https://www.facebook.com/adrianjose.azocarblanco" class="w-8 h-8 rounded-full flex items-center justify-center transition-all hover:scale-110" style="background: linear-gradient(135deg, #0a3d52, #0a5b8a);" aria-label="Facebook">
-              <svg class="h-4 w-4 fill-white" viewBox="0 0 24 24"><path d="M2.00195 12.002C2.00312 16.9214 5.58036 21.1101 10.439 21.881V14.892H7.90195V12.002H10.442V9.80204C10.3284 8.75958 10.6845 7.72064 11.4136 6.96698C12.1427 6.21332 13.1693 5.82306 14.215 5.90204C14.9655 5.91417 15.7141 5.98101 16.455 6.10205V8.56104H15.191C14.7558 8.50405 14.3183 8.64777 14.0017 8.95171C13.6851 9.25566 13.5237 9.68693 13.563 10.124V12.002H16.334L15.891 14.893H13.563V21.881C18.8174 21.0506 22.502 16.2518 21.9475 10.9611C21.3929 5.67041 16.7932 1.73997 11.4808 2.01722C6.16831 2.29447 2.0028 6.68235 2.00195 12.002Z"></path></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+        </li>
+      ))}
+    </ul>
   </div>
 </section>
